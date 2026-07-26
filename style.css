@@ -1210,6 +1210,14 @@ transition:.35s;
 opacity:1;
 
 }
+.fa-x-twitter{
+    color:#fff;
+    transition:.3s ease;
+}
+
+.footer-social a:hover .fa-x-twitter{
+    color:var(--gold);
+}
 
 /* ==========================
 SHOWREEL
