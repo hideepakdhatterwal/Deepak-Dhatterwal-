@@ -731,6 +731,32 @@ console.log("Website Loaded Successfully");
 // ==========================================
 
 /*
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.getElementById("navLinks");
+
+menuBtn.addEventListener("click", () => {
+
+    navLinks.classList.toggle("active");
+
+    if(navLinks.classList.contains("active")){
+        menuBtn.innerHTML='<i class="fa-solid fa-xmark"></i>';
+    }else{
+        menuBtn.innerHTML='<i class="fa-solid fa-bars"></i>';
+    }
+
+});
+
+document.querySelectorAll(".nav-links a").forEach(link=>{
+
+link.addEventListener("click",()=>{
+
+navLinks.classList.remove("active");
+
+menuBtn.innerHTML='<i class="fa-solid fa-bars"></i>';
+
+});
+
+});
 
 Future Updates
 
