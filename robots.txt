@@ -1,4 +1,13 @@
+# ==========================================
+# Deepak Dhatterwal Official Website
+# robots.txt
+# ==========================================
+
 User-agent: *
+
 Allow: /
+
+Disallow: /assets/private/
+Disallow: /cgi-bin/
 
 Sitemap: https://deepak-dhatterwal.vercel.app/sitemap.xml
