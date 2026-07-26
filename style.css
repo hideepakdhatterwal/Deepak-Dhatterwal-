@@ -401,6 +401,81 @@ grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
 gap:30px;
 
 }
+/* Floating Motivation Quotes */
+
+.quote-slider{
+
+width:100%;
+
+overflow:hidden;
+
+background:#000;
+
+padding:18px 0;
+
+border-top:1px solid rgba(212,175,55,.25);
+
+border-bottom:1px solid rgba(212,175,55,.25);
+
+}
+
+.quote-track{
+
+display:flex;
+
+width:max-content;
+
+animation:scrollQuotes 35s linear infinite;
+
+}
+
+.quote-track span{
+
+font-size:20px;
+
+font-family:'Cinzel',serif;
+
+color:var(--gold);
+
+white-space:nowrap;
+
+margin-right:120px;
+
+}
+
+@keyframes scrollQuotes{
+
+0%{
+
+transform:translateX(100%);
+
+}
+
+100%{
+
+transform:translateX(-100%);
+
+}
+
+}
+
+.quote-slider:hover .quote-track{
+
+animation-play-state:paused;
+
+}
+
+@media(max-width:768px){
+
+.quote-track span{
+
+font-size:16px;
+
+margin-right:70px;
+
+}
+
+}
 
 .quote-card{
 
