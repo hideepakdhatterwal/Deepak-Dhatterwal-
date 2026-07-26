@@ -1458,6 +1458,27 @@ background:var(--gold);
 color:#000;
 
 }
+.footer-follow{
+    margin-top:20px;
+    text-align:center;
+    color:#bdbdbd;
+    font-size:15px;
+}
+
+.footer-follow a{
+    color:var(--gold);
+    text-decoration:none;
+    font-weight:600;
+    transition:.3s;
+}
+
+.footer-follow a:hover{
+    color:#fff;
+}
+
+.footer-follow i{
+    margin-right:6px;
+}
 
 .copyright{
 
