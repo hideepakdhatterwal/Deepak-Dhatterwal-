@@ -1,148 +1,125 @@
-/*=========================================================
+/*====================================================
 DEEPAK DHATTERWAL
-Official Actor Portfolio v5.0
-=========================================================*/
+Official Actor Portfolio
+Version 6.0
+====================================================*/
 
 "use strict";
 
-/*=========================================================
+/*========================================
 SELECTORS
-=========================================================*/
+========================================*/
 
 const loader = document.getElementById("loader");
-const progressBar = document.getElementById("progressBar");
 const header = document.getElementById("header");
-const menuToggle = document.getElementById("menuToggle");
-const navLinks = document.getElementById("navLinks");
+const progressBar = document.getElementById("progressBar");
+const menuBtn = document.querySelector(".menu-btn");
+const navMenu = document.querySelector(".nav-menu");
 const backToTop = document.getElementById("backToTop");
 
-/*=========================================================
+/*========================================
 PRELOADER
-=========================================================*/
+========================================*/
 
 window.addEventListener("load", () => {
 
-if(loader){
+    setTimeout(() => {
 
-loader.style.opacity="0";
+        loader.style.opacity = "0";
+        loader.style.visibility = "hidden";
 
-loader.style.visibility="hidden";
-
-setTimeout(()=>{
-
-loader.remove();
-
-},800);
-
-}
+    }, 1800);
 
 });
 
-/*=========================================================
-STICKY HEADER
-=========================================================*/
-
-window.addEventListener("scroll",()=>{
-
-if(!header) return;
-
-if(window.scrollY>80){
-
-header.classList.add("scrolled");
-
-}else{
-
-header.classList.remove("scrolled");
-
-}
-
-});
-
-/*=========================================================
+/*========================================
 SCROLL PROGRESS
-=========================================================*/
+========================================*/
 
-window.addEventListener("scroll",()=>{
+window.addEventListener("scroll", () => {
 
-if(!progressBar) return;
+    const scroll =
+        document.documentElement.scrollTop;
 
-const winScroll=document.documentElement.scrollTop;
+    const height =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
 
-const height=document.documentElement.scrollHeight-document.documentElement.clientHeight;
+    const percent = (scroll / height) * 100;
 
-const progress=(winScroll/height)*100;
-
-progressBar.style.width=progress+"%";
+    progressBar.style.width = percent + "%";
 
 });
 
-/*=========================================================
+/*========================================
+HEADER
+========================================*/
+
+window.addEventListener("scroll", () => {
+
+    if (window.scrollY > 80) {
+
+        header.classList.add("active");
+
+    } else {
+
+        header.classList.remove("active");
+
+    }
+
+});
+
+/*========================================
 MOBILE MENU
-=========================================================*/
+========================================*/
 
-if(menuToggle && navLinks){
+menuBtn.addEventListener("click", () => {
 
-menuToggle.addEventListener("click",()=>{
-
-navLinks.classList.toggle("active");
-
-menuToggle.classList.toggle("active");
+    navMenu.classList.toggle("active");
 
 });
 
-}
+/*========================================
+SMOOTH MENU CLOSE
+========================================*/
 
-/*=========================================================
-CLOSE MENU
-=========================================================*/
+document.querySelectorAll(".nav-menu a")
 
-document.querySelectorAll(".nav-links a").forEach(link=>{
+.forEach(link => {
 
-link.addEventListener("click",()=>{
+link.addEventListener("click", () => {
 
-if(navLinks){
-
-navLinks.classList.remove("active");
-
-}
-
-if(menuToggle){
-
-menuToggle.classList.remove("active");
-
-}
+navMenu.classList.remove("active");
 
 });
 
 });
 
-/*=========================================================
+/*========================================
 BACK TO TOP
-=========================================================*/
+========================================*/
 
-window.addEventListener("scroll",()=>{
+window.addEventListener("scroll", () => {
 
-if(!backToTop) return;
+if (window.scrollY > 500) {
 
-if(window.scrollY>500){
+backToTop.style.opacity = "1";
 
-backToTop.style.opacity="1";
+backToTop.style.visibility = "visible";
 
-backToTop.style.visibility="visible";
+}
 
-}else{
+else {
 
-backToTop.style.opacity="0";
+backToTop.style.opacity = "0";
 
-backToTop.style.visibility="hidden";
+backToTop.style.visibility = "hidden";
 
 }
 
 });
 
-if(backToTop){
-
-backToTop.addEventListener("click",()=>{
+backToTop.addEventListener("click", () => {
 
 window.scrollTo({
 
@@ -154,16 +131,13 @@ behavior:"smooth"
 
 });
 
-}
-
-
-/*=========================================================
+/*====================================================
 SMOOTH SCROLL
-=========================================================*/
+====================================================*/
 
-document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
-anchor.addEventListener("click",function(e){
+anchor.addEventListener("click", function(e){
 
 const target=document.querySelector(this.getAttribute("href"));
 
@@ -185,15 +159,16 @@ block:"start"
 
 });
 
-/*=========================================================
-ACTIVE NAVIGATION
-=========================================================*/
+
+/*====================================================
+ACTIVE MENU
+====================================================*/
 
 const sections=document.querySelectorAll("section");
 
-const navItems=document.querySelectorAll(".nav-links a");
+const navLinks=document.querySelectorAll(".nav-menu a");
 
-function activeMenu(){
+window.addEventListener("scroll",()=>{
 
 let current="";
 
@@ -211,7 +186,7 @@ current=section.getAttribute("id");
 
 });
 
-navItems.forEach(link=>{
+navLinks.forEach(link=>{
 
 link.classList.remove("active");
 
@@ -223,89 +198,16 @@ link.classList.add("active");
 
 });
 
-}
+});
 
-window.addEventListener("scroll",activeMenu);
 
-/*=========================================================
-TYPING EFFECT
-=========================================================*/
-
-const typing=document.getElementById("typingText");
-
-if(typing){
-
-const words=[
-
-"Professional Actor",
-
-"Artist",
-
-"Storyteller",
-
-"Performer",
-
-"Dreamer",
-
-"Available For Casting"
-
-];
-
-let wordIndex=0;
-
-let charIndex=0;
-
-let deleting=false;
-
-function typeEffect(){
-
-const word=words[wordIndex];
-
-typing.textContent=word.substring(0,charIndex);
-
-if(!deleting){
-
-charIndex++;
-
-if(charIndex>word.length){
-
-deleting=true;
-
-setTimeout(typeEffect,1800);
-
-return;
-
-}
-
-}else{
-
-charIndex--;
-
-if(charIndex===0){
-
-deleting=false;
-
-wordIndex=(wordIndex+1)%words.length;
-
-}
-
-}
-
-setTimeout(typeEffect,deleting?60:110);
-
-}
-
-typeEffect();
-
-}
-
-/*=========================================================
+/*====================================================
 SCROLL REVEAL
-=========================================================*/
+====================================================*/
 
-const revealItems=document.querySelectorAll(
+const revealElements=document.querySelectorAll(
 
-".section-heading,.about-wrapper,.profile-card,.skill-box,.timeline-item,.gallery-item,.video-card,.imdb-card,.featured-quote,.quote-category,.line-card,.contact-card,.footer"
+".section-heading,.featured-card,.about-image,.about-content,.profile-card,.journey-card,.gallery-item,.showreel-wrapper,.skill-card,.imdb-card,.contact-wrapper,.footer"
 
 );
 
@@ -313,13 +215,13 @@ function reveal(){
 
 const trigger=window.innerHeight*0.85;
 
-revealItems.forEach(item=>{
+revealElements.forEach(item=>{
 
 const top=item.getBoundingClientRect().top;
 
 if(top<trigger){
 
-item.classList.add("active");
+item.classList.add("show");
 
 }
 
@@ -331,19 +233,20 @@ window.addEventListener("scroll",reveal);
 
 reveal();
 
-/*=========================================================
-HERO IMAGE PARALLAX
-=========================================================*/
 
-const heroImage=document.querySelector(".hero-image");
+/*====================================================
+HERO IMAGE PARALLAX
+====================================================*/
+
+const heroImage=document.querySelector(".hero-right img");
 
 if(heroImage){
 
-window.addEventListener("mousemove",(e)=>{
+document.addEventListener("mousemove",(e)=>{
 
-const x=(window.innerWidth/2-e.clientX)/45;
+const x=(window.innerWidth/2-e.clientX)/40;
 
-const y=(window.innerHeight/2-e.clientY)/45;
+const y=(window.innerHeight/2-e.clientY)/40;
 
 heroImage.style.transform=
 
@@ -354,82 +257,101 @@ heroImage.style.transform=
 }
 
 
-/*=========================================================
-GALLERY FILTER
-=========================================================*/
+/*====================================================
+TYPING EFFECT
+====================================================*/
 
-const filterButtons = document.querySelectorAll(".filter-btn");
-const galleryItems = document.querySelectorAll(".gallery-item");
+const typingText=document.querySelector(".hero-left h2");
 
-if(filterButtons.length && galleryItems.length){
+if(typingText){
 
-filterButtons.forEach(button=>{
+const words=[
 
-button.addEventListener("click",()=>{
+"Official Actor",
 
-filterButtons.forEach(btn=>btn.classList.remove("active"));
+"Storyteller",
 
-button.classList.add("active");
+"Artist",
 
-const filter=button.dataset.filter;
+"Available For Casting",
 
-galleryItems.forEach(item=>{
+"Living Stories Through Cinema"
 
-if(filter==="all" || item.classList.contains(filter)){
+];
 
-item.style.display="block";
+let word=0;
 
-setTimeout(()=>{
+let letter=0;
 
-item.style.opacity="1";
+let deleting=false;
 
-item.style.transform="scale(1)";
+function type(){
 
-},100);
+let current=words[word];
+
+typingText.textContent=current.substring(0,letter);
+
+if(!deleting){
+
+letter++;
+
+if(letter>current.length){
+
+deleting=true;
+
+setTimeout(type,1800);
+
+return;
+
+}
 
 }else{
 
-item.style.opacity="0";
+letter--;
 
-item.style.transform="scale(.9)";
+if(letter===0){
 
-setTimeout(()=>{
+deleting=false;
 
-item.style.display="none";
+word++;
 
-},250);
+if(word>=words.length){
 
-}
-
-});
-
-});
-
-});
+word=0;
 
 }
 
-/*=========================================================
-LIGHTBOX
-=========================================================*/
+}
 
-const lightbox=document.querySelector(".lightbox");
-const lightboxImage=document.querySelector(".lightbox img");
-const closeBtn=document.querySelector(".lightbox-close");
-const prevBtn=document.querySelector(".lightbox-prev");
-const nextBtn=document.querySelector(".lightbox-next");
+}
 
-let currentIndex=0;
+setTimeout(type,deleting?60:100);
 
-if(lightbox && lightboxImage){
+}
 
-const images=[...document.querySelectorAll(".gallery-item img")];
+type();
 
-images.forEach((img,index)=>{
+}
+
+/*======================================================
+GALLERY LIGHTBOX
+======================================================*/
+
+const galleryItems = document.querySelectorAll(".gallery-item img");
+const lightbox = document.querySelector(".lightbox");
+const lightboxImage = document.querySelector(".lightbox img");
+
+const closeBtn = document.querySelector(".lightbox-close");
+const prevBtn = document.querySelector(".lightbox-prev");
+const nextBtn = document.querySelector(".lightbox-next");
+
+let currentImage = 0;
+
+galleryItems.forEach((img,index)=>{
 
 img.addEventListener("click",()=>{
 
-currentIndex=index;
+currentImage=index;
 
 showImage();
 
@@ -443,11 +365,13 @@ document.body.style.overflow="hidden";
 
 function showImage(){
 
-lightboxImage.src=images[currentIndex].src;
+lightboxImage.src=galleryItems[currentImage].src;
 
-lightboxImage.alt=images[currentIndex].alt;
+lightboxImage.alt=galleryItems[currentImage].alt;
 
 }
+
+/* Close */
 
 function closeLightbox(){
 
@@ -457,35 +381,41 @@ document.body.style.overflow="";
 
 }
 
-if(closeBtn){
-
 closeBtn.addEventListener("click",closeLightbox);
 
-}
-
-if(nextBtn){
+/* Next */
 
 nextBtn.addEventListener("click",()=>{
 
-currentIndex=(currentIndex+1)%images.length;
+currentImage++;
+
+if(currentImage>=galleryItems.length){
+
+currentImage=0;
+
+}
 
 showImage();
 
 });
 
-}
-
-if(prevBtn){
+/* Previous */
 
 prevBtn.addEventListener("click",()=>{
 
-currentIndex=(currentIndex-1+images.length)%images.length;
+currentImage--;
+
+if(currentImage<0){
+
+currentImage=galleryItems.length-1;
+
+}
 
 showImage();
 
 });
 
-}
+/* Click Outside */
 
 lightbox.addEventListener("click",(e)=>{
 
@@ -497,212 +427,181 @@ closeLightbox();
 
 });
 
+/*======================================================
+KEYBOARD
+======================================================*/
+
 document.addEventListener("keydown",(e)=>{
 
 if(!lightbox.classList.contains("active")) return;
 
-if(e.key==="Escape") closeLightbox();
+if(e.key==="Escape"){
 
-if(e.key==="ArrowRight" && nextBtn) nextBtn.click();
+closeLightbox();
 
-if(e.key==="ArrowLeft" && prevBtn) prevBtn.click();
+}
+
+if(e.key==="ArrowRight"){
+
+nextBtn.click();
+
+}
+
+if(e.key==="ArrowLeft"){
+
+prevBtn.click();
+
+}
+
+});
+
+/*======================================================
+IMAGE FADE
+======================================================*/
+
+galleryItems.forEach(img=>{
+
+img.onload=()=>{
+
+img.style.opacity="1";
+
+img.style.transform="scale(1)";
+
+};
+
+});
+
+/*======================================================
+IMAGE HOVER
+======================================================*/
+
+galleryItems.forEach(img=>{
+
+img.addEventListener("mouseenter",()=>{
+
+img.style.transition=".6s";
+
+});
+
+});
+
+/*======================================================
+SHOWREEL VIDEO POPUP
+======================================================*/
+
+const playButton=document.querySelector(".play-btn");
+
+const videoPopup=document.querySelector(".video-popup");
+
+const videoFrame=document.querySelector(".video-popup iframe");
+
+const closeVideo=document.querySelector(".video-close");
+
+if(playButton){
+
+playButton.addEventListener("click",()=>{
+
+videoPopup.classList.add("active");
+
+videoFrame.src="https://www.youtube.com/embed/YOUR_VIDEO_ID?autoplay=1";
+
+document.body.style.overflow="hidden";
 
 });
 
 }
 
+if(closeVideo){
 
-/*=========================================================
-PREMIUM QUOTES SYSTEM
-=========================================================*/
+closeVideo.addEventListener("click",()=>{
 
-const quoteData=[
+videoPopup.classList.remove("active");
 
-{
-category:"🕉️ Bhagavad Gita",
-text:"कर्मण्येवाधिकारस्ते मा फलेषु कदाचन।",
-author:"Bhagavad Gita"
-},
+videoFrame.src="";
 
-{
-category:"🕉️ Bhagavad Gita",
-text:"योगः कर्मसु कौशलम्।",
-author:"Bhagavad Gita"
-},
+document.body.style.overflow="";
 
-{
-category:"🎭 Acting",
-text:"Acting is living truthfully under imaginary circumstances.",
-author:"Sanford Meisner"
-},
-
-{
-category:"🎭 Acting",
-text:"A great performance begins with honesty.",
-author:"Deepak Dhatterwal"
-},
-
-{
-category:"🎬 Cinema",
-text:"Every frame tells a story. Every story changes someone.",
-author:"Cinema"
-
-},
-
-{
-category:"💪 Motivation",
-
-text:"Discipline beats talent when talent doesn't work hard.",
-
-author:"Motivation"
-
-},
-
-{
-category:"⭐ Success",
-
-text:"Success is earned one day at a time.",
-
-author:"Mindset"
-
-},
-
-{
-category:"❤️ Life",
-
-text:"Respect the journey more than the destination.",
-
-author:"Life"
-
-},
-
-{
-category:"🌟 Dream",
-
-text:"Dream big. Stay humble. Keep working.",
-
-author:"Deepak Dhatterwal"
+});
 
 }
 
-];
-
-const quoteCategory=document.getElementById("quoteCategory");
+/*======================================================
+DYNAMIC QUOTES
+======================================================*/
 
 const quoteText=document.getElementById("quoteText");
 
-const quoteAuthor=document.getElementById("quoteAuthor");
+if(quoteText){
 
-let quoteNumber=0;
+const quotes=[
 
-function updateQuote(){
+"Dream big. Stay humble.",
 
-if(!quoteCategory || !quoteText || !quoteAuthor) return;
+"Discipline creates excellence.",
 
-const q=quoteData[quoteNumber];
+"Every role deserves honesty.",
 
-quoteCategory.style.opacity=0;
+"Cinema is the language of emotions.",
+
+"Success belongs to those who never quit.",
+
+"Hard work is the best audition."
+
+];
+
+let quoteIndex=0;
+
+setInterval(()=>{
+
+quoteIndex++;
+
+if(quoteIndex>=quotes.length){
+
+quoteIndex=0;
+
+}
 
 quoteText.style.opacity=0;
 
-quoteAuthor.style.opacity=0;
-
 setTimeout(()=>{
 
-quoteCategory.textContent=q.category;
-
-quoteText.textContent=q.text;
-
-quoteAuthor.textContent="— "+q.author;
-
-quoteCategory.style.opacity=1;
+quoteText.textContent=quotes[quoteIndex];
 
 quoteText.style.opacity=1;
 
-quoteAuthor.style.opacity=1;
-
 },300);
 
-quoteNumber++;
-
-if(quoteNumber>=quoteData.length){
-
-quoteNumber=0;
+},5000);
 
 }
 
-}
+/*======================================================
+CURRENT YEAR
+======================================================*/
 
-/* Random First Quote */
+const year=document.getElementById("year");
 
-quoteNumber=Math.floor(Math.random()*quoteData.length);
+if(year){
 
-updateQuote();
-
-/* Auto Change */
-
-setInterval(updateQuote,5000);
-
-
-/*=========================================================
-FLOATING GOLD PARTICLES
-=========================================================*/
-
-const particlesContainer=document.querySelector(".hero-particles");
-
-if(particlesContainer){
-
-for(let i=0;i<25;i++){
-
-const particle=document.createElement("span");
-
-particle.className="gold-particle";
-
-particle.style.left=Math.random()*100+"%";
-
-particle.style.top=Math.random()*100+"%";
-
-particle.style.animationDelay=Math.random()*8+"s";
-
-particle.style.animationDuration=(5+Math.random()*6)+"s";
-
-particlesContainer.appendChild(particle);
+year.textContent=new Date().getFullYear();
 
 }
 
-}
-
-/*=========================================================
-CURSOR GLOW
-=========================================================*/
-
-const cursor=document.getElementById("cursorGlow");
-
-if(cursor){
-
-document.addEventListener("mousemove",(e)=>{
-
-cursor.style.left=e.clientX+"px";
-
-cursor.style.top=e.clientY+"px";
-
-});
-
-}
-
-/*=========================================================
+/*======================================================
 BUTTON RIPPLE
-=========================================================*/
+======================================================*/
 
-document.querySelectorAll(".btn").forEach(button=>{
+document.querySelectorAll(".primary-btn,.secondary-btn")
+
+.forEach(button=>{
 
 button.addEventListener("click",function(e){
 
 const ripple=document.createElement("span");
 
-const size=Math.max(this.clientWidth,this.clientHeight);
-
 const rect=this.getBoundingClientRect();
+
+const size=Math.max(rect.width,rect.height);
 
 ripple.style.width=size+"px";
 
@@ -712,7 +611,7 @@ ripple.style.left=(e.clientX-rect.left-size/2)+"px";
 
 ripple.style.top=(e.clientY-rect.top-size/2)+"px";
 
-ripple.className="ripple";
+ripple.classList.add("ripple");
 
 this.appendChild(ripple);
 
@@ -726,9 +625,107 @@ ripple.remove();
 
 });
 
-/*=========================================================
-CURRENT YEAR
-=========================================================*/
+/*======================================================
+CUSTOM CURSOR GLOW
+======================================================*/
+
+const cursor = document.createElement("div");
+cursor.id = "cursor-glow";
+document.body.appendChild(cursor);
+
+document.addEventListener("mousemove",(e)=>{
+
+cursor.style.left=e.clientX+"px";
+
+cursor.style.top=e.clientY+"px";
+
+});
+
+/*======================================================
+FLOATING GOLD PARTICLES
+======================================================*/
+
+const hero=document.querySelector(".hero");
+
+if(hero){
+
+for(let i=0;i<30;i++){
+
+const particle=document.createElement("span");
+
+particle.className="particle";
+
+particle.style.left=Math.random()*100+"%";
+
+particle.style.animationDelay=Math.random()*8+"s";
+
+particle.style.animationDuration=6+Math.random()*6+"s";
+
+hero.appendChild(particle);
+
+}
+
+}
+
+/*======================================================
+BUTTON HOVER GLOW
+======================================================*/
+
+document.querySelectorAll(".primary-btn,.secondary-btn").forEach(btn=>{
+
+btn.addEventListener("mouseenter",()=>{
+
+btn.style.boxShadow="0 0 35px rgba(212,175,55,.45)";
+
+});
+
+btn.addEventListener("mouseleave",()=>{
+
+btn.style.boxShadow="";
+
+});
+
+});
+
+/*======================================================
+LAZY IMAGE LOADING
+======================================================*/
+
+const lazyImages=document.querySelectorAll("img");
+
+const observer=new IntersectionObserver(entries=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+const img=entry.target;
+
+img.classList.add("loaded");
+
+observer.unobserve(img);
+
+}
+
+});
+
+});
+
+lazyImages.forEach(img=>observer.observe(img));
+
+/*======================================================
+PAGE FADE IN
+======================================================*/
+
+window.addEventListener("load",()=>{
+
+document.body.classList.add("page-loaded");
+
+});
+
+/*======================================================
+COPYRIGHT YEAR
+======================================================*/
 
 const year=document.getElementById("year");
 
@@ -738,151 +735,33 @@ year.textContent=new Date().getFullYear();
 
 }
 
-/*=========================================================
-PERFORMANCE
-=========================================================*/
+/*======================================================
+CONSOLE BRANDING
+======================================================*/
 
-window.addEventListener("pageshow",()=>{
-
-document.body.classList.add("loaded");
-
-});
-
-/*=========================================================
-CONSOLE MESSAGE
-=========================================================*/
+console.clear();
 
 console.log(
 
-"%cDeepak Dhatterwal | Official Actor",
+"%cDeepak Dhatterwal",
 
-"color:#D4AF37;font-size:18px;font-weight:bold;"
+"color:#D4AF37;font-size:24px;font-weight:bold;"
 
 );
 
 console.log(
 
-"%cPortfolio Website Loaded Successfully",
+"%cOfficial Actor Portfolio v6.0",
 
-"color:#ffffff;font-size:13px;"
+"color:white;font-size:15px;"
 
 );
 
+console.log(
 
-/*====================================================
-CURSOR GLOW
-====================================================*/
+"%cDesigned with ❤️",
 
-#cursorGlow{
+"color:#D4AF37;font-size:14px;"
 
-position:fixed;
-
-width:22px;
-
-height:22px;
-
-border-radius:50%;
-
-background:rgba(212,175,55,.35);
-
-pointer-events:none;
-
-transform:translate(-50%,-50%);
-
-z-index:99999;
-
-filter:blur(2px);
-
-transition:transform .05s linear;
-
-}
-
-/*====================================================
-GOLD PARTICLES
-====================================================*/
-
-.gold-particle{
-
-position:absolute;
-
-width:6px;
-
-height:6px;
-
-border-radius:50%;
-
-background:var(--primary);
-
-opacity:.5;
-
-animation:particleFloat linear infinite;
-
-}
-
-@keyframes particleFloat{
-
-0%{
-
-transform:translateY(0);
-
-opacity:0;
-
-}
-
-20%{
-
-opacity:.8;
-
-}
-
-100%{
-
-transform:translateY(-180px);
-
-opacity:0;
-
-}
-
-}
-
-/*====================================================
-BUTTON RIPPLE
-====================================================*/
-
-.btn{
-
-position:relative;
-
-overflow:hidden;
-
-}
-
-.ripple{
-
-position:absolute;
-
-border-radius:50%;
-
-background:rgba(255,255,255,.35);
-
-transform:scale(0);
-
-animation:rippleEffect .6s linear;
-
-pointer-events:none;
-
-}
-
-@keyframes rippleEffect{
-
-to{
-
-transform:scale(4);
-
-opacity:0;
-
-}
-
-}
-
+);
 
