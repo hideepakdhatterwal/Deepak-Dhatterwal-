@@ -1,40 +1,56 @@
 /*=========================================================
 DEEPAK DHATTERWAL
-OFFICIAL ACTOR PORTFOLIO
-Version 4.0
+Official Actor Portfolio v5.0
 =========================================================*/
 
-/*=========================
+"use strict";
+
+/*=========================================================
+SELECTORS
+=========================================================*/
+
+const loader = document.getElementById("loader");
+const progressBar = document.getElementById("progressBar");
+const header = document.getElementById("header");
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
+const backToTop = document.getElementById("backToTop");
+
+/*=========================================================
 PRELOADER
-=========================*/
+=========================================================*/
 
 window.addEventListener("load", () => {
 
-const loader = document.getElementById("loader");
+if(loader){
 
-setTimeout(() => {
+loader.style.opacity="0";
 
-loader.style.opacity = "0";
+loader.style.visibility="hidden";
 
-loader.style.visibility = "hidden";
+setTimeout(()=>{
 
-}, 2500);
+loader.remove();
+
+},800);
+
+}
 
 });
 
-/*=========================
+/*=========================================================
 STICKY HEADER
-=========================*/
+=========================================================*/
 
-const header = document.querySelector(".header");
+window.addEventListener("scroll",()=>{
 
-window.addEventListener("scroll", () => {
+if(!header) return;
 
-if (window.scrollY > 80) {
+if(window.scrollY>80){
 
 header.classList.add("scrolled");
 
-} else {
+}else{
 
 header.classList.remove("scrolled");
 
@@ -42,61 +58,103 @@ header.classList.remove("scrolled");
 
 });
 
-/*=========================
-SCROLL PROGRESS BAR
-=========================*/
+/*=========================================================
+SCROLL PROGRESS
+=========================================================*/
 
-const progressBar = document.getElementById("progressBar");
+window.addEventListener("scroll",()=>{
 
-window.addEventListener("scroll", () => {
+if(!progressBar) return;
 
-const scrollTop = document.documentElement.scrollTop;
+const winScroll=document.documentElement.scrollTop;
 
-const scrollHeight =
-document.documentElement.scrollHeight -
-document.documentElement.clientHeight;
+const height=document.documentElement.scrollHeight-document.documentElement.clientHeight;
 
-const progress =
-(scrollTop / scrollHeight) * 100;
+const progress=(winScroll/height)*100;
 
-progressBar.style.width = progress + "%";
+progressBar.style.width=progress+"%";
 
 });
 
-/*=========================
+/*=========================================================
 MOBILE MENU
-=========================*/
+=========================================================*/
 
-const menuToggle =
-document.getElementById("menuToggle");
+if(menuToggle && navLinks){
 
-const navLinks =
-document.getElementById("navLinks");
-
-menuToggle.addEventListener("click", () => {
+menuToggle.addEventListener("click",()=>{
 
 navLinks.classList.toggle("active");
 
-menuToggle.classList.toggle("open");
+menuToggle.classList.toggle("active");
 
 });
 
-/*=========================
-CLOSE MENU AFTER CLICK
-=========================*/
+}
 
-document.querySelectorAll(".nav-links a")
-.forEach(link => {
+/*=========================================================
+CLOSE MENU
+=========================================================*/
 
-link.addEventListener("click", () => {
+document.querySelectorAll(".nav-links a").forEach(link=>{
+
+link.addEventListener("click",()=>{
+
+if(navLinks){
 
 navLinks.classList.remove("active");
 
-menuToggle.classList.remove("open");
+}
+
+if(menuToggle){
+
+menuToggle.classList.remove("active");
+
+}
 
 });
 
 });
+
+/*=========================================================
+BACK TO TOP
+=========================================================*/
+
+window.addEventListener("scroll",()=>{
+
+if(!backToTop) return;
+
+if(window.scrollY>500){
+
+backToTop.style.opacity="1";
+
+backToTop.style.visibility="visible";
+
+}else{
+
+backToTop.style.opacity="0";
+
+backToTop.style.visibility="hidden";
+
+}
+
+});
+
+if(backToTop){
+
+backToTop.addEventListener("click",()=>{
+
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
+
+});
+
+});
+
+}
 
 
 /*=========================================================
@@ -107,11 +165,11 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
 
 anchor.addEventListener("click",function(e){
 
-e.preventDefault();
-
 const target=document.querySelector(this.getAttribute("href"));
 
 if(target){
+
+e.preventDefault();
 
 target.scrollIntoView({
 
@@ -135,7 +193,7 @@ const sections=document.querySelectorAll("section");
 
 const navItems=document.querySelectorAll(".nav-links a");
 
-window.addEventListener("scroll",()=>{
+function activeMenu(){
 
 let current="";
 
@@ -145,7 +203,7 @@ const top=section.offsetTop-150;
 
 const height=section.offsetHeight;
 
-if(pageYOffset>=top){
+if(window.scrollY>=top){
 
 current=section.getAttribute("id");
 
@@ -165,17 +223,21 @@ link.classList.add("active");
 
 });
 
-});
+}
+
+window.addEventListener("scroll",activeMenu);
 
 /*=========================================================
 TYPING EFFECT
 =========================================================*/
 
-const typingText=document.getElementById("typingText");
+const typing=document.getElementById("typingText");
+
+if(typing){
 
 const words=[
 
-"Actor",
+"Professional Actor",
 
 "Artist",
 
@@ -185,11 +247,7 @@ const words=[
 
 "Dreamer",
 
-"Creative Soul",
-
-"Screen Performer",
-
-"Passionate Actor"
+"Available For Casting"
 
 ];
 
@@ -201,13 +259,15 @@ let deleting=false;
 
 function typeEffect(){
 
-const currentWord=words[wordIndex];
+const word=words[wordIndex];
+
+typing.textContent=word.substring(0,charIndex);
 
 if(!deleting){
 
-typingText.textContent=currentWord.substring(0,charIndex++);
+charIndex++;
 
-if(charIndex>currentWord.length){
+if(charIndex>word.length){
 
 deleting=true;
 
@@ -219,9 +279,9 @@ return;
 
 }else{
 
-typingText.textContent=currentWord.substring(0,charIndex--);
+charIndex--;
 
-if(charIndex<0){
+if(charIndex===0){
 
 deleting=false;
 
@@ -231,11 +291,45 @@ wordIndex=(wordIndex+1)%words.length;
 
 }
 
-setTimeout(typeEffect,deleting?60:120);
+setTimeout(typeEffect,deleting?60:110);
 
 }
 
 typeEffect();
+
+}
+
+/*=========================================================
+SCROLL REVEAL
+=========================================================*/
+
+const revealItems=document.querySelectorAll(
+
+".section-heading,.about-wrapper,.profile-card,.skill-box,.timeline-item,.gallery-item,.video-card,.imdb-card,.featured-quote,.quote-category,.line-card,.contact-card,.footer"
+
+);
+
+function reveal(){
+
+const trigger=window.innerHeight*0.85;
+
+revealItems.forEach(item=>{
+
+const top=item.getBoundingClientRect().top;
+
+if(top<trigger){
+
+item.classList.add("active");
+
+}
+
+});
+
+}
+
+window.addEventListener("scroll",reveal);
+
+reveal();
 
 /*=========================================================
 HERO IMAGE PARALLAX
@@ -243,61 +337,95 @@ HERO IMAGE PARALLAX
 
 const heroImage=document.querySelector(".hero-image");
 
+if(heroImage){
+
 window.addEventListener("mousemove",(e)=>{
 
 const x=(window.innerWidth/2-e.clientX)/45;
 
 const y=(window.innerHeight/2-e.clientY)/45;
 
-if(heroImage){
-
 heroImage.style.transform=
 
 `rotateY(${x}deg) rotateX(${-y}deg)`;
+
+});
+
+}
+
+
+/*=========================================================
+GALLERY FILTER
+=========================================================*/
+
+const filterButtons = document.querySelectorAll(".filter-btn");
+const galleryItems = document.querySelectorAll(".gallery-item");
+
+if(filterButtons.length && galleryItems.length){
+
+filterButtons.forEach(button=>{
+
+button.addEventListener("click",()=>{
+
+filterButtons.forEach(btn=>btn.classList.remove("active"));
+
+button.classList.add("active");
+
+const filter=button.dataset.filter;
+
+galleryItems.forEach(item=>{
+
+if(filter==="all" || item.classList.contains(filter)){
+
+item.style.display="block";
+
+setTimeout(()=>{
+
+item.style.opacity="1";
+
+item.style.transform="scale(1)";
+
+},100);
+
+}else{
+
+item.style.opacity="0";
+
+item.style.transform="scale(.9)";
+
+setTimeout(()=>{
+
+item.style.display="none";
+
+},250);
 
 }
 
 });
 
+});
 
+});
+
+}
 
 /*=========================================================
-PREMIUM GALLERY LIGHTBOX
+LIGHTBOX
 =========================================================*/
 
-const galleryImages =
-document.querySelectorAll(".gallery-item img");
+const lightbox=document.querySelector(".lightbox");
+const lightboxImage=document.querySelector(".lightbox img");
+const closeBtn=document.querySelector(".lightbox-close");
+const prevBtn=document.querySelector(".lightbox-prev");
+const nextBtn=document.querySelector(".lightbox-next");
 
-const lightbox =
-document.getElementById("lightbox");
+let currentIndex=0;
 
-const lightboxImage =
-document.getElementById("lightboxImage");
+if(lightbox && lightboxImage){
 
-const closeBtn =
-document.querySelector(".lightbox-close");
+const images=[...document.querySelectorAll(".gallery-item img")];
 
-const prevBtn =
-document.querySelector(".lightbox-prev");
-
-const nextBtn =
-document.querySelector(".lightbox-next");
-
-const currentImage =
-document.getElementById("currentImage");
-
-const totalImages =
-document.getElementById("totalImages");
-
-let currentIndex = 0;
-
-totalImages.textContent = galleryImages.length;
-
-/*=========================
-OPEN LIGHTBOX
-=========================*/
-
-galleryImages.forEach((img,index)=>{
+images.forEach((img,index)=>{
 
 img.addEventListener("click",()=>{
 
@@ -313,67 +441,51 @@ document.body.style.overflow="hidden";
 
 });
 
-/*=========================
-SHOW IMAGE
-=========================*/
-
 function showImage(){
 
-lightboxImage.src=
+lightboxImage.src=images[currentIndex].src;
 
-galleryImages[currentIndex].src;
-
-lightboxImage.alt=
-
-galleryImages[currentIndex].alt;
-
-currentImage.textContent=currentIndex+1;
+lightboxImage.alt=images[currentIndex].alt;
 
 }
 
-/*=========================
-NEXT IMAGE
-=========================*/
+function closeLightbox(){
+
+lightbox.classList.remove("active");
+
+document.body.style.overflow="";
+
+}
+
+if(closeBtn){
+
+closeBtn.addEventListener("click",closeLightbox);
+
+}
+
+if(nextBtn){
 
 nextBtn.addEventListener("click",()=>{
 
-currentIndex++;
-
-if(currentIndex>=galleryImages.length){
-
-currentIndex=0;
-
-}
+currentIndex=(currentIndex+1)%images.length;
 
 showImage();
 
 });
 
-/*=========================
-PREVIOUS IMAGE
-=========================*/
+}
+
+if(prevBtn){
 
 prevBtn.addEventListener("click",()=>{
 
-currentIndex--;
-
-if(currentIndex<0){
-
-currentIndex=
-
-galleryImages.length-1;
-
-}
+currentIndex=(currentIndex-1+images.length)%images.length;
 
 showImage();
 
 });
 
-/*=========================
-CLOSE
-=========================*/
-
-closeBtn.addEventListener("click",closeLightbox);
+}
 
 lightbox.addEventListener("click",(e)=>{
 
@@ -385,434 +497,188 @@ closeLightbox();
 
 });
 
-function closeLightbox(){
-
-lightbox.classList.remove("active");
-
-document.body.style.overflow="auto";
-
-}
-
-/*=========================
-KEYBOARD SUPPORT
-=========================*/
-
 document.addEventListener("keydown",(e)=>{
 
-if(!lightbox.classList.contains("active"))
+if(!lightbox.classList.contains("active")) return;
 
-return;
+if(e.key==="Escape") closeLightbox();
 
-if(e.key==="ArrowRight"){
+if(e.key==="ArrowRight" && nextBtn) nextBtn.click();
 
-nextBtn.click();
-
-}
-
-if(e.key==="ArrowLeft"){
-
-prevBtn.click();
-
-}
-
-if(e.key==="Escape"){
-
-closeLightbox();
-
-}
+if(e.key==="ArrowLeft" && prevBtn) prevBtn.click();
 
 });
 
+}
+
 
 /*=========================================================
-PREMIUM QUOTES
+PREMIUM QUOTES SYSTEM
 =========================================================*/
 
-const quotes=[
+const quoteData=[
 
 {
-icon:"🕉️",
-title:"Bhagavad Gita",
+category:"🕉️ Bhagavad Gita",
 text:"कर्मण्येवाधिकारस्ते मा फलेषु कदाचन।",
 author:"Bhagavad Gita"
 },
 
 {
-icon:"🕉️",
-title:"Bhagavad Gita",
+category:"🕉️ Bhagavad Gita",
 text:"योगः कर्मसु कौशलम्।",
 author:"Bhagavad Gita"
 },
 
 {
-icon:"🕉️",
-title:"Bhagavad Gita",
-text:"समत्वं योग उच्यते।",
-author:"Bhagavad Gita"
-},
-
-{
-icon:"🎭",
-title:"Acting",
+category:"🎭 Acting",
 text:"Acting is living truthfully under imaginary circumstances.",
 author:"Sanford Meisner"
 },
 
 {
-icon:"🎬",
-title:"Cinema",
-text:"Every role is an opportunity to change someone's perspective.",
-author:"Actor's Journey"
+category:"🎭 Acting",
+text:"A great performance begins with honesty.",
+author:"Deepak Dhatterwal"
 },
 
 {
-icon:"🎥",
-title:"Performance",
-text:"The camera records honesty, not perfection.",
+category:"🎬 Cinema",
+text:"Every frame tells a story. Every story changes someone.",
 author:"Cinema"
 
 },
 
 {
-icon:"🌟",
-title:"Dream",
+category:"💪 Motivation",
 
-text:"Dream big. Stay humble. Keep working.",
-
-author:"Mindset"
-
-},
-
-{
-icon:"🔥",
-title:"Success",
-
-text:"Discipline will take you where motivation cannot.",
-
-author:"Success"
-
-},
-
-{
-icon:"💪",
-title:"Motivation",
-
-text:"Success belongs to those who refuse to quit.",
+text:"Discipline beats talent when talent doesn't work hard.",
 
 author:"Motivation"
 
 },
 
 {
-icon:"❤️",
-title:"Life",
+category:"⭐ Success",
 
-text:"Your story is your greatest strength.",
+text:"Success is earned one day at a time.",
+
+author:"Mindset"
+
+},
+
+{
+category:"❤️ Life",
+
+text:"Respect the journey more than the destination.",
 
 author:"Life"
 
 },
 
 {
-icon:"⭐",
-title:"Believe",
+category:"🌟 Dream",
 
-text:"Believe in yourself before the world does.",
+text:"Dream big. Stay humble. Keep working.",
 
-author:"Self Belief"
-
-},
-
-{
-icon:"🎬",
-title:"Audition",
-
-text:"Every audition is a lesson, every rejection is preparation.",
-
-author:"Actor"
-
-},
-
-{
-icon:"🎭",
-title:"Emotion",
-
-text:"Great actors don't pretend, they believe.",
-
-author:"Performance"
-
-},
-
-{
-icon:"🏆",
-title:"Excellence",
-
-text:"Excellence is created one day at a time.",
-
-author:"Growth"
+author:"Deepak Dhatterwal"
 
 }
 
 ];
 
-/*=========================================================
-QUOTE ELEMENTS
-=========================================================*/
-
-const quoteIcon=document.querySelector(".quote-icon");
-
-const quoteTitle=document.getElementById("quoteTitle");
+const quoteCategory=document.getElementById("quoteCategory");
 
 const quoteText=document.getElementById("quoteText");
 
 const quoteAuthor=document.getElementById("quoteAuthor");
 
-let quoteIndex=0;
+let quoteNumber=0;
 
-/*=========================================================
-CHANGE QUOTE
-=========================================================*/
+function updateQuote(){
 
-function changeQuote(){
+if(!quoteCategory || !quoteText || !quoteAuthor) return;
 
-quoteIndex++;
+const q=quoteData[quoteNumber];
 
-if(quoteIndex>=quotes.length){
+quoteCategory.style.opacity=0;
 
-quoteIndex=0;
+quoteText.style.opacity=0;
 
-}
+quoteAuthor.style.opacity=0;
 
-const q=quotes[quoteIndex];
+setTimeout(()=>{
 
-quoteIcon.innerHTML=q.icon;
+quoteCategory.textContent=q.category;
 
-quoteTitle.innerHTML=q.title;
+quoteText.textContent=q.text;
 
-quoteText.innerHTML=q.text;
+quoteAuthor.textContent="— "+q.author;
 
-quoteAuthor.innerHTML="— "+q.author;
+quoteCategory.style.opacity=1;
 
-}
+quoteText.style.opacity=1;
 
-/*=========================================================
-AUTO CHANGE
-=========================================================*/
+quoteAuthor.style.opacity=1;
 
-setInterval(changeQuote,5000);
+},300);
 
-/*=========================================================
-FIRST RANDOM QUOTE
-=========================================================*/
+quoteNumber++;
 
-quoteIndex=Math.floor(Math.random()*quotes.length);
+if(quoteNumber>=quoteData.length){
 
-changeQuote();
-
-
-/*=========================================================
-SCROLL REVEAL ANIMATION
-=========================================================*/
-
-const revealElements =
-document.querySelectorAll(
-
-".section-heading,.about-wrapper,.timeline-item,.gallery-item,.showreel-wrapper,.quote-card,.contact-wrapper,.footer-top"
-
-);
-
-const revealOnScroll = () => {
-
-const trigger =
-window.innerHeight * 0.85;
-
-revealElements.forEach((item)=>{
-
-const top =
-item.getBoundingClientRect().top;
-
-if(top<trigger){
-
-item.classList.add("active");
-
-}else{
-
-item.classList.remove("active");
+quoteNumber=0;
 
 }
 
-});
-
-};
-
-window.addEventListener("scroll",revealOnScroll);
-
-revealOnScroll();
-
-/*=========================================================
-BACK TO TOP
-=========================================================*/
-
-const backTop =
-document.getElementById("backToTop");
-
-window.addEventListener("scroll",()=>{
-
-if(window.scrollY>600){
-
-backTop.style.opacity="1";
-
-backTop.style.visibility="visible";
-
-}else{
-
-backTop.style.opacity="0";
-
-backTop.style.visibility="hidden";
-
 }
 
-});
+/* Random First Quote */
 
-backTop.addEventListener("click",(e)=>{
+quoteNumber=Math.floor(Math.random()*quoteData.length);
 
-e.preventDefault();
+updateQuote();
 
-window.scrollTo({
+/* Auto Change */
 
-top:0,
+setInterval(updateQuote,5000);
 
-behavior:"smooth"
-
-});
-
-});
-
-/*=========================================================
-HEADER ACTIVE
-=========================================================*/
-
-const sectionsAll =
-document.querySelectorAll("section");
-
-const navAll =
-document.querySelectorAll(".nav-links a");
-
-window.addEventListener("scroll",()=>{
-
-let currentSection="";
-
-sectionsAll.forEach(sec=>{
-
-const sectionTop =
-sec.offsetTop-150;
-
-const sectionHeight =
-sec.offsetHeight;
-
-if(window.scrollY>=sectionTop){
-
-currentSection=sec.getAttribute("id");
-
-}
-
-});
-
-navAll.forEach(link=>{
-
-link.classList.remove("active");
-
-if(
-
-link.getAttribute("href")==="#"+currentSection
-
-){
-
-link.classList.add("active");
-
-}
-
-});
-
-});
-
-/*=========================================================
-IMAGE HOVER TILT
-=========================================================*/
-
-document.querySelectorAll(
-
-".gallery-item"
-
-).forEach(card=>{
-
-card.addEventListener("mousemove",(e)=>{
-
-const rect=card.getBoundingClientRect();
-
-const x=e.clientX-rect.left;
-
-const y=e.clientY-rect.top;
-
-const rotateY=(x/rect.width-.5)*12;
-
-const rotateX=(y/rect.height-.5)*-12;
-
-card.style.transform=
-
-`perspective(900px)
-
-rotateX(${rotateX}deg)
-
-rotateY(${rotateY}deg)
-
-scale(1.03)`;
-
-});
-
-card.addEventListener("mouseleave",()=>{
-
-card.style.transform=
-
-"perspective(900px) rotateX(0) rotateY(0) scale(1)";
-
-});
-
-});
 
 /*=========================================================
 FLOATING GOLD PARTICLES
 =========================================================*/
 
-const hero =
-document.querySelector(".hero");
+const particlesContainer=document.querySelector(".hero-particles");
 
-for(let i=0;i<20;i++){
+if(particlesContainer){
 
-const dot=
-document.createElement("span");
+for(let i=0;i<25;i++){
 
-dot.className="gold-particle";
+const particle=document.createElement("span");
 
-dot.style.left=Math.random()*100+"%";
+particle.className="gold-particle";
 
-dot.style.animationDelay=Math.random()*8+"s";
+particle.style.left=Math.random()*100+"%";
 
-dot.style.animationDuration=
-6+Math.random()*8+"s";
+particle.style.top=Math.random()*100+"%";
 
-hero.appendChild(dot);
+particle.style.animationDelay=Math.random()*8+"s";
+
+particle.style.animationDuration=(5+Math.random()*6)+"s";
+
+particlesContainer.appendChild(particle);
 
 }
+
+}
+
 /*=========================================================
 CURSOR GLOW
 =========================================================*/
 
-const cursor=document.createElement("div");
+const cursor=document.getElementById("cursorGlow");
 
-cursor.className="cursor-glow";
-
-document.body.appendChild(cursor);
+if(cursor){
 
 document.addEventListener("mousemove",(e)=>{
 
@@ -822,81 +688,37 @@ cursor.style.top=e.clientY+"px";
 
 });
 
-/*=========================================================
-DAY / NIGHT GREETING
-=========================================================*/
-
-const hour=new Date().getHours();
-
-const welcome=document.querySelector(".welcome-text");
-
-if(welcome){
-
-if(hour<12){
-
-welcome.innerHTML="GOOD MORNING • WELCOME";
-
 }
-
-else if(hour<17){
-
-welcome.innerHTML="GOOD AFTERNOON • WELCOME";
-
-}
-
-else{
-
-welcome.innerHTML="GOOD EVENING • WELCOME";
-
-}
-
-}
-
-/*=========================================================
-SECTION PARALLAX
-=========================================================*/
-
-window.addEventListener("scroll",()=>{
-
-const scroll=window.pageYOffset;
-
-document.querySelectorAll("section").forEach(section=>{
-
-section.style.backgroundPositionY=
-
-scroll*0.15+"px";
-
-});
-
-});
 
 /*=========================================================
 BUTTON RIPPLE
 =========================================================*/
 
-document.querySelectorAll(".btn").forEach(btn=>{
+document.querySelectorAll(".btn").forEach(button=>{
 
-btn.addEventListener("click",function(e){
+button.addEventListener("click",function(e){
 
-const circle=document.createElement("span");
+const ripple=document.createElement("span");
 
 const size=Math.max(this.clientWidth,this.clientHeight);
 
-circle.style.width=size+"px";
+const rect=this.getBoundingClientRect();
 
-circle.style.height=size+"px";
+ripple.style.width=size+"px";
 
-circle.style.left=e.offsetX-size/2+"px";
+ripple.style.height=size+"px";
 
-circle.style.top=e.offsetY-size/2+"px";
+ripple.style.left=(e.clientX-rect.left-size/2)+"px";
 
-circle.classList.add("ripple");
+ripple.style.top=(e.clientY-rect.top-size/2)+"px";
 
-this.appendChild(circle);
+ripple.className="ripple";
+
+this.appendChild(ripple);
 
 setTimeout(()=>{
 
-circle.remove();
+ripple.remove();
 
 },600);
 
@@ -905,7 +727,7 @@ circle.remove();
 });
 
 /*=========================================================
-COPYRIGHT YEAR
+CURRENT YEAR
 =========================================================*/
 
 const year=document.getElementById("year");
@@ -940,9 +762,127 @@ console.log(
 
 console.log(
 
-"%cWebsite Developed with Premium Cinematic UI",
+"%cPortfolio Website Loaded Successfully",
 
-"color:white;font-size:14px;"
+"color:#ffffff;font-size:13px;"
 
 );
+
+
+/*====================================================
+CURSOR GLOW
+====================================================*/
+
+#cursorGlow{
+
+position:fixed;
+
+width:22px;
+
+height:22px;
+
+border-radius:50%;
+
+background:rgba(212,175,55,.35);
+
+pointer-events:none;
+
+transform:translate(-50%,-50%);
+
+z-index:99999;
+
+filter:blur(2px);
+
+transition:transform .05s linear;
+
+}
+
+/*====================================================
+GOLD PARTICLES
+====================================================*/
+
+.gold-particle{
+
+position:absolute;
+
+width:6px;
+
+height:6px;
+
+border-radius:50%;
+
+background:var(--primary);
+
+opacity:.5;
+
+animation:particleFloat linear infinite;
+
+}
+
+@keyframes particleFloat{
+
+0%{
+
+transform:translateY(0);
+
+opacity:0;
+
+}
+
+20%{
+
+opacity:.8;
+
+}
+
+100%{
+
+transform:translateY(-180px);
+
+opacity:0;
+
+}
+
+}
+
+/*====================================================
+BUTTON RIPPLE
+====================================================*/
+
+.btn{
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+.ripple{
+
+position:absolute;
+
+border-radius:50%;
+
+background:rgba(255,255,255,.35);
+
+transform:scale(0);
+
+animation:rippleEffect .6s linear;
+
+pointer-events:none;
+
+}
+
+@keyframes rippleEffect{
+
+to{
+
+transform:scale(4);
+
+opacity:0;
+
+}
+
+}
+
 
