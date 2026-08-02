@@ -193,6 +193,222 @@ transform:translateY(-5px);
 transition:.4s;
 
 }
+/*=========================================
+    FLOATING GOLDEN OM EFFECT
+=========================================*/
+
+.quotes-section{
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+.quotes-section::before{
+
+content:"ॐ";
+
+position:absolute;
+
+top:8%;
+
+left:8%;
+
+font-size:90px;
+
+font-weight:700;
+
+color:rgba(212,175,55,.06);
+
+animation:omFloat1 12s ease-in-out infinite;
+
+pointer-events:none;
+
+}
+
+.quotes-section::after{
+
+content:"ॐ";
+
+position:absolute;
+
+bottom:10%;
+
+right:8%;
+
+font-size:110px;
+
+font-weight:700;
+
+color:rgba(212,175,55,.05);
+
+animation:omFloat2 14s ease-in-out infinite;
+
+pointer-events:none;
+
+}
+
+@keyframes omFloat1{
+
+0%{
+
+transform:translateY(0px) rotate(0deg);
+
+opacity:.15;
+
+}
+
+50%{
+
+transform:translateY(-20px) rotate(8deg);
+
+opacity:.30;
+
+}
+
+100%{
+
+transform:translateY(0px) rotate(0deg);
+
+opacity:.15;
+
+}
+
+}
+
+@keyframes omFloat2{
+
+0%{
+
+transform:translateY(0px) rotate(0deg);
+
+opacity:.12;
+
+}
+
+50%{
+
+transform:translateY(20px) rotate(-8deg);
+
+opacity:.28;
+
+}
+
+100%{
+
+transform:translateY(0px) rotate(0deg);
+
+opacity:.12;
+
+}
+
+}
+
+/*=========================================
+GOLDEN SHIMMER BORDER
+=========================================*/
+
+.acting-box{
+
+background:linear-gradient(
+145deg,
+#111111,
+#191919);
+
+border:1px solid rgba(212,175,55,.18);
+
+}
+
+.acting-box:hover{
+
+border-color:#D4AF37;
+
+box-shadow:
+
+0 0 25px rgba(212,175,55,.18),
+
+0 0 60px rgba(212,175,55,.08);
+
+}
+
+/*=========================================
+QUOTE GLOW
+=========================================*/
+
+#actingQuote{
+
+color:#ffffff;
+
+text-shadow:
+
+0 0 8px rgba(212,175,55,.12),
+
+0 0 18px rgba(212,175,55,.08);
+
+}
+
+/*=========================================
+GOLDEN DIVIDER
+=========================================*/
+
+.geeta-box{
+
+position:relative;
+
+}
+
+.geeta-box::before{
+
+content:"ॐ";
+
+position:absolute;
+
+left:50%;
+
+top:-18px;
+
+transform:translateX(-50%);
+
+font-size:28px;
+
+color:#D4AF37;
+
+background:#080808;
+
+padding:0 15px;
+
+}
+
+/*=========================================
+PREMIUM SCROLLBAR
+=========================================*/
+
+.geeta-box::-webkit-scrollbar{
+
+display:none;
+
+}
+
+/*=========================================
+MOBILE
+=========================================*/
+
+@media(max-width:768px){
+
+.quotes-section::before{
+
+font-size:55px;
+
+}
+
+.quotes-section::after{
+
+font-size:70px;
+
+}
+
+}
 
 /*==========================
 ROOT
