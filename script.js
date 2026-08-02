@@ -568,4 +568,120 @@ console.log(
 "font-size:14px;color:white"
 
 );
+/*==================================
+ACTING QUOTES
+==================================*/
 
+const actingQuotes=[
+
+"Acting is not pretending. It is living truthfully.",
+
+"The camera captures truth, not performance.",
+
+"Every audition is one step closer to success.",
+
+"An actor first learns to observe, then to perform.",
+
+"The strongest dialogue is spoken through the eyes.",
+
+"Discipline creates confidence. Confidence creates great performances.",
+
+"Every rejection prepares you for the perfect role.",
+
+"Real acting begins where imitation ends.",
+
+"Every character changes the actor forever.",
+
+"The audience remembers emotions, not dialogues.",
+
+"Performance comes from preparation, not luck.",
+
+"Success belongs to actors who never stop learning.",
+
+"Cinema respects honesty more than perfection.",
+
+"A great actor lives every moment truthfully.",
+
+"Dream big. Perform bigger."
+
+];
+
+const acting=document.getElementById("actingQuote");
+
+let i=Math.floor(Math.random()*actingQuotes.length);
+
+function changeQuote(){
+
+acting.style.opacity=0;
+
+acting.style.transform="translateY(15px)";
+
+acting.style.filter="blur(5px)";
+
+setTimeout(()=>{
+
+acting.innerHTML="❝ "+actingQuotes[i]+" ❞";
+
+acting.style.opacity=1;
+
+acting.style.transform="translateY(0)";
+
+acting.style.filter="blur(0px)";
+
+i++;
+
+if(i>=actingQuotes.length){
+
+i=0;
+
+}
+
+},500);
+
+}
+
+changeQuote();
+
+setInterval(changeQuote,3500);
+
+/*==================================
+GEETA QUOTES
+==================================*/
+
+const geetaQuotes=[
+
+"🕉️ कर्मण्येवाधिकारस्ते मा फलेषु कदाचन। 🕉️",
+
+"🕉️ जो हुआ अच्छा हुआ, जो हो रहा है अच्छा हो रहा है, जो होगा वह भी अच्छा होगा। 🕉️",
+
+"🕉️ परिवर्तन ही संसार का शाश्वत नियम है। 🕉️",
+
+"🕉️ आत्मा न जन्म लेती है और न कभी मरती है। 🕉️",
+
+"🕉️ अपने कर्तव्य को पूरी निष्ठा से निभाओ। 🕉️",
+
+"🕉️ मनुष्य स्वयं अपना मित्र भी है और स्वयं अपना शत्रु भी। 🕉️",
+
+"🕉️ धैर्य सबसे बड़ी शक्ति है। 🕉️",
+
+"🕉️ फल की चिंता मत करो, कर्म करते रहो। 🕉️",
+
+"🕉️ क्रोध से बुद्धि का नाश होता है। 🕉️",
+
+"🕉️ भय वहीं समाप्त होता है जहाँ ज्ञान प्रारम्भ होता है। 🕉️",
+
+"🕉️ संयम ही सच्ची विजय है। 🕉️",
+
+"🕉️ सच्चा सुख भीतर की शांति में है। 🕉️",
+
+"🕉️ जो स्वयं पर विजय पा लेता है वही सबसे बड़ा विजेता है। 🕉️",
+
+"🕉️ ईश्वर सदैव कर्मयोगी का साथ देता है। 🕉️",
+
+"🕉️ जीवन का उद्देश्य केवल सफलता नहीं, धर्मपूर्वक कर्म करना है। 🕉️"
+
+];
+
+document.getElementById("geetaTicker").innerHTML=
+
+geetaQuotes.join(" &nbsp;&nbsp;&nbsp; ✦ &nbsp;&nbsp;&nbsp; ");
