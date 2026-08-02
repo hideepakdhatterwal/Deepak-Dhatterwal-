@@ -8,6 +8,191 @@ GOOGLE FONTS
 ==========================*/
 
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+/*==================================
+PREMIUM QUOTE ANIMATION
+==================================*/
+
+.acting-box{
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+.acting-box::before{
+
+content:"";
+
+position:absolute;
+
+top:-180px;
+
+left:-180px;
+
+width:420px;
+
+height:420px;
+
+border-radius:50%;
+
+background:radial-gradient(circle,
+rgba(212,175,55,.08),
+transparent 70%);
+
+animation:goldRotate 18s linear infinite;
+
+pointer-events:none;
+
+}
+
+.acting-box::after{
+
+content:"";
+
+position:absolute;
+
+bottom:-180px;
+
+right:-180px;
+
+width:380px;
+
+height:380px;
+
+border-radius:50%;
+
+background:radial-gradient(circle,
+rgba(212,175,55,.06),
+transparent 70%);
+
+animation:goldRotateReverse 22s linear infinite;
+
+pointer-events:none;
+
+}
+
+@keyframes goldRotate{
+
+0%{
+
+transform:rotate(0deg);
+
+}
+
+100%{
+
+transform:rotate(360deg);
+
+}
+
+}
+
+@keyframes goldRotateReverse{
+
+0%{
+
+transform:rotate(360deg);
+
+}
+
+100%{
+
+transform:rotate(0deg);
+
+}
+
+}
+
+/*============================*/
+
+.acting-title{
+
+animation:omGlow 2.5s ease-in-out infinite;
+
+}
+
+@keyframes omGlow{
+
+0%,100%{
+
+box-shadow:0 0 10px rgba(212,175,55,.20);
+
+text-shadow:0 0 6px rgba(212,175,55,.25);
+
+}
+
+50%{
+
+box-shadow:0 0 25px rgba(212,175,55,.50);
+
+text-shadow:0 0 15px rgba(212,175,55,.80);
+
+}
+
+}
+
+/*============================*/
+
+#actingQuote{
+
+font-weight:500;
+
+letter-spacing:.5px;
+
+text-shadow:0 0 8px rgba(212,175,55,.08);
+
+}
+
+/*============================*/
+
+.geeta-box{
+
+background:linear-gradient(
+
+90deg,
+
+transparent,
+
+rgba(212,175,55,.04),
+
+transparent
+
+);
+
+}
+
+/*============================*/
+
+.geeta-track{
+
+font-weight:600;
+
+letter-spacing:1px;
+
+text-shadow:0 0 10px rgba(212,175,55,.25);
+
+}
+
+/*============================*/
+
+.geeta-track:hover{
+
+animation-play-state:paused;
+
+}
+
+/*============================*/
+
+.quotes-section:hover .acting-box{
+
+border-color:#D4AF37;
+
+transform:translateY(-5px);
+
+transition:.4s;
+
+}
 
 /*==========================
 ROOT
