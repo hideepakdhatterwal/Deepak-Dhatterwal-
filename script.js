@@ -685,3 +685,106 @@ const geetaQuotes=[
 document.getElementById("geetaTicker").innerHTML=
 
 geetaQuotes.join(" &nbsp;&nbsp;&nbsp; ✦ &nbsp;&nbsp;&nbsp; ");
+
+
+/*==================================
+ACTING QUOTES
+==================================*/
+
+const actingQuotes=[
+
+"Every great actor first becomes a great observer.",
+
+"The camera captures truth, not performance.",
+
+"Every audition is one step closer to success.",
+
+"The strongest dialogue is spoken through the eyes.",
+
+"Discipline creates unforgettable performances.",
+
+"Real acting begins where imitation ends.",
+
+"Confidence comes from preparation.",
+
+"The audience remembers emotions, not dialogues.",
+
+"Every rejection prepares you for the perfect role.",
+
+"Cinema rewards honesty more than perfection.",
+
+"Dream. Prepare. Perform.",
+
+"Never stop learning. Never stop performing."
+
+];
+
+const acting=document.getElementById("actingQuote");
+
+let current=0;
+
+function changeQuote(){
+
+acting.style.opacity="0";
+
+acting.style.transform="translateY(15px)";
+
+setTimeout(()=>{
+
+acting.innerHTML="❝ "+actingQuotes[current]+" ❞";
+
+acting.style.opacity="1";
+
+acting.style.transform="translateY(0)";
+
+current++;
+
+if(current>=actingQuotes.length){
+
+current=0;
+
+}
+
+},500);
+
+}
+
+changeQuote();
+
+setInterval(changeQuote,3500);
+
+/*==================================
+GEETA QUOTES
+==================================*/
+
+const geetaQuotes=[
+
+"ॐ कर्मण्येवाधिकारस्ते मा फलेषु कदाचन। ॐ",
+
+"ॐ फल की चिंता मत करो, कर्म करते रहो। ॐ",
+
+"ॐ परिवर्तन ही संसार का शाश्वत नियम है। ॐ",
+
+"ॐ धैर्य ही सबसे बड़ी शक्ति है। ॐ",
+
+"ॐ अपने कर्तव्य को पूरी निष्ठा से निभाओ। ॐ",
+
+"ॐ मनुष्य स्वयं अपना मित्र भी है और स्वयं अपना शत्रु भी। ॐ",
+
+"ॐ क्रोध से बुद्धि का नाश होता है। ॐ",
+
+"ॐ आत्मा न जन्म लेती है और न कभी मरती है। ॐ",
+
+"ॐ संयम ही सच्ची विजय है। ॐ",
+
+"ॐ ज्ञान से बड़ा कोई धन नहीं। ॐ",
+
+"ॐ स्वयं पर विजय ही सबसे बड़ी विजय है। ॐ",
+
+"ॐ सच्चा सुख भीतर की शांति में है। ॐ"
+
+];
+
+document.getElementById("geetaTicker").innerHTML=
+
+geetaQuotes.join("&nbsp;&nbsp;&nbsp; ✦ &nbsp;&nbsp;&nbsp;");
