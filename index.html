@@ -853,108 +853,74 @@ VIDEO POPUP
 
 <div class="contact-form">
 
-    <form id="contactForm" autocomplete="on">
+    <form
+        action="https://formsubmit.co/hideepakdhatterwal@gmail.com"
+        method="POST">
+
+        <!-- Disable Captcha -->
+        <input type="hidden" name="_captcha" value="false">
+
+        <!-- Email Subject -->
+        <input type="hidden"
+               name="_subject"
+               value="New Casting Inquiry - Deepak Dhatterwal">
+
+        <!-- Thank You Page -->
+        <input type="hidden"
+               name="_next"
+               value="https://YOUR-DOMAIN.com/thankyou.html">
 
         <div class="input-group">
-
-            <input
-                type="text"
-                id="from_name"
-                name="from_name"
-                placeholder="Full Name *"
-                required>
-
+            <input type="text"
+                   name="Name"
+                   placeholder="Full Name *"
+                   required>
         </div>
 
         <div class="input-group">
-
-            <input
-                type="email"
-                id="reply_to"
-                name="reply_to"
-                placeholder="Email Address *"
-                required>
-
+            <input type="email"
+                   name="Email"
+                   placeholder="Email Address *"
+                   required>
         </div>
 
         <div class="input-group">
-
-            <input
-                type="tel"
-                id="phone"
-                name="phone"
-                placeholder="Phone Number"
-                pattern="[0-9]{10,15}">
-
+            <input type="tel"
+                   name="Phone"
+                   placeholder="Phone Number">
         </div>
 
         <div class="input-group">
+            <select name="Project" required>
 
-            <select
-                id="project"
-                name="project"
-                required>
-
-                <option value="">Select Project Type *</option>
-
-                <option value="Feature Film">Feature Film</option>
-
-                <option value="Web Series">Web Series</option>
-
-                <option value="TV Show">TV Show</option>
-
-                <option value="Advertisement">Advertisement</option>
-
-                <option value="Brand Collaboration">Brand Collaboration</option>
-
-                <option value="Music Video">Music Video</option>
-
-                <option value="Photoshoot">Photoshoot</option>
-
-                <option value="Other">Other</option>
+                <option value="">Select Project Type</option>
+                <option>Feature Film</option>
+                <option>Web Series</option>
+                <option>TV Show</option>
+                <option>Advertisement</option>
+                <option>Brand Collaboration</option>
+                <option>Other</option>
 
             </select>
-
         </div>
 
         <div class="input-group">
 
             <textarea
-
-                id="message"
-
-                name="message"
-
+                name="Message"
                 rows="6"
-
                 placeholder="Tell me about your project..."
-
-                required>
-
-            </textarea>
+                required></textarea>
 
         </div>
 
-        <!-- Hidden Subject -->
-
-        <input
-            type="hidden"
-            name="subject"
-            value="New Casting Inquiry - Deepak Dhatterwal Official Website">
-
         <button
-
             type="submit"
+            class="btn btn-primary">
 
-            class="btn btn-primary"
-
-            id="submitBtn">
-
-            <span id="btnText">Send Inquiry</span>
+            Send Inquiry
 
         </button>
-
-        <p id="formStatus"></p>
 
     </form>
 
