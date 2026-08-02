@@ -788,3 +788,160 @@ const geetaQuotes=[
 document.getElementById("geetaTicker").innerHTML=
 
 geetaQuotes.join("&nbsp;&nbsp;&nbsp; ✦ &nbsp;&nbsp;&nbsp;");
+
+<script>
+
+/* ==========================================
+   PREMIUM ACTING QUOTES
+========================================== */
+
+const actingQuotes = [
+
+"An actor never pretends; he lives the truth of another soul.",
+
+"The eyes reveal what words cannot express.",
+
+"Every audition is another step toward your destiny.",
+
+"Discipline is the silent partner of every great performance.",
+
+"The camera captures honesty, not exaggeration.",
+
+"A great actor first becomes a great observer.",
+
+"Real acting begins where imitation ends.",
+
+"The audience remembers emotions, not dialogues.",
+
+"Every rejection prepares you for the perfect opportunity.",
+
+"Success belongs to those who continue after failure.",
+
+"The strongest performance comes from genuine emotions.",
+
+"Confidence grows from preparation, not luck.",
+
+"Every character teaches a new way of living.",
+
+"Cinema rewards truth more than perfection.",
+
+"The smallest expression can create the biggest impact.",
+
+"Acting is the art of making imagination believable.",
+
+"Talent opens the door, discipline keeps it open.",
+
+"Every role changes the actor forever.",
+
+"A performer never stops learning.",
+
+"The best actor is the one who never stops observing.",
+
+"Live every scene as if it is your last.",
+
+"Great performances are remembered for honesty.",
+
+"Patience is an actor's greatest strength.",
+
+"Dream. Believe. Perform.",
+
+"Your next role may change your entire life."
+
+];
+
+const acting = document.getElementById("actingQuote");
+
+let current = Math.floor(Math.random()*actingQuotes.length);
+
+function changeQuote(){
+
+acting.style.opacity="0";
+acting.style.filter="blur(5px)";
+
+setTimeout(()=>{
+
+acting.innerHTML="❝ "+actingQuotes[current]+" ❞";
+
+acting.style.opacity="1";
+acting.style.filter="blur(0px)";
+
+current++;
+
+if(current>=actingQuotes.length){
+
+current=0;
+
+}
+
+},500);
+
+}
+
+changeQuote();
+
+setInterval(changeQuote,3500);
+
+
+/* ==========================================
+   BHAGAVAD GITA QUOTES
+========================================== */
+
+const geetaQuotes=[
+
+"ॐ कर्मण्येवाधिकारस्ते मा फलेषु कदाचन। ॐ",
+
+"ॐ अपने कर्म पर ध्यान दो, फल स्वयं समय देगा। ॐ",
+
+"ॐ परिवर्तन ही संसार का शाश्वत नियम है। ॐ",
+
+"ॐ धैर्य सबसे बड़ी शक्ति है। ॐ",
+
+"ॐ आत्मा न जन्म लेती है और न कभी मरती है। ॐ",
+
+"ॐ क्रोध बुद्धि का नाश करता है। ॐ",
+
+"ॐ मनुष्य स्वयं अपना मित्र भी है और शत्रु भी। ॐ",
+
+"ॐ संयम ही सच्ची विजय है। ॐ",
+
+"ॐ सच्चा सुख भीतर की शांति में है। ॐ",
+
+"ॐ भय वहीं समाप्त होता है जहाँ ज्ञान प्रारम्भ होता है। ॐ",
+
+"ॐ स्वयं पर विजय सबसे बड़ी विजय है। ॐ",
+
+"ॐ ईश्वर कर्मयोगी का साथ देता है। ॐ",
+
+"ॐ जीवन का उद्देश्य केवल सफलता नहीं, धर्मपूर्वक कर्म करना है। ॐ",
+
+"ॐ जो स्वयं को जीत लेता है वही महान विजेता है। ॐ",
+
+"ॐ लोभ दुःख का कारण है, संतोष सुख का मार्ग है। ॐ",
+
+"ॐ सत्य और धर्म का मार्ग कभी व्यर्थ नहीं जाता। ॐ",
+
+"ॐ मन शांत हो तो संसार भी शांत प्रतीत होता है। ॐ",
+
+"ॐ ज्ञान सबसे बड़ा धन है। ॐ",
+
+"ॐ विश्वास से ही शक्ति उत्पन्न होती है। ॐ",
+
+"ॐ हर कठिनाई एक नई शिक्षा लेकर आती है। ॐ",
+
+"ॐ निस्वार्थ कर्म ही श्रेष्ठ पूजा है। ॐ",
+
+"ॐ जो हुआ अच्छा हुआ, जो हो रहा है अच्छा हो रहा है। ॐ",
+
+"ॐ समय से बड़ा कोई गुरु नहीं। ॐ",
+
+"ॐ ईश्वर पर विश्वास रखो और कर्म करते रहो। ॐ",
+
+"ॐ धर्म का साथ कभी मत छोड़ो। ॐ"
+
+];
+
+document.getElementById("geetaTicker").innerHTML =
+
+geetaQuotes.join("&nbsp;&nbsp;&nbsp;&nbsp; ✦ &nbsp;&nbsp;&nbsp;&nbsp;");
+
+</script>
