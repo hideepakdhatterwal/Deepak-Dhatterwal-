@@ -851,103 +851,114 @@ VIDEO POPUP
 
             <!-- Contact Form -->
 
-            <div class="contact-form">
+<div class="contact-form">
 
-                <form id="contactForm">
+    <form id="contactForm" autocomplete="on">
 
-                    <div class="input-group">
+        <div class="input-group">
 
-                        <input
-                            type="text"
-                            name="name"
-                            placeholder="Your Name"
-                            required>
+            <input
+                type="text"
+                id="from_name"
+                name="from_name"
+                placeholder="Full Name *"
+                required>
 
-                    </div>
+        </div>
 
-                    <div class="input-group">
+        <div class="input-group">
 
-                        <input
-                            type="email"
-                            name="email"
-                            placeholder="Email Address"
-                            required>
+            <input
+                type="email"
+                id="reply_to"
+                name="reply_to"
+                placeholder="Email Address *"
+                required>
 
-                    </div>
+        </div>
 
-                    <div class="input-group">
+        <div class="input-group">
 
-                        <input
-                            type="tel"
-                            name="phone"
-                            placeholder="Phone Number">
+            <input
+                type="tel"
+                id="phone"
+                name="phone"
+                placeholder="Phone Number"
+                pattern="[0-9]{10,15}">
 
-                    </div>
+        </div>
 
-                    <div class="input-group">
+        <div class="input-group">
 
-                        <select name="project">
+            <select
+                id="project"
+                name="project"
+                required>
 
-                            <option value="">
-                                Select Project Type
-                            </option>
+                <option value="">Select Project Type *</option>
 
-                            <option>
-                                Feature Film
-                            </option>
+                <option value="Feature Film">Feature Film</option>
 
-                            <option>
-                                Web Series
-                            </option>
+                <option value="Web Series">Web Series</option>
 
-                            <option>
-                                TV Show
-                            </option>
+                <option value="TV Show">TV Show</option>
 
-                            <option>
-                                Advertisement
-                            </option>
+                <option value="Advertisement">Advertisement</option>
 
-                            <option>
-                                Brand Collaboration
-                            </option>
+                <option value="Brand Collaboration">Brand Collaboration</option>
 
-                            <option>
-                                Other
-                            </option>
+                <option value="Music Video">Music Video</option>
 
-                        </select>
+                <option value="Photoshoot">Photoshoot</option>
 
-                    </div>
+                <option value="Other">Other</option>
 
-                    <div class="input-group">
+            </select>
 
-                        <textarea
+        </div>
 
-                            name="message"
+        <div class="input-group">
 
-                            rows="6"
+            <textarea
 
-                            placeholder="Tell me about your project..."
+                id="message"
 
-                            required>
+                name="message"
 
-                        </textarea>
+                rows="6"
 
-                    </div>
+                placeholder="Tell me about your project..."
 
-                    <button
+                required>
 
-                        type="submit"
+            </textarea>
 
-                        class="btn btn-primary">
+        </div>
 
-                        Send Inquiry
+        <!-- Hidden Subject -->
 
-                    </button>
+        <input
+            type="hidden"
+            name="subject"
+            value="New Casting Inquiry - Deepak Dhatterwal Official Website">
 
-                </form>
+        <button
 
+            type="submit"
+
+            class="btn btn-primary"
+
+            id="submitBtn">
+
+            <span id="btnText">Send Inquiry</span>
+
+        </button>
+
+        <p id="formStatus"></p>
+
+    </form>
+
+</div>
             </div>
 
         </div>
