@@ -435,78 +435,61 @@ closeVideoPopup();
 EMAILJS
 ======================================================*/
 
-/*
-https://www.emailjs.com
-
-Replace these values
-
-YOUR_PUBLIC_KEY
-
-YOUR_SERVICE_ID
-
-YOUR_TEMPLATE_ID
-
-*/
-
 emailjs.init({
-
-publicKey:"YOUR_PUBLIC_KEY"
-
+    publicKey: "YOUR_PUBLIC_KEY"
 });
 
-const contactForm=document.getElementById("contactForm");
+const form = document.getElementById("contactForm");
+const submitBtn = document.getElementById("submitBtn");
+const btnText = document.getElementById("btnText");
+const formStatus = document.getElementById("formStatus");
 
-contactForm.addEventListener("submit",(e)=>{
+form.addEventListener("submit", function(e){
 
-e.preventDefault();
+    e.preventDefault();
 
-const submitButton=
+    submitBtn.disabled = true;
+    btnText.textContent = "Sending...";
 
-contactForm.querySelector("button");
+    emailjs.sendForm(
 
-submitButton.disabled=true;
+        "YOUR_SERVICE_ID",
 
-submitButton.innerHTML="Sending...";
+        "YOUR_TEMPLATE_ID",
 
-emailjs.sendForm(
+        this
 
-"YOUR_SERVICE_ID",
+    ).then(function(){
 
-"YOUR_TEMPLATE_ID",
+        formStatus.textContent = "✅ Your inquiry has been sent successfully.";
 
-contactForm
+        formStatus.style.color = "#4CAF50";
 
-)
+        btnText.textContent = "Message Sent";
 
-.then(()=>{
+        form.reset();
 
-submitButton.innerHTML="Message Sent ✓";
+        setTimeout(()=>{
 
-contactForm.reset();
+            btnText.textContent = "Send Inquiry";
+            submitBtn.disabled = false;
+            formStatus.textContent = "";
 
-setTimeout(()=>{
+        },3000);
 
-submitButton.disabled=false;
+    }).catch(function(error){
 
-submitButton.innerHTML="Send Inquiry";
+        console.error(error);
 
-},3000);
+        formStatus.textContent = "❌ Failed to send message. Please try again.";
 
-})
+        formStatus.style.color = "#ff4d4d";
 
-.catch(()=>{
+        btnText.textContent = "Send Inquiry";
 
-submitButton.disabled=false;
+        submitBtn.disabled = false;
 
-submitButton.innerHTML="Try Again";
-
-alert(
-
-"Unable to send message."
-
-);
-
-});
+    });
 
 });
 
