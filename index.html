@@ -27,13 +27,15 @@
   <!-- Swiper CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
-  <!-- Custom CSS -->
+  <!-- External Stylesheets -->
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/animations.css" />
 
-  <!-- Override Fix: Gallery original image size (No Crop / No Cut) -->
+  <!-- Gallery Image Cut/Crop Prevention Override CSS -->
   <style>
+    /* Keeps images in their full original aspect ratio without any top/bottom cutting */
     .gallery-card {
+      width: 100%;
       height: auto !important;
       max-height: none !important;
       overflow: hidden;
@@ -43,14 +45,14 @@
       width: 100% !important;
       height: auto !important;
       max-height: none !important;
-      object-fit: contain !important; /* Retains original full image ratio */
+      object-fit: contain !important;
       display: block;
     }
   </style>
 </head>
 <body class="bg-dark text-light">
 
-  <!-- Navbar -->
+  <!-- 1. Header / Navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top glass-nav">
     <div class="container">
       <a class="navbar-brand font-cinzel text-gold fw-bold" href="#hero">
@@ -74,7 +76,7 @@
     </div>
   </nav>
 
-  <!-- Gita / Quote Ticker Bar -->
+  <!-- 2. Gita Marquee Bar -->
   <div class="geeta-marquee-wrapper bg-black py-2 border-bottom border-gold-subtle fix-ticker">
     <div class="container-fluid">
       <div class="d-flex align-items-center">
@@ -87,7 +89,7 @@
   </div>
 
   <main>
-    <!-- 1. Hero Section -->
+    <!-- 3. Hero Section -->
     <section id="hero" class="hero-section min-vh-100 d-flex align-items-center position-relative pt-5">
       <div class="container position-relative z-2">
         <div class="row align-items-center min-vh-100 py-5">
@@ -125,7 +127,7 @@
       </div>
     </section>
 
-    <!-- 2. Biography Section -->
+    <!-- 4. Biography / About Section -->
     <section id="about" class="about-section py-5 bg-darker">
       <div class="container py-lg-5">
         <div class="row align-items-center g-5">
@@ -174,7 +176,7 @@
       </div>
     </section>
 
-    <!-- 3. Career Highlights Section -->
+    <!-- 5. Highlights Section -->
     <section id="highlights" class="highlights-section py-5">
       <div class="container py-lg-5">
         <div class="section-title-wrapper text-center mb-5" data-aos="fade-up">
@@ -215,7 +217,7 @@
       </div>
     </section>
 
-    <!-- 4. Skills & Capabilities -->
+    <!-- 6. Acting Skills Section -->
     <section id="skills" class="skills-section py-5 bg-darker">
       <div class="container py-lg-5">
         <div class="section-title-wrapper text-center mb-5" data-aos="fade-up">
@@ -294,7 +296,7 @@
       </div>
     </section>
 
-    <!-- 5. Portfolio Gallery Section (Full Original Aspect Ratio Fix) -->
+    <!-- 7. Gallery Section (Original Image Size - Uncropped) -->
     <section id="gallery" class="gallery-section py-5">
       <div class="container py-lg-5">
         <div class="section-title-wrapper text-center mb-5" data-aos="fade-up">
@@ -338,7 +340,7 @@
       </div>
     </section>
 
-    <!-- 6. Acting Philosophy -->
+    <!-- 8. Acting Philosophy Section -->
     <section id="philosophy" class="philosophy-section py-5 bg-darker">
       <div class="container py-lg-5">
         <div class="row justify-content-center text-center">
@@ -354,7 +356,7 @@
       </div>
     </section>
 
-    <!-- 7. Social Media Hub -->
+    <!-- 9. Social Hub Section -->
     <section id="social" class="social-section py-5">
       <div class="container py-lg-4">
         <div class="section-title-wrapper text-center mb-5">
@@ -367,7 +369,4 @@
           <div class="col-6 col-md-4 col-lg-2">
             <a href="https://www.imdb.com/name/nm17506821/?ref_=ext_shr_lnk" target="_blank" rel="noopener" class="social-tile glass-card p-4 text-center d-block rounded-4 text-decoration-none">
               <i class="fa-brands fa-imdb fs-1 text-warning mb-2"></i>
-              <span class="d-block text-white fw-semibold small">IMDb</span>
-            </a>
-          </div>
-          <div class="col-6 col-md-4 co
+              <span class="d-block text-white fw-semibold small">IMDb</span
