@@ -30,6 +30,23 @@
   <!-- Custom CSS -->
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/animations.css" />
+
+  <!-- Override Fix: Gallery original image size (No Crop / No Cut) -->
+  <style>
+    .gallery-card {
+      height: auto !important;
+      max-height: none !important;
+      overflow: hidden;
+      background: transparent !important;
+    }
+    .gallery-card img {
+      width: 100% !important;
+      height: auto !important;
+      max-height: none !important;
+      object-fit: contain !important; /* Retains original full image ratio */
+      display: block;
+    }
+  </style>
 </head>
 <body class="bg-dark text-light">
 
@@ -277,7 +294,7 @@
       </div>
     </section>
 
-    <!-- 5. Portfolio Gallery Section -->
+    <!-- 5. Portfolio Gallery Section (Full Original Aspect Ratio Fix) -->
     <section id="gallery" class="gallery-section py-5">
       <div class="container py-lg-5">
         <div class="section-title-wrapper text-center mb-5" data-aos="fade-up">
@@ -286,35 +303,35 @@
           <div class="gold-divider mx-auto"></div>
         </div>
 
-        <div class="row g-4">
+        <div class="row g-4 align-items-center">
           <div class="col-md-6 col-lg-4" data-aos="zoom-in">
-            <div class="gallery-card rounded-4 overflow-hidden position-relative">
-              <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=800" alt="Deepak Dhatterwal Still" class="img-fluid w-100" />
+            <div class="gallery-card rounded-4 border-gold p-1">
+              <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=800" alt="Deepak Dhatterwal Still" class="img-fluid rounded-4" />
             </div>
           </div>
           <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="100">
-            <div class="gallery-card rounded-4 overflow-hidden position-relative">
-              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=800" alt="Deepak Dhatterwal Portrait" class="img-fluid w-100" />
+            <div class="gallery-card rounded-4 border-gold p-1">
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=800" alt="Deepak Dhatterwal Portrait" class="img-fluid rounded-4" />
             </div>
           </div>
           <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="200">
-            <div class="gallery-card rounded-4 overflow-hidden position-relative">
-              <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=800" alt="Deepak Dhatterwal Look" class="img-fluid w-100" />
+            <div class="gallery-card rounded-4 border-gold p-1">
+              <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=800" alt="Deepak Dhatterwal Look" class="img-fluid rounded-4" />
             </div>
           </div>
           <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="300">
-            <div class="gallery-card rounded-4 overflow-hidden position-relative">
-              <img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&q=80&w=800" alt="Deepak Dhatterwal Dramatic" class="img-fluid w-100" />
+            <div class="gallery-card rounded-4 border-gold p-1">
+              <img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&q=80&w=800" alt="Deepak Dhatterwal Dramatic" class="img-fluid rounded-4" />
             </div>
           </div>
           <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="400">
-            <div class="gallery-card rounded-4 overflow-hidden position-relative">
-              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=800" alt="Deepak Dhatterwal Expression" class="img-fluid w-100" />
+            <div class="gallery-card rounded-4 border-gold p-1">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=800" alt="Deepak Dhatterwal Expression" class="img-fluid rounded-4" />
             </div>
           </div>
           <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="500">
-            <div class="gallery-card rounded-4 overflow-hidden position-relative">
-              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=800" alt="Deepak Dhatterwal Portfolio" class="img-fluid w-100" />
+            <div class="gallery-card rounded-4 border-gold p-1">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=800" alt="Deepak Dhatterwal Portfolio" class="img-fluid rounded-4" />
             </div>
           </div>
         </div>
@@ -337,7 +354,7 @@
       </div>
     </section>
 
-    <!-- 7. Social Media Hub (ALWAYS VISIBLE - NO AOS) -->
+    <!-- 7. Social Media Hub -->
     <section id="social" class="social-section py-5">
       <div class="container py-lg-4">
         <div class="section-title-wrapper text-center mb-5">
@@ -353,10 +370,4 @@
               <span class="d-block text-white fw-semibold small">IMDb</span>
             </a>
           </div>
-          <div class="col-6 col-md-4 col-lg-2">
-            <a href="https://www.facebook.com/deepakdhatterwalofficial" target="_blank" rel="noopener" class="social-tile glass-card p-4 text-center d-block rounded-4 text-decoration-none">
-              <i class="fa-brands fa-facebook fs-1 text-primary mb-2"></i>
-              <span class="d-block text-white fw-semibold small">Facebook</span>
-            </a>
-          </div>
-          <div class="col-6 col
+          <div class="col-6 col-md-4 co
