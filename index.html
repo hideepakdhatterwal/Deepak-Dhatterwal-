@@ -952,6 +952,242 @@ Deepak is credited in the upcoming feature film "Mastan – The Real Story", whe
   </div>
 </div>
 
+<!-- ================= 25 GEETA SHLOKAS & HINDI QUOTES TICKER ================= -->
+<style>
+  .geeta-ticker-wrapper {
+    background-color: #0b0c10;
+    border-top: 1px solid rgba(212, 175, 55, 0.35);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.35);
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    padding: 16px 0;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
+  }
+  
+  /* Gradient Side Masks for Smooth Edge Dissolve */
+  .geeta-ticker-wrapper::before,
+  .geeta-ticker-wrapper::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 90px;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .geeta-ticker-wrapper::before {
+    left: 0;
+    background: linear-gradient(to right, #0b0c10, transparent);
+  }
+  .geeta-ticker-wrapper::after {
+    right: 0;
+    background: linear-gradient(to left, #0b0c10, transparent);
+  }
+
+  /* Right to Left Continuous Track */
+  .geeta-ticker-track {
+    display: inline-flex;
+    align-items: center;
+    gap: 50px;
+    animation: geetaScrollRightToLeft 110s linear infinite;
+  }
+
+  /* Hover to Pause Feature */
+  .geeta-ticker-wrapper:hover .geeta-ticker-track {
+    animation-play-state: paused;
+  }
+
+  /* Single Item Styling */
+  .geeta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Cinzel', serif, sans-serif;
+    font-size: 0.95rem;
+  }
+
+  .geeta-om-badge {
+    color: #d4af37;
+    font-weight: bold;
+    font-size: 1.1rem;
+    background: rgba(212, 175, 55, 0.12);
+    border: 1px solid rgba(212, 175, 55, 0.5);
+    padding: 3px 10px;
+    border-radius: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .sanskrit-text {
+    color: #ffd700;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  .divider-symbol {
+    color: #d4af37;
+    opacity: 0.6;
+  }
+
+  .hindi-text {
+    color: #e6e6e6;
+    font-weight: 400;
+  }
+
+  .author-tag {
+    color: #d4af37;
+    font-size: 0.85rem;
+    font-weight: bold;
+    margin-left: 10px;
+    letter-spacing: 1px;
+  }
+
+  /* Keyframe for Smooth Continuous Right-to-Left Loop */
+  @keyframes geetaScrollRightToLeft {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+</style>
+
+<div class="geeta-ticker-wrapper">
+  <div class="geeta-ticker-track" id="geetaTickerTrack">
+    <!-- Content injected dynamically via JavaScript -->
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // 25 REALISTIC BHAGAVAD GITA SHLOKAS + HINDI TRANSLATIONS
+    const geetaData = [
+      {
+        sanskrit: "कर्मण्येवाधिकारस्ते मा फलेषु कदाचन।",
+        hindi: "कर्म पर आपका अधिकार है, फल पर नहीं। परिणाम की चिंता छोड़कर प्रयास पर ध्यान दो।"
+      },
+      {
+        sanskrit: "योगः कर्मसु कौशलम्।",
+        hindi: "कर्मों में कुशलता ही योग है। अपनी कला और काम को पूरी दक्षता से करना ही सच्ची पूजा है।"
+      },
+      {
+        sanskrit: "उद्धरेदात्मनात्मानं नात्मानमवसादयेत्।",
+        hindi: "अपना उद्धार स्वयं करो, खुद को कमजोर मत समझो। आप ही अपने सबसे बड़े मित्र और शत्रु हैं।"
+      },
+      {
+        sanskrit: "समत्वं योग उच्यते।",
+        hindi: "सफलता और विफलता, सुख और दुःख में सम भाव रखना ही वास्तविक योग है।"
+      },
+      {
+        sanskrit: "संशयात्मा विनश्यति।",
+        hindi: "संदेह करने वाले व्यक्ति को न शांति मिलती है न सफलता। विश्वास ही सबसे बड़ी शक्ति है।"
+      },
+      {
+        sanskrit: "श्रद्धावाँल्लभते ज्ञानम्।",
+        hindi: "पूर्ण श्रद्धा और समर्पण रखने वाला ही अपनी कला का वास्तविक ज्ञान प्राप्त करता है।"
+      },
+      {
+        sanskrit: "अभ्यासेन तु कौन्तेय वैराग्येण च गृह्यते।",
+        hindi: "निरंतर अभ्यास और सजगता से ही चंचल मन को वश में किया जा सकता है।"
+      },
+      {
+        sanskrit: "क्रोधाद्भवति सम्मोहः सम्मोहात्स्मृतिविभ्रमः।",
+        hindi: "क्रोध से भ्रम पैदा होता है और भ्रम से बुद्धि का नाश। हर परिस्थिति में मन शांत रखें।"
+      },
+      {
+        sanskrit: "श्रेयान स्वधर्मो विगुणः परधर्मात्स्वनुष्ठितात्।",
+        hindi: "दूसरों की नकल करने से बेहतर है अपनी कला और स्वधर्म का ईमानदारी से पालन करना।"
+      },
+      {
+        sanskrit: "आत्मैव ह्यात्मनो बंधुरात्मैव रिपुरात्मनः।",
+        hindi: "आपका मन ही आपका सबसे अच्छा मित्र है और अनुशासित न हो तो वही आपका सबसे बड़ा शत्रु।"
+      },
+      {
+        sanskrit: "नैनं छिन्दन्ति शस्त्राणि नैनं दहति पावकः।",
+        hindi: "आपकी आंतरिक शक्ति और सत्य अजर-अमर हैं, किसी भी बाहरी डर से घबराएं नहीं।"
+      },
+      {
+        sanskrit: "यद्यदाचरति श्रेष्ठस्तत्तदेवेतरो जनः।",
+        hindi: "श्रेष्ठ पुरुष जैसा आचरण करते हैं, समाज उसी का अनुसरण करता है। अपने काम में आदर्श बनें।"
+      },
+      {
+        sanskrit: "ज्ञानाग्निः सर्वकर्माणि भस्मसात्कुरुते तथा।",
+        hindi: "सच्चा ज्ञान और समझ इंसान के सारे संशय और अज्ञान के अंधकार को भस्म कर देती है।"
+      },
+      {
+        sanskrit: "युक्ताहारविहारस्य युक्ताचेष्टस्य कर्मसु।",
+        hindi: "खान-पान, विचार और मेहनत में संतुलन ही जीवन में मानसिक शांति और सफलता लाता है।"
+      },
+      {
+        sanskrit: "वासांसि जीर्णानि यथा विहाय नवानि गृह्णाति।",
+        hindi: "परिवर्तन ही संसार का नियम है। पुरानी आदतों को छोड़ नए बदलावों को अपनाने से मत डरें।"
+      },
+      {
+        sanskrit: "दुःखेष्वनुद्विग्नमनाः सुखेषु विगतस्पृहः।",
+        hindi: "जो दुख में व्याकुल नहीं होता और सुख में अंधा नहीं होता, वही स्थिर बुद्धि इंसान है।"
+      },
+      {
+        sanskrit: "न हि कश्चित्क्षणमपि जातु तिष्ठत्यकर्मकृत्।",
+        hindi: "कोई भी इंसान एक पल भी बिना कर्म किए नहीं रह सकता। निरंतर सक्रिय रहना ही जीवन है।"
+      },
+      {
+        sanskrit: "मच्चित्तः सर्वदुर्गाणि मत्प्रसादात्तरिष्यसि।",
+        hindi: "यदि आपका ध्यान लक्ष्य पर केंद्रित है, तो आप हर कठिनाई और बाधा को पार कर लेंगे।"
+      },
+      {
+        sanskrit: "पत्रं पुष्पं फलं तोयं यो मे भक्त्या प्रयच्छति।",
+        hindi: "भाव और नीयत सच्ची हो तो छोटा सा प्रयास भी जीवन में महान परिणाम देता है।"
+      },
+      {
+        sanskrit: "तस्मादसक्तः सतत कार्यं कर्म समाचर।",
+        hindi: "परिणाम से मोह हटाकर लगातार अपने कर्तव्य और कला का निष्ठापूर्वक पालन करते रहें।"
+      },
+      {
+        sanskrit: "अज्ञानेनावृतं ज्ञानं तेन मुह्यन्ति जन्तवः।",
+        hindi: "अज्ञान के आवरण से ज्ञान ढका रहता है। निरंतर सीखने की इच्छा से ही अज्ञान मिटता है।"
+      },
+      {
+        sanskrit: "मय्यर्पितमनोबुद्धिर्यो मद्भक्तः स मे प्रियः।",
+        hindi: "जब आप बिना किसी अहंकार के काम करते हैं, तब आपका हर प्रयास एक प्रार्थना बन जाता है।"
+      },
+      {
+        sanskrit: "विद्याविनयसंपन्ने ब्राह्मणे गवि हस्तिनि।",
+        hindi: "सच्चा ज्ञानी वही है जो हर जीव को सम्मान और निष्पक्ष भाव से देखता है।"
+      },
+      {
+        sanskrit: "सर्वधर्मान्परित्यज्य मामेकं शरणं व्रज।",
+        hindi: "सभी व्यर्थ चिंताओं को छोड़कर अपनी अंतरात्मा और कर्म के प्रति पूरी तरह समर्पित हो जाओ।"
+      },
+      {
+        sanskrit: "शांतियोगः समाधिस्थो निर्द्वंद्वो नित्यसत्त्वस्थः।",
+        hindi: "जो तुलनाओं और द्वंद्वों से मुक्त है, वही वास्तविक शांति और सफलता का अनुभव करता है।"
+      }
+    ];
+
+    const track = document.getElementById('geetaTickerTrack');
+    if (!track) return;
+
+    // Generate Item HTML
+    function buildTickerHTML() {
+      return geetaData.map((item, index) => `
+        <div class="geeta-item">
+          <span class="geeta-om-badge">ॐ #${index + 1}</span>
+          <span class="sanskrit-text">${item.sanskrit}</span>
+          <span class="divider-symbol">❙</span>
+          <span class="hindi-text">"${item.hindi}"</span>
+          <span class="author-tag">— Deepak Dhatterwal 卐</span>
+        </div>
+      `).join('');
+    }
+
+    // Double the items for seamless infinite right-to-left loop
+    track.innerHTML = buildTickerHTML() + buildTickerHTML();
+  });
+</script>
+
 </body>
 </html>
 
