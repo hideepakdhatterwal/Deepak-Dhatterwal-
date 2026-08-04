@@ -1,0 +1,159 @@
+/* ==========================================================================
+   Deepak Dhatterwal - Main CSS Stylesheet
+   Luxury Gold & Dark Cinema Theme
+   ========================================================================== */
+
+:root {
+  --color-gold: #D4AF37;
+  --color-gold-light: #F3E5AB;
+  --color-gold-subtle: rgba(212, 175, 55, 0.15);
+  --color-dark: #0F0F0F;
+  --color-darker: #080808;
+  --color-glass-bg: rgba(20, 20, 20, 0.75);
+  --color-glass-border: rgba(212, 175, 55, 0.25);
+  --font-cinzel: 'Cinzel', serif;
+  --font-montserrat: 'Montserrat', sans-serif;
+}
+
+body {
+  font-family: var(--font-montserrat);
+  background-color: var(--color-dark);
+  color: #e0e0e0;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+/* Typography Helpers */
+.font-cinzel { font-family: var(--font-cinzel); }
+.text-gold { color: var(--color-gold) !important; }
+.text-gold-light { color: var(--color-gold-light) !important; }
+.text-light-70 { color: rgba(255, 255, 255, 0.85) !important; }
+.tracking-wider { letter-spacing: 1.5px; }
+.tracking-widest { letter-spacing: 3px; }
+.bg-darker { background-color: var(--color-darker) !important; }
+.extra-small { font-size: 0.7rem; }
+
+/* Dividers & Borders */
+.gold-divider {
+  width: 80px;
+  height: 3px;
+  background: var(--color-gold);
+  border-radius: 2px;
+  margin-top: 15px;
+}
+.border-gold { border: 1px solid var(--color-glass-border) !important; }
+.border-gold-subtle { border-color: rgba(212, 175, 55, 0.2) !important; }
+
+/* Buttons */
+.btn-gold {
+  background: var(--color-gold);
+  color: #000;
+  border: 1px solid var(--color-gold);
+  transition: all 0.3s ease;
+}
+.btn-gold:hover {
+  background: #c29d2b;
+  color: #000;
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+}
+
+.btn-outline-gold {
+  border: 1px solid var(--color-gold);
+  color: var(--color-gold);
+  background: transparent;
+  transition: all 0.3s ease;
+}
+.btn-outline-gold:hover {
+  background: var(--color-gold);
+  color: #000;
+}
+
+/* Glassmorphism Cards */
+.glass-card {
+  background: var(--color-glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--color-glass-border);
+}
+
+/* Glass Navbar */
+.glass-nav {
+  background: rgba(8, 8, 8, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+  transition: all 0.3s ease;
+}
+.glass-nav.scrolled {
+  background: rgba(0, 0, 0, 0.95);
+  padding-top: 8px;
+  padding-bottom: 8px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+
+.brand-logo {
+  border: 1px solid var(--color-gold);
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-right: 8px;
+  font-size: 0.9em;
+}
+
+/* Marquee Bar Fix */
+.fix-ticker {
+  margin-top: 70px;
+}
+
+/* Hero Section */
+.hero-portrait {
+  border: 2px solid var(--color-gold);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+  max-height: 580px;
+  object-fit: cover;
+}
+
+/* Progress Bars */
+.progress-bar.bg-gold {
+  background-color: var(--color-gold) !important;
+}
+
+/* Gallery Original Aspect Ratio (NO Top/Bottom Cut) */
+.gallery-card {
+  width: 100%;
+  height: auto !important;
+  max-height: none !important;
+  overflow: hidden;
+  background: transparent !important;
+}
+.gallery-card img {
+  width: 100% !important;
+  height: auto !important;
+  max-height: none !important;
+  object-fit: contain !important;
+  display: block;
+}
+
+/* Social Tiles */
+.social-tile {
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+.social-tile:hover {
+  transform: translateY(-5px);
+  border-color: var(--color-gold);
+}
+
+/* Form Styling */
+.form-control-dark {
+  background-color: rgba(15, 15, 15, 0.8) !important;
+  color: #fff !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+.form-control-dark:focus {
+  border-color: var(--color-gold) !important;
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.3) !important;
+}
+
+/* Footer Hover Effects */
+.hover-gold:hover {
+  color: var(--color-gold) !important;
+  transition: color 0.2s ease-in-out;
+}
