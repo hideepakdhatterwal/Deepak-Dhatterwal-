@@ -18,3 +18,10 @@
   color: var(--gold-primary) !important;
   transition: color 0.3s ease;
 }
+
+/* AOS Fallback Fix: Jab tak AOS load na ho tab tak content invisible na rahe */
+[data-aos] {
+  opacity: 1 !important;
+  transform: none !important;
+  visibility: visible !important;
+}
