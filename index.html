@@ -800,8 +800,77 @@
       "The camera reads your mind; ensure your heart is fully invested in the line.",
       "Living truthfully under imaginary circumstances is the highest form of acting art.",
       "Focus on process over applause; authentic effort always resonates with viewers.",
-      "Silence speaks louder than dialogue when a characte       
+         
+ "Overcome stage fear by transforming nervous energy into creative power.",
+      "Your unique voice and story are your biggest assets in cinema.",
+      "Patience and perseverance turn audition struggles into iconic roles.",
+      "Master your craft so well that art appears effortless to the audience.",
+      "Life is the ultimate theatre; play your role with unconditional integrity.",
+      "Do not seek perfection; seek genuine human expression in every take."
+    ];
 
+    let currentQuoteIndex = 0;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Dynamic Year Update
+      const yearSpan = document.getElementById('current-year');
+      if (yearSpan) yearSpan.textContent = new Date().getFullYear();
+
+      // 2. 5-Second Quote Auto-Rotator Logic
+      const quoteTextElem = document.getElementById('actingQuoteText');
+      const counterElem = document.getElementById('quoteCounter');
+      const boxElem = document.getElementById('quoteRotatorBox');
+
+      function rotateQuote() {
+        if (!quoteTextElem || !boxElem) return;
+        
+        // Fade out transition
+        boxElem.classList.add('fade-out');
+
+        setTimeout(() => {
+          currentQuoteIndex = (currentQuoteIndex + 1) % actingQuotes.length;
+          quoteTextElem.textContent = `"${actingQuotes[currentQuoteIndex]}"`;
+          if (counterElem) {
+            counterElem.textContent = `Quote ${currentQuoteIndex + 1} / ${actingQuotes.length}`;
+          }
+          // Fade in transition
+          boxElem.classList.remove('fade-out');
+          boxElem.classList.add('fade-in');
+        }, 500);
+      }
+
+      // Start 5-Second Interval Rotator
+      setInterval(rotateQuote, 5000);
+
+      // 3. Marquee Pause on Mouse Hover
+      const marquee = document.querySelector('marquee');
+      if (marquee) {
+        marquee.addEventListener('mouseover', () => marquee.stop());
+        marquee.addEventListener('mouseout', () => marquee.start());
+      }
+
+      // 4. Form Submit Loader Feedback
+      const contactForm = document.getElementById('contact-form');
+      const submitBtn = document.getElementById('contact-submit-btn');
+      if (contactForm && submitBtn) {
+        contactForm.addEventListener('submit', () => {
+          submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin me-2"></i> Sending Message...';
+          submitBtn.disabled = true;
+        });
+      }
+
+      // 5. Initialize AOS Safely
+      if (typeof AOS !== 'undefined') {
+        AOS.init({
+          duration: 700,
+          once: true,
+          offset: 40
+        });
+      }
+    });
+  </script>
+</body>
+</html>
 
 
 
