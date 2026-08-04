@@ -158,124 +158,125 @@ body {
   transition: color 0.2s ease-in-out;
 }
 
-/* ================= CHILDHOOD TO MUMBAI JOURNEY STYLES ================= */
+/* ================= ELEGANT JOURNEY TIMELINE ================= */
 .journey-section {
   background-color: #08080a;
   position: relative;
   overflow: hidden;
-  border-top: 1px solid rgba(212, 175, 55, 0.2);
-  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-  padding: 80px 0;
+  border-top: 1px solid rgba(212, 175, 55, 0.25);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+  padding: 90px 0;
 }
 
 .timeline {
   position: relative;
-  max-width: 900px;
+  max-width: 950px;
   margin: 0 auto;
-  padding: 40px 0;
+  padding: 50px 0;
 }
 
-/* Center vertical line */
+/* Center vertical golden glowing line */
 .timeline::after {
   content: '';
   position: absolute;
   width: 2px;
-  background: rgba(212, 175, 55, 0.3);
+  background: linear-gradient(to bottom, transparent, rgba(212, 175, 55, 0.6), transparent);
   top: 0;
   bottom: 0;
   left: 50%;
   margin-left: -1px;
 }
 
-/* Timeline Container Blocks */
 .timeline-item {
-  padding: 10px 40px;
+  padding: 15px 40px;
   position: relative;
   background: inherit;
   width: 50%;
 }
 
-.timeline-item.left {
-  left: 0;
-}
+.timeline-item.left { left: 0; }
+.timeline-item.right { left: 50%; }
 
-.timeline-item.right {
-  left: 50%;
-}
-
-/* Timeline Dots */
+/* Glowing Golden Nodes */
 .timeline-item::after {
   content: '';
   position: absolute;
-  width: 16px;
-  height: 16px;
-  right: -8px;
-  background-color: #121216;
-  border: 3px solid #d4af37;
-  top: 25px;
+  width: 14px;
+  height: 14px;
+  right: -7px;
+  background-color: #08080a;
+  border: 2px solid #d4af37;
+  top: 30px;
   border-radius: 50%;
-  z-index: 1;
+  z-index: 2;
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
 }
 
-.timeline-item.right::after {
-  left: -8px;
-}
+.timeline-item.right::after { left: -7px; }
 
-/* Content Box */
+/* Elegant Glassmorphism Card */
 .timeline-content {
-  padding: 22px 25px;
-  background: rgba(18, 18, 22, 0.85);
-  border: 1px solid rgba(212, 175, 55, 0.3);
+  padding: 25px 30px;
+  background: linear-gradient(135deg, rgba(18, 18, 22, 0.9), rgba(10, 10, 13, 0.95));
+  border: 1px solid rgba(212, 175, 55, 0.35);
   position: relative;
-  border-radius: 12px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  transition: transform 0.3s ease;
+  border-radius: 14px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+  transition: all 0.4s ease;
 }
 
 .timeline-content:hover {
-  border-color: rgba(212, 175, 55, 0.7);
-  transform: translateY(-3px);
+  border-color: rgba(212, 175, 55, 0.8);
+  box-shadow: 0 20px 40px rgba(212, 175, 55, 0.15);
+  transform: translateY(-4px);
 }
 
 .timeline-content .phase-badge {
   display: inline-block;
-  background: rgba(212, 175, 55, 0.15);
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.3);
   color: #d4af37;
-  font-size: 0.8rem;
-  font-weight: bold;
-  padding: 4px 12px;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 5px 14px;
   border-radius: 20px;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .timeline-content h4 {
   color: #ffffff;
-  font-size: 1.2rem;
-  margin-bottom: 8px;
+  font-family: 'Cinzel', serif;
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+  letter-spacing: 0.5px;
 }
 
 .timeline-content p {
-  color: #b0b0b5;
-  font-size: 0.92rem;
+  color: #a8a8b3;
+  font-size: 0.93rem;
   margin-bottom: 0;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
-/* Responsive for Mobile screens */
+/* Electronic Signature Watermark inside card */
+.e-signature {
+  position: absolute;
+  bottom: 10px;
+  right: 15px;
+  font-family: 'Cinzel', serif;
+  font-size: 0.75rem;
+  color: rgba(212, 175, 55, 0.35);
+  letter-spacing: 1px;
+  pointer-events: none;
+}
+
+/* Responsive Styles */
 @media screen and (max-width: 768px) {
-  .timeline::after {
-    left: 31px;
-  }
-  .timeline-item {
-    width: 100%;
-    padding-left: 70px;
-    padding-right: 25px;
-  }
-  .timeline-item.right {
-    left: 0%;
-  }
-  .timeline-item.left::after, .timeline-item.right::after {
-    left: 23px;
-  }
+  .timeline::after { left: 25px; }
+  .timeline-item { width: 100%; padding-left: 60px; padding-right: 20px; }
+  .timeline-item.right { left: 0%; }
+  .timeline-item.left::after, .timeline-item.right::after { left: 18px; }
 }
