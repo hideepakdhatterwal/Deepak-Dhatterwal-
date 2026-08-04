@@ -24,6 +24,818 @@
   <!-- AOS Animation CSS -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
+  <!-- CUSTOM STYLESHEET (STRICT GOLD & WHITE THEME + RESPONSIVE MOBILE FIXES) -->
+  <style>
+    :root {
+      --color-gold: #D4AF37;
+      --color-gold-light: #F3E5AB;
+      --color-gold-subtle: rgba(212, 175, 55, 0.2);
+      --color-dark: #0A0A0A;
+      --color-darker: #040404;
+      --color-white: #FFFFFF;
+      --color-glass-bg: rgba(15, 15, 15, 0.88);
+      --color-glass-border: rgba(212, 175, 55, 0.35);
+      --font-cinzel: 'Cinzel', serif;
+      --font-montserrat: 'Montserrat', sans-serif;
+    }
+
+    /* Base Body Styling */
+    body {
+      font-family: var(--font-montserrat);
+      background-color: var(--color-dark);
+      color: var(--color-white) !important;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    /* Strict Gold & White Typography Rules */
+    p, h1, h2, h3, h4, h5, h6, span, a, label, li, div, small, input, textarea {
+      color: var(--color-white);
+    }
+
+    /* Universal AOS Fallback */
+    [data-aos] {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+
+    /* Color & Typography Helpers */
+    .font-cinzel { font-family: var(--font-cinzel); }
+    .text-gold { color: var(--color-gold) !important; }
+    .text-gold-light { color: var(--color-gold-light) !important; }
+    .text-white { color: var(--color-white) !important; }
+    .tracking-wider { letter-spacing: 1.5px; }
+    .tracking-widest { letter-spacing: 3px; }
+    .bg-darker { background-color: var(--color-darker) !important; }
+
+    /* Om Emblem Style */
+    .om-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      border: 1px solid var(--color-gold);
+      padding: 4px 12px;
+      border-radius: 50px;
+      background: rgba(212, 175, 55, 0.1);
+      font-weight: 700;
+      color: var(--color-gold) !important;
+    }
+
+    /* Dividers & Borders */
+    .gold-divider {
+      width: 80px;
+      height: 3px;
+      background: var(--color-gold);
+      border-radius: 2px;
+      margin-top: 15px;
+    }
+    .border-gold { border: 1px solid var(--color-gold) !important; }
+    .border-gold-subtle { border-color: var(--color-glass-border) !important; }
+
+    /* Buttons */
+    .btn-gold {
+      background: var(--color-gold);
+      color: #000000 !important;
+      border: 1px solid var(--color-gold);
+      font-weight: 700;
+      transition: all 0.3s ease;
+    }
+    .btn-gold:hover {
+      background: #f1c40f;
+      color: #000000 !important;
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+    }
+
+    .btn-outline-gold {
+      border: 1px solid var(--color-gold);
+      color: var(--color-gold) !important;
+      background: transparent;
+      transition: all 0.3s ease;
+    }
+    .btn-outline-gold:hover {
+      background: var(--color-gold);
+      color: #000000 !important;
+    }
+
+    /* Glassmorphism Cards */
+    .glass-card {
+      background: var(--color-glass-bg);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--color-glass-border);
+    }
+
+    /* Fixed Navbar */
+    .glass-nav {
+      background: rgba(5, 5, 5, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--color-glass-border);
+      transition: all 0.3s ease;
+      z-index: 1040;
+    }
+    .glass-nav .nav-link {
+      color: var(--color-white) !important;
+    }
+    .glass-nav .nav-link:hover {
+      color: var(--color-gold) !important;
+    }
+
+    .brand-logo {
+      border: 1px solid var(--color-gold);
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-right: 8px;
+      color: var(--color-gold) !important;
+    }
+
+    /* MOBILE DISPLAY FIX FOR GEETA TICKER */
+    .fix-ticker {
+      margin-top: 66px; /* Matches navbar height */
+      position: relative;
+      z-index: 1020;
+      background: #000000;
+    }
+    
+    @media (max-width: 991px) {
+      .fix-ticker {
+        margin-top: 58px; /* Correct spacing for mobile top nav */
+      }
+      .geeta-marquee-wrapper {
+        padding: 6px 0 !important;
+      }
+      .ticker-text {
+        font-size: 0.85rem !important;
+      }
+    }
+
+    /* Uncropped Full Images Display */
+    .img-uncropped {
+      width: 100%;
+      height: auto !important;
+      max-height: 100% !important;
+      object-fit: contain !important;
+      display: block;
+      border-radius: 12px;
+    }
+
+    .gallery-container {
+      background: rgba(15, 15, 15, 0.6);
+      border: 1px solid var(--color-glass-border);
+      border-radius: 16px;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+    .gallery-container:hover {
+      border-color: var(--color-gold) !important;
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(212, 175, 55, 0.2);
+    }
+
+    /* Dynamic Quotes Rotator Box (5-Second Rotator) */
+    .quote-rotator-box {
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    .fade-out {
+      opacity: 0;
+    }
+
+    .fade-in {
+      opacity: 1;
+    }
+
+    /* Form Control Formatting */
+    .form-control-dark {
+      background-color: #121212 !important;
+      color: var(--color-white) !important;
+      border: 1px solid var(--color-gold) !important;
+    }
+    .form-control-dark::placeholder {
+      color: #aaaaaa !important;
+    }
+    .form-control-dark:focus {
+      background-color: #1a1a1a !important;
+      color: var(--color-white) !important;
+      border-color: var(--color-gold) !important;
+      box-shadow: 0 0 12px rgba(212, 175, 55, 0.5) !important;
+    }
+
+    /* Social Tiles Hover */
+    .social-tile {
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+    .social-tile:hover {
+      transform: translateY(-5px);
+      border-color: var(--color-gold) !important;
+    }
+
+    .hover-gold:hover {
+      color: var(--color-gold) !important;
+    }
+  </style>
+</head>
+<body class="bg-dark text-white">
+
+  <!-- ================= 1. NAVBAR ================= -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top glass-nav">
+    <div class="container">
+      <a class="navbar-brand font-cinzel text-gold fw-bold" href="#hero">
+        <span class="brand-logo">ॐ</span> DEEPAK DHATTERWAL
+      </a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto text-uppercase small tracking-wider">
+          <li class="nav-item"><a class="nav-link" href="#hero">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#geeta-ticker">Geeta Quotes</a></li>
+          <li class="nav-item"><a class="nav-link" href="#acting-quotes">Acting Quotes</a></li>
+          <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+          <li class="nav-item"><a class="nav-link" href="#social">Socials</a></li>
+          <li class="nav-item ms-lg-3"><a class="btn btn-outline-gold rounded-pill px-4 btn-sm mt-2 mt-lg-0" href="#contact">Contact Me</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ================= 2. BHAGAVAD GITA FLOATING MARQUEE TICKER (20 HINDI QUOTES - MOBILE VISIBLE) ================= -->
+  <div id="geeta-ticker" class="geeta-marquee-wrapper bg-black py-2 border-bottom border-gold-subtle fix-ticker">
+    <div class="container-fluid px-2">
+      <div class="d-flex align-items-center">
+        <!-- Om Bholde Emblem -->
+        <span class="om-badge text-nowrap me-2 small">
+          ॐ Bholde | श्रीमद्भगवद्गीता
+        </span>
+        
+        <!-- Slow Right to Left Floating Marquee containing 20 Hindi Geeta Quotes -->
+        <marquee class="text-gold-light ticker-text font-cinzel m-0" scrollamount="4" behavior="scroll" direction="left">
+          ✨ 1. कर्मण्येवाधिकारस्ते मा फलेषु कदाचन। (तुम्हारा अधिकार केवल कर्म करने पर है, उसके फल पर नहीं।) &nbsp;&nbsp; ॐ &nbsp;&nbsp;
+          2. हतो वा प्राप्स्यसि स्वर्गं जित्वा वा भोक्ष्यसे महीम्। (कर्मपथ पर वीरगति भी स्वर्ग है और विजय पृथ्वी का सुख।) &nbsp;&nbsp; ॐ &nbsp;&nbsp;
+          3. नैनं छिन्दन्ति शस्त्राणि नैनं दहति पावकः। (आत्मा अनश्वर है, इसे न शस्त्र काट सकते हैं न अग्नि जला सकती है।) &nbsp;&nbsp; ॐ &nbsp;&nbsp;
+          4. योगस्थः कुरु कर्माणि सङ्गं त्यक्त्वा धनञ्जय। (सफलता-विफलता की चिंता छोड़ समत्व भाव से कर्म करो।) &nbsp;&nbsp; ॐ &nbsp;&nbsp;
+          5. यदा यदा हि धर्मस्य ग्लानिर्भवति भारत। (जब-जब सत्य और धर्म की हानि होती है, तब-तब श्रेष्ठ चेतना का उदय होता है।) &nbsp;&nbsp; ॐ &nbsp;&nbsp;
+          6. संशयात्मा विनश्यति। (संशय और संदेह करने वाले मन की प्रगति संभव नहीं।) &nbsp;&nbsp; ॐ &nbsp;&nbsp;
+          7. मनः प्रशमने युक्तं योग इत्यभिधीयते। (मन की शांति और नियंत्रण ही जीवन का असली योग है।) &nbsp;&nbsp; ॐ &nbsp;&nbsp;
+          8. क्रोधाद्भवति सम्मोहः सम्मोहात्स्मृतिविभ्रमः। (क्रोध से बुद्धि भ्रमित होती है, इसलिए सदैव शांत रहें।) &nbsp;&nbsp; ॐ &nbsp;&nbsp;
+          9. श्रद्धावाँल्लभते ज्ञानं तत्परः संयतेन्द्रियः। (सच्ची श्रद्धा और संयम रखने वाला ही ज्ञान प्राप्त करता है।) &nbsp;&nbsp; ॐ &nbsp;&nbsp;
+          10. आत्मा अजर-अमर है, इसे मृत्यु का भय नहीं। &nbsp;&nbsp; ॐ &nbsp;&nbsp;
+          11. जो हुआ वह अच्छा हुआ, जो हो रहा है वह अच्छा हो रहा है, जो होगा वह भी अच्छा ही होगा। &nbsp;&nbsp; ॐ &nbsp;&nbsp;
+          12. परिवर्तन ही संसार का शाश्वत नियम है। &nbsp;&nbsp; ॐ &nbsp;&nbsp;
+          13. काम, क्रोध और लोभ - ये आत्मा के विनाश के तीन द्वार हैं। &nbsp;&nbsp; ॐ &nbsp;&nbsp;
+          14. शांत मन से लिया गया निर्णय ही जीवन में विजय दिलाता है। &nbsp;&nbsp; ॐ &nbsp;&nbsp;
+          15. अपने निर्धारित कर्तव्य मार्ग पर बिना रुके निरंतर बढ़ते रहो। &nbsp;&nbsp; ॐ &nbsp;&nbsp;
+          16. आत्म-विश्वास वह शक्ति है जो असंभव को भी संभव बना देती है। &nbsp;&nbsp; ॐ &nbsp;&nbsp;
+          17. बिना फल की लालसा के निस्वार्थ भाव से किया गया कार्य ही सच्चा योग है। &nbsp;&nbsp; ॐ &nbsp;&nbsp;
+          18. अपने मन को मित्र बनाओ, नियंत्रित न करने पर यह सबसे बड़ा शत्रु बन जाता है। &nbsp;&nbsp; ॐ &nbsp;&nbsp;
+          19. मनुष्य अपने विचारों से निर्मित होता है, जैसा वह सोचता है वैसा ही बन जाता है। &nbsp;&nbsp; ॐ &nbsp;&nbsp;
+          20. समत्वं योग उच्यते - सुख और दुःख में समान भाव बनाए रखना ही महानता है। ✨
+        </marquee>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <!-- ================= 3. HERO SECTION ================= -->
+    <section id="hero" class="hero-section min-vh-100 d-flex align-items-center position-relative pt-4">
+      <div class="container position-relative z-2">
+        <div class="row align-items-center py-5">
+          <div class="col-lg-6" data-aos="fade-right">
+            <div class="mb-3 d-flex align-items-center gap-2">
+              <span class="om-badge">ॐ Bholde</span>
+              <span class="badge bg-gold-subtle text-gold px-3 py-2 text-uppercase tracking-widest rounded-pill border border-gold">
+                ★ Official Actor Portfolio
+              </span>
+            </div>
+            <h1 class="display-2 font-cinzel fw-bold text-white mb-3">
+              DEEPAK <br/><span class="text-gold">DHATTERWAL</span>
+            </h1>
+            <p class="lead text-white mb-4 me-lg-4 fs-5">
+              Bringing raw human emotion, gripping character depth, and spiritual conviction to Indian & global cinema.
+            </p>
+            <div class="d-flex flex-wrap gap-3">
+              <a href="#gallery" class="btn btn-gold btn-lg px-4 py-3 text-uppercase">
+                <i class="fa-solid fa-images me-2"></i> Explore Gallery
+              </a>
+              <a href="https://www.imdb.com/name/nm17506821/?ref_=ext_shr_lnk" target="_blank" rel="noopener" class="btn btn-outline-gold btn-lg px-4 py-3 text-uppercase">
+                <i class="fa-brands fa-imdb me-2 text-gold"></i> IMDb Profile
+              </a>
+            </div>
+            
+            <!-- Social Links -->
+            <div class="hero-socials mt-5 d-flex gap-4 fs-4">
+              <a href="https://www.facebook.com/deepakdhatterwalofficial" target="_blank" class="text-gold hover-gold" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
+              <a href="https://in.linkedin.com/in/deepakdhatterwalofficial" target="_blank" class="text-gold hover-gold" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+              <a href="https://x.com/iamdhatterwal" target="_blank" class="text-gold hover-gold" title="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
+              <a href="https://youtube.com/@deepakdhatterwal6268?si=pX-TGyWIsqbYImtB" target="_blank" class="text-gold hover-gold" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+          </div>
+          
+          <div class="col-lg-6 text-center mt-5 mt-lg-0" data-aos="fade-left">
+            <div class="gallery-container p-2 border-gold shadow-lg">
+              <!-- Provided Image 1 -->
+              <img src="https://i.postimg.cc/Vvrdx43t/1000023153-01.jpg" alt="Deepak Dhatterwal Hero Portrait" class="img-uncropped" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 4. ABOUT SECTION ================= -->
+    <section id="about" class="about-section py-5 bg-darker">
+      <div class="container py-lg-5">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-5" data-aos="fade-right">
+            <div class="gallery-container p-2 border-gold shadow-lg">
+              <!-- Provided Image 2 -->
+              <img src="https://i.postimg.cc/JhrtrRft/1000019796-01.jpg" alt="Deepak Dhatterwal About Portrait" class="img-uncropped" />
+            </div>
+          </div>
+          <div class="col-lg-7" data-aos="fade-left">
+            <div class="d-flex align-items-center gap-2 mb-2">
+              <span class="om-badge">ॐ Bholde</span>
+              <span class="text-gold text-uppercase tracking-widest">Biography</span>
+            </div>
+            <h2 class="display-5 font-cinzel text-white mb-4">Behind The <span class="text-gold">Craft</span></h2>
+            <h3 class="h4 text-gold mb-3">Transformative Expression & Method Discipline</h3>
+            <p class="text-white leading-relaxed mb-4">
+              Deepak Dhatterwal is an Indian actor driven by intense artistic commitment and psychological realism. His approach to performance blends physical discipline with emotional vulnerability, guided by timeless principles of dedicated action.
+            </p>
+            <p class="text-white leading-relaxed mb-4">
+              Rooted in theatre discipline and modernized for cinematic storytelling, Deepak approaches every role as an exploration of human truth—whether delivering high-stakes dramatic monologues or nuanced screen moments.
+            </p>
+            
+            <div class="row g-4 mt-2">
+              <div class="col-4">
+                <div class="stat-card glass-card p-3 rounded-3 text-center border-gold">
+                  <h3 class="font-cinzel text-gold fw-bold mb-1">100%</h3>
+                  <p class="small text-white m-0">Dedication</p>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="stat-card glass-card p-3 rounded-3 text-center border-gold">
+                  <h3 class="font-cinzel text-gold fw-bold mb-1">IMDb</h3>
+                  <p class="small text-white m-0">Verified</p>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="stat-card glass-card p-3 rounded-3 text-center border-gold">
+                  <h3 class="font-cinzel text-gold fw-bold mb-1">Pan-IN</h3>
+                  <p class="small text-white m-0">Projects</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 5. DYNAMIC 5-SECOND ROTATING ACTING & DAILY LIFE QUOTES (20 ENGLISH QUOTES) ================= -->
+    <section id="acting-quotes" class="quotes-rotator-section py-5 bg-dark">
+      <div class="container py-lg-4">
+        <div class="section-title-wrapper text-center mb-4">
+          <span class="om-badge mb-2">ॐ Bholde | Daily Wisdom & Acting Quotes</span>
+          <h2 class="display-6 text-white font-cinzel">Acting & Life <span class="text-gold">Inspirations</span></h2>
+          <p class="small text-gold-light mt-1">(Changes Automatically Every 5 Seconds)</p>
+          <div class="gold-divider mx-auto"></div>
+        </div>
+
+        <div class="row justify-content-center">
+          <div class="col-lg-10">
+            <div class="glass-card p-4 p-md-5 rounded-4 border-gold text-center position-relative shadow-lg">
+              <div class="quote-rotator-box" id="quoteRotatorBox">
+                <i class="fa-solid fa-quote-left text-gold display-4 mb-3 d-block"></i>
+                <h3 class="font-cinzel text-white fs-4 mb-3" id="actingQuoteText">
+                  "Act with conviction, live with passion, and create art with complete honesty."
+                </h3>
+                <span class="badge bg-gold text-dark font-cinzel fw-bold px-3 py-2" id="quoteCounter">Quote 1 / 20</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 6. ACTING SKILLS ================= -->
+    <section id="skills" class="skills-section py-5 bg-darker">
+      <div class="container py-lg-5">
+        <div class="section-title-wrapper text-center mb-5" data-aos="fade-up">
+          <span class="text-gold text-uppercase tracking-widest">Capabilities</span>
+          <h2 class="display-5 text-white">Acting <span class="text-gold">Artistry & Skills</span></h2>
+          <div class="gold-divider mx-auto"></div>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+          <div class="col-lg-8" data-aos="fade-up">
+            <div class="glass-card p-4 p-md-5 rounded-4 border-gold">
+              
+              <div class="skill-item mb-4">
+                <div class="d-flex justify-content-between mb-2">
+                  <span class="fw-semibold text-white">Method & Character Acting</span>
+                  <span class="text-gold fw-bold">95%</span>
+                </div>
+                <div class="progress bg-dark" style="height: 8px;">
+                  <div class="progress-bar bg-gold" role="progressbar" style="width: 95%"></div>
+                </div>
+              </div>
+
+       <div class="skill-item mb-4">
+                <div class="d-flex justify-content-between mb-2">
+                  <span class="fw-semibold text-white">Dialogue Delivery & Diction</span>
+                  <span class="text-gold fw-bold">92%</span>
+                </div>
+                <div class="progress bg-dark" style="height: 8px;">
+                  <div class="progress-bar bg-gold" role="progressbar" style="width: 92%"></div>
+                </div>
+              </div>
+
+              <div class="skill-item mb-4">
+                <div class="d-flex justify-content-between mb-2">
+                  <span class="fw-semibold text-white">Screen Presence & Micro-Expressions</span>
+                  <span class="text-gold fw-bold">94%</span>
+                </div>
+                <div class="progress bg-dark" style="height: 8px;">
+                  <div class="progress-bar bg-gold" role="progressbar" style="width: 94%"></div>
+                </div>
+              </div>
+
+              <div class="skill-item mb-4">
+                <div class="d-flex justify-content-between mb-2">
+                  <span class="fw-semibold text-white">Emotional Range & Vulnerability</span>
+                  <span class="text-gold fw-bold">96%</span>
+                </div>
+                <div class="progress bg-dark" style="height: 8px;">
+                  <div class="progress-bar bg-gold" role="progressbar" style="width: 96%"></div>
+                </div>
+              </div>
+
+              <div class="skill-item">
+                <div class="d-flex justify-content-between mb-2">
+                  <span class="fw-semibold text-white">Improvisation & Scene Adaptability</span>
+                  <span class="text-gold fw-bold">91%</span>
+                </div>
+                <div class="progress bg-dark" style="height: 8px;">
+                  <div class="progress-bar bg-gold" role="progressbar" style="width: 91%"></div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 7. PORTFOLIO GALLERY (UNCROPPED IMAGES 3 - 9) ================= -->
+    <section id="gallery" class="gallery-section py-5">
+      <div class="container py-lg-5">
+        <div class="section-title-wrapper text-center mb-5" data-aos="fade-up">
+          <span class="om-badge mb-2">ॐ Bholde</span>
+          <h2 class="display-5 text-white">Official <span class="text-gold">Stills & Portraits</span></h2>
+          <div class="gold-divider mx-auto"></div>
+        </div>
+
+        <div class="row g-4 align-items-center">
+          <!-- Image 3 -->
+          <div class="col-md-6 col-lg-4" data-aos="zoom-in">
+            <div class="gallery-container">
+              <img src="https://i.postimg.cc/kGbg1GbS/1768246941476.jpg" alt="Deepak Dhatterwal Still 3" class="img-uncropped" />
+            </div>
+          </div>
+          <!-- Image 4 -->
+          <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="100">
+            <div class="gallery-container">
+              <img src="https://i.postimg.cc/SKVrqV54/1000019132-01.jpg" alt="Deepak Dhatterwal Still 4" class="img-uncropped" />
+            </div>
+          </div>
+          <!-- Image 5 -->
+          <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="200">
+            <div class="gallery-container">
+              <img src="https://i.postimg.cc/tRWgTzWh/1000019809-02.jpg" alt="Deepak Dhatterwal Still 5" class="img-uncropped" />
+            </div>
+          </div>
+          <!-- Image 6 -->
+          <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="300">
+            <div class="gallery-container">
+              <img src="https://i.postimg.cc/tCzCdCrv/1000024481-01.jpg" alt="Deepak Dhatterwal Still 6" class="img-uncropped" />
+            </div>
+          </div>
+          <!-- Image 7 -->
+          <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="400">
+            <div class="gallery-container">
+              <img src="https://i.postimg.cc/rFTwtt9p/IMG-20260202-094302-802.webp" alt="Deepak Dhatterwal Still 7" class="img-uncropped" />
+            </div>
+          </div>
+          <!-- Image 8 -->
+          <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="500">
+            <div class="gallery-container">
+              <img src="https://i.postimg.cc/Fs2CnWtf/1000020662-01.jpg" alt="Deepak Dhatterwal Still 8" class="img-uncropped" />
+            </div>
+          </div>
+          <!-- Image 9 -->
+          <div class="col-md-6 col-lg-4 mx-auto" data-aos="zoom-in" data-aos-delay="600">
+            <div class="gallery-container">
+              <img src="https://i.postimg.cc/kXwL1FJp/1000003687-01.jpg" alt="Deepak Dhatterwal Still 9" class="img-uncropped" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 8. ACTING PHILOSOPHY ================= -->
+    <section id="philosophy" class="philosophy-section py-5 bg-darker">
+      <div class="container py-lg-5">
+        <div class="row justify-content-center text-center">
+          <div class="col-lg-9" data-aos="fade-up">
+            <span class="om-badge fs-5 mb-3">ॐ Bholde</span>
+            <h2 class="font-cinzel text-white display-6 mb-4">
+              "An actor does not merely recite lines; he inhabits the unsaid, giving breath to silence and truth to fiction."
+            </h2>
+            <div class="gold-divider mx-auto mb-3"></div>
+            <p class="text-gold font-cinzel tracking-widest text-uppercase fw-bold">— Deepak Dhatterwal</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 9. SOCIAL MEDIA HUB ================= -->
+    <section id="social" class="social-section py-5">
+      <div class="container py-lg-4">
+        <div class="section-title-wrapper text-center mb-5">
+          <span class="text-gold text-uppercase tracking-widest">Connect</span>
+          <h2 class="display-5 text-white">Social Media <span class="text-gold">Hub</span></h2>
+          <div class="gold-divider mx-auto"></div>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+          <div class="col-6 col-md-4 col-lg-2">
+            <a href="https://www.imdb.com/name/nm17506821/?ref_=ext_shr_lnk" target="_blank" rel="noopener" class="social-tile glass-card p-4 text-center d-block rounded-4 text-decoration-none border-gold">
+              <i class="fa-brands fa-imdb fs-1 text-gold mb-2"></i>
+              <span class="d-block text-white fw-semibold small">IMDb</span>
+            </a>
+          </div>
+          <div class="col-6 col-md-4 col-lg-2">
+            <a href="https://www.facebook.com/deepakdhatterwalofficial" target="_blank" rel="noopener" class="social-tile glass-card p-4 text-center d-block rounded-4 text-decoration-none border-gold">
+              <i class="fa-brands fa-facebook fs-1 text-gold mb-2"></i>
+              <span class="d-block text-white fw-semibold small">Facebook</span>
+            </a>
+          </div>
+          <div class="col-6 col-md-4 col-lg-2">
+            <a href="https://in.linkedin.com/in/deepakdhatterwalofficial" target="_blank" rel="noopener" class="social-tile glass-card p-4 text-center d-block rounded-4 text-decoration-none border-gold">
+              <i class="fa-brands fa-linkedin fs-1 text-gold mb-2"></i>
+              <span class="d-block text-white fw-semibold small">LinkedIn</span>
+            </a>
+          </div>
+          <div class="col-6 col-md-4 col-lg-2">
+            <a href="https://x.com/iamdhatterwal" target="_blank" rel="noopener" class="social-tile glass-card p-4 text-center d-block rounded-4 text-decoration-none border-gold">
+              <i class="fa-brands fa-x-twitter fs-1 text-gold mb-2"></i>
+              <span class="d-block text-white fw-semibold small">X / Twitter</span>
+            </a>
+          </div>
+          <div class="col-6 col-md-4 col-lg-2">
+            <a href="https://youtube.com/@deepakdhatterwal6268?si=pX-TGyWIsqbYImtB" target="_blank" rel="noopener" class="social-tile glass-card p-4 text-center d-block rounded-4 text-decoration-none border-gold">
+              <i class="fa-brands fa-youtube fs-1 text-gold mb-2"></i>
+              <span class="d-block text-white fw-semibold small">YouTube</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 10. DIRECT CONTACT FORM WITH MOBILE FIELD ================= -->
+    <section id="contact" class="contact-section py-5 bg-darker">
+      <div class="container py-lg-4">
+        <div class="section-title-wrapper text-center mb-5">
+          <span class="om-badge mb-2">ॐ Bholde</span>
+          <h2 class="display-5 text-white">Direct <span class="text-gold">Inquiries</span></h2>
+          <div class="gold-divider mx-auto"></div>
+        </div>
+
+        <div class="row g-5">
+          <div class="col-lg-5">
+            <div class="contact-info-wrapper h-100 d-flex flex-column justify-content-between">
+              <div>
+                <h3 class="font-cinzel text-gold mb-4">Casting & Work Inquiries</h3>
+                <p class="text-white mb-4">Open for feature film projects, web series, commercials, and theatrical auditions across India and abroad.</p>
+                
+                <div class="contact-item d-flex align-items-center mb-4">
+                  <div class="contact-icon me-3"><i class="fa-solid fa-envelope text-gold fs-4"></i></div>
+                  <div>
+                    <span class="text-gold small d-block">Official Email</span>
+                    <a href="mailto:hideepakdhatterwal@gmail.com" class="text-white text-decoration-none fw-semibold">hideepakdhatterwal@gmail.com</a>
+                  </div>
+                </div>
+
+                <div class="contact-item d-flex align-items-center mb-4">
+                  <div class="contact-icon me-3"><i class="fa-solid fa-phone text-gold fs-4"></i></div>
+                  <div>
+                    <span class="text-gold small d-block">Direct Contact</span>
+                    <a href="tel:+918607326295" class="text-white text-decoration-none fw-semibold">+91 8607326295</a>
+                  </div>
+                </div>
+
+                <div class="contact-item d-flex align-items-center mb-4">
+                  <div class="contact-icon me-3"><i class="fa-brands fa-whatsapp text-gold fs-3"></i></div>
+                  <div>
+                    <span class="text-gold small d-block">WhatsApp Chat</span>
+                    <a href="https://wa.me/918607326295" target="_blank" class="text-white text-decoration-none fw-semibold">+91 8607326295</a>
+                  </div>
+                </div>
+              </div>
+
+              <div class="location-badge p-3 rounded-3 glass-card mt-3 border-gold">
+                <i class="fa-solid fa-location-dot text-gold me-2"></i>
+                <span class="text-white small">Mumbai / New Delhi, India</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-7">
+            <div class="glass-card p-4 p-md-5 rounded-4 border-gold">
+              
+              <!-- FormSubmit Form with Mobile Field -->
+              <form id="contact-form" action="https://formsubmit.co/hideepakdhatterwal@gmail.com" method="POST">
+                <input type="hidden" name="_captcha" value="false" />
+                <input type="hidden" name="_template" value="table" />
+                <input type="hidden" name="_subject" value="★ New Portfolio Inquiry for Deepak Dhatterwal" />
+
+                <div class="row g-3">
+                  <!-- Name Field -->
+                  <div class="col-md-6">
+                    <label for="name" class="form-label text-gold small fw-bold">Your Full Name *</label>
+                    <input type="text" class="form-control form-control-dark" id="name" name="Name" required placeholder="Enter name" />
+                  </div>
+                  
+                  <!-- Email Field -->
+                  <div class="col-md-6">
+                    <label for="email" class="form-label text-gold small fw-bold">Your Email Address *</label>
+                    <input type="email" class="form-control form-control-dark" id="email" name="Email" required placeholder="email@example.com" />
+                  </div>
+
+                  <!-- Mobile Number Field -->
+                  <div class="col-md-6">
+                    <label for="mobile" class="form-label text-gold small fw-bold">Mobile / Phone Number *</label>
+                    <input type="tel" class="form-control form-control-dark" id="mobile" name="Mobile_Number" required placeholder="+91 9876543210" />
+                  </div>
+
+                  <!-- Subject Field -->
+                  <div class="col-md-6">
+                    <label for="subject" class="form-label text-gold small fw-bold">Subject / Purpose</label>
+                    <input type="text" class="form-control form-control-dark" id="subject" name="Subject" placeholder="Casting / Audition" />
+                  </div>
+
+                  <!-- Message Field -->
+                  <div class="col-12">
+                    <label for="message" class="form-label text-gold small fw-bold">Your Message *</label>
+                    <textarea class="form-control form-control-dark" id="message" name="Message" rows="4" required placeholder="Write message here..."></textarea>
+                  </div>
+
+                  <!-- Submit Button -->
+                  <div class="col-12 mt-4">
+                    <button type="submit" id="contact-submit-btn" class="btn btn-gold w-100 py-3 text-uppercase tracking-wider">
+                      <i class="fa-solid fa-paper-plane me-2"></i> Send Message
+                    </button>
+                  </div>
+                </div>
+              </form>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= 11. GRAND FOOTER ================= -->
+  <footer class="footer-section bg-black text-white pt-5 pb-4 border-top border-gold-subtle">
+    <div class="container">
+      <div class="row g-4 pb-4 border-bottom border-gold-subtle">
+        
+        <div class="col-lg-4 col-md-6">
+          <a class="navbar-brand font-cinzel text-gold fw-bold fs-4 d-block mb-3" href="#hero">
+            <span class="om-badge me-2">ॐ Bholde</span> DEEPAK DHATTERWAL
+          </a>
+          <p class="text-white small leading-relaxed mb-3">
+            Indian Actor, Cinema & Stage Performer dedicated to authentic storytelling, method performance, and psychological depth.
+          </p>
+          <p class="text-gold font-cinzel small mb-0">
+            "कर्मण्येवाधिकारस्ते मा फलेषु कदाचन।"
+          </p>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+          <h5 class="font-cinzel text-gold mb-3 fs-6 text-uppercase">Navigation</h5>
+          <ul class="list-unstyled footer-menu small">
+            <li class="mb-2"><a href="#hero" class="text-white text-decoration-none hover-gold"><i class="fa-solid fa-chevron-right me-2 text-gold"></i>Home</a></li>
+            <li class="mb-2"><a href="#about" class="text-white text-decoration-none hover-gold"><i class="fa-solid fa-chevron-right me-2 text-gold"></i>About Biography</a></li>
+            <li class="mb-2"><a href="#geeta-ticker" class="text-white text-decoration-none hover-gold"><i class="fa-solid fa-chevron-right me-2 text-gold"></i>Geeta Quotes</a></li>
+            <li class="mb-2"><a href="#acting-quotes" class="text-white text-decoration-none hover-gold"><i class="fa-solid fa-chevron-right me-2 text-gold"></i>Acting Quotes</a></li>
+            <li class="mb-2"><a href="#gallery" class="text-white text-decoration-none hover-gold"><i class="fa-solid fa-chevron-right me-2 text-gold"></i>Official Gallery</a></li>
+            <li class="mb-2"><a href="#contact" class="text-white text-decoration-none hover-gold"><i class="fa-solid fa-chevron-right me-2 text-gold"></i>Contact Me</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+          <h5 class="font-cinzel text-gold mb-3 fs-6 text-uppercase">Contact Info</h5>
+          <ul class="list-unstyled text-white small">
+            <li class="mb-2"><i class="fa-solid fa-envelope text-gold me-2"></i> hideepakdhatterwal@gmail.com</li>
+            <li class="mb-2"><i class="fa-solid fa-phone text-gold me-2"></i> +91 8607326295</li>
+            <li class="mb-2"><i class="fa-brands fa-whatsapp text-gold me-2"></i> +91 8607326295</li>
+            <li class="mb-2"><i class="fa-solid fa-location-dot text-gold me-2"></i> Mumbai / New Delhi, India</li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-md-6">
+          <h5 class="font-cinzel text-gold mb-3 fs-6 text-uppercase">Social Handles</h5>
+          <div class="d-flex flex-column gap-2 small">
+            <a href="https://www.imdb.com/name/nm17506821/?ref_=ext_shr_lnk" target="_blank" class="text-white text-decoration-none hover-gold"><i class="fa-brands fa-imdb text-gold me-2"></i>IMDb</a>
+            <a href="https://www.facebook.com/deepakdhatterwalofficial" target="_blank" class="text-white text-decoration-none hover-gold"><i class="fa-brands fa-facebook text-gold me-2"></i>Facebook</a>
+            <a href="https://in.linkedin.com/in/deepakdhatterwalofficial" target="_blank" class="text-white text-decoration-none hover-gold"><i class="fa-brands fa-linkedin text-gold me-2"></i>LinkedIn</a>
+            <a href="https://x.com/iamdhatterwal" target="_blank" class="text-white text-decoration-none hover-gold"><i class="fa-brands fa-x-twitter text-gold me-2"></i>X (Twitter)</a>
+            <a href="https://youtube.com/@deepakdhatterwal6268?si=pX-TGyWIsqbYImtB" target="_blank" class="text-white text-decoration-none hover-gold"><i class="fa-brands fa-youtube text-gold me-2"></i>YouTube</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="d-flex flex-column flex-md-row align-items-center justify-content-between pt-4 small">
+        <p class="mb-2 mb-md-0 text-white">
+          &copy; <span id="current-year">2026</span> <strong class="text-gold">Deepak Dhatterwal</strong>. All Rights Reserved.
+        </p>
+        <div class="back-to-top">
+          <a href="#hero" class="btn btn-outline-gold btn-sm rounded-pill px-3">
+            Back to Top <i class="fa-solid fa-arrow-up ms-1"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- External JavaScript Files -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <!-- Custom JavaScript Logic -->
+  <script>
+    // 20 ENGLISH ACTING & DAILY LIFE MOTIVATIONAL QUOTES ARRAY
+    const actingQuotes = [
+      "Act with conviction, live with passion, and create art with complete honesty.",
+      "An actor’s greatest strength is emotional truth in a world of illusion.",
+      "Failure is not the opposite of success; it is a stepping stone to mastery.",
+      "Acting is not about being someone else; it's about finding the similarity in what is different.",
+      "Your dedication behind the scenes defines your glory under the spotlight.",
+      "Discipline is the bridge between acting goals and artistic accomplishment.",
+      "Great actors do not imitate life; they embody human soul in its purest form.",
+      "Every scene in life and on camera requires total presence of mind.",
+      "Embrace every emotion, for pain and joy are both tools of an artist.",
+      "Consistency in effort converts small practice sessions into cinematic magic.",
+      "The camera reads your mind; ensure your heart is fully invested in the line.",
+      "Living truthfully under imaginary circumstances is the highest form of acting art.",
+      "Focus on process over applause; authentic effort always resonates with viewers.",
+      "Silence speaks louder than dialogue when a characte       
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Deepak Dhatterwal | Official Actor Portfolio</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Official Portfolio of Deepak Dhatterwal - Indian Actor, Film, Digital & Stage Performer." />
+  <meta name="keywords" content="Deepak Dhatterwal, Actor, Indian Actor, Theatre, Film, Model, Cinema" />
+  <meta name="author" content="Deepak Dhatterwal" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- AOS Animation CSS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
   <!-- EMBEDDED STYLESHEET (STRICT GOLD & WHITE THEME + FULL UNCROPPED IMAGES) -->
   <style>
     /* Reset & Color Variables */
