@@ -115,6 +115,88 @@ border-radius:20px;
 
 }
 
+/* Progress Bar */
+
+#progressBar{
+
+position:fixed;
+
+top:0;
+
+left:0;
+
+height:4px;
+
+width:0;
+
+background:#D4AF37;
+
+z-index:999999;
+
+}
+
+/* Cursor Glow */
+
+#cursorGlow{
+
+position:fixed;
+
+width:35px;
+
+height:35px;
+
+border-radius:50%;
+
+background:rgba(212,175,55,.18);
+
+pointer-events:none;
+
+transform:translate(-50%,-50%);
+
+backdrop-filter:blur(4px);
+
+z-index:99999;
+
+transition:.05s;
+
+}
+
+/* Image Lazy Loading */
+
+img{
+
+opacity:0;
+
+transition:1s;
+
+}
+
+img.loaded{
+
+opacity:1;
+
+}
+
+/* Section Animation */
+
+section{
+
+opacity:0;
+
+transform:translateY(70px);
+
+transition:1s;
+
+}
+
+section.show{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
 
 
 
