@@ -244,68 +244,102 @@
 </head>
 <body class="bg-dark text-white">
 
-  <!-- ================= 1. NAVBAR ================= -->
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top glass-nav">
-    <div class="container">
-      <a class="navbar-brand font-cinzel text-gold fw-bold" href="#hero">
-        <span class="brand-logo">ॐ</span> DEEPAK DHATTERWAL
-      </a>
-      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto text-uppercase small tracking-wider">
-          <li class="nav-item"><a class="nav-link" href="#hero">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="#geeta-ticker">Geeta Quotes</a></li>
-          <li class="nav-item"><a class="nav-link" href="#acting-quotes">Acting Quotes</a></li>
-          <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
-          <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
-          <li class="nav-item"><a class="nav-link" href="#social">Socials</a></li>
-          <li class="nav-item ms-lg-3"><a class="btn btn-outline-gold rounded-pill px-4 btn-sm mt-2 mt-lg-0" href="#contact">Contact Me</a></li>
-        </ul>
-      </div>
+  <!-- ================= 1. UNIFIED NAVBAR ================= -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top glass-nav">
+  <div class="container">
+    <!-- Brand Logo / Name -->
+    <a class="navbar-brand font-cinzel text-gold fw-bold" href="#hero">
+      <span class="brand-logo me-1">ॐ</span> DEEPAK DHATTERWAL
+    </a>
+
+    <!-- Hamburger / Mobile Toggle Button -->
+    <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Nav Links Wrapper -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto align-items-lg-center text-uppercase small tracking-wider py-3 py-lg-0">
+        
+        <li class="nav-item">
+          <a class="nav-link" href="#hero">
+            <i class="fa-solid fa-house text-gold me-1 d-lg-none"></i> Home
+          </a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" href="#about">
+            <i class="fa-solid fa-user text-gold me-1 d-lg-none"></i> About
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#skills">
+            <i class="fa-solid fa-layer-group text-gold me-1 d-lg-none"></i> Skills
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#gallery">
+            <i class="fa-solid fa-images text-gold me-1 d-lg-none"></i> Gallery
+          </a>
+        </li>
+
+        <!-- Quotes Section -->
+        <li class="nav-item">
+          <a class="nav-link text-gold" href="#geeta-quotes">
+            <i class="fa-solid fa-om me-1"></i> Gita Updesh
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link text-gold" href="#haryanvi-quotes">
+            <i class="fa-solid fa-quote-right me-1"></i> Haryanvi Quotes
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#acting-quotes">
+            <i class="fa-solid fa-clapperboard text-gold me-1 d-lg-none"></i> Acting Quotes
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#social">
+            <i class="fa-solid fa-share-nodes text-gold me-1 d-lg-none"></i> Socials
+          </a>
+        </li>
+
+        <!-- Contact CTA Button -->
+        <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
+          <a class="btn btn-gold rounded-pill px-4 btn-sm w-100 w-lg-auto" href="#contact">
+            <i class="fa-solid fa-paper-plane me-1"></i> Contact Me
+          </a>
+        </li>
+
+      </ul>
     </div>
-  </nav>
+  </div>
+</nav>
 
-<!-- ================= HAMBURGER MOBILE MENU LINKS ================= -->
-<ul class="navbar-nav ms-auto align-items-center">
-  
-  <!-- Aapke Purane Links -->
-  <li class="nav-item">
-    <a class="nav-link" href="#home">Home</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#about">About</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#portfolio">Portfolio</a>
-  </li>
+<!-- ================= AUTO-CLOSE JAVASCRIPT ================= -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const navLinks = document.querySelectorAll('#navbarNav .nav-link, #navbarNav .btn');
+    const navbarCollapse = document.getElementById('navbarNav');
 
-  <!-- ================= NAYE ADDITIONS KE SHORTCUTS ================= -->
-  
-  <!-- 1. Direct Contact / Inquiries -->
-  <li class="nav-item">
-    <a class="nav-link text-gold fw-semibold" href="#contact">
-      <i class="fa-solid fa-paper-plane me-2"></i>Contact
-    </a>
-  </li>
+    navLinks.forEach(function (link) {
+      link.addEventListener('click', function () {
+        if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+          const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
+            toggle: true
+          });
+        }
+      });
+    });
+  });
+</script>
 
-  <!-- 2. Geeta Shlokas & Quotes -->
-  <li class="nav-item">
-    <a class="nav-link text-gold fw-semibold" href="#geeta-quotes">
-      <i class="fa-solid fa-om me-2"></i>Gita Updesh
-    </a>
-  </li>
-
-  <!-- 3. Haryanvi Motivational Quotes -->
-  <li class="nav-item">
-    <a class="nav-link text-gold fw-semibold" href="#haryanvi-quotes">
-      <i class="fa-solid fa-quote-right me-2"></i>Haryanvi Quotes
-    </a>
-  </li>
-
-</ul>
 
 
   <!-- ================= 2. BHAGAVAD GITA FLOATING MARQUEE TICKER (20 HINDI QUOTES - MOBILE VISIBLE) ================= -->
