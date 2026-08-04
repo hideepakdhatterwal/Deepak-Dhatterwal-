@@ -288,3 +288,16 @@ body {
 .floating-btn:hover {
   transform: scale(1.12);
 }
+
+/* Force visibility for all bottom sections */
+#motivation, 
+#social, 
+#contact, 
+footer {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+  min-height: auto !important;
+}
+
