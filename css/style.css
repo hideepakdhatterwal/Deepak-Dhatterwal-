@@ -157,3 +157,125 @@ body {
   color: var(--color-gold) !important;
   transition: color 0.2s ease-in-out;
 }
+
+/* ================= CHILDHOOD TO MUMBAI JOURNEY STYLES ================= */
+.journey-section {
+  background-color: #08080a;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(212, 175, 55, 0.2);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+  padding: 80px 0;
+}
+
+.timeline {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 0;
+}
+
+/* Center vertical line */
+.timeline::after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  background: rgba(212, 175, 55, 0.3);
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -1px;
+}
+
+/* Timeline Container Blocks */
+.timeline-item {
+  padding: 10px 40px;
+  position: relative;
+  background: inherit;
+  width: 50%;
+}
+
+.timeline-item.left {
+  left: 0;
+}
+
+.timeline-item.right {
+  left: 50%;
+}
+
+/* Timeline Dots */
+.timeline-item::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  right: -8px;
+  background-color: #121216;
+  border: 3px solid #d4af37;
+  top: 25px;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.timeline-item.right::after {
+  left: -8px;
+}
+
+/* Content Box */
+.timeline-content {
+  padding: 22px 25px;
+  background: rgba(18, 18, 22, 0.85);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  position: relative;
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease;
+}
+
+.timeline-content:hover {
+  border-color: rgba(212, 175, 55, 0.7);
+  transform: translateY(-3px);
+}
+
+.timeline-content .phase-badge {
+  display: inline-block;
+  background: rgba(212, 175, 55, 0.15);
+  color: #d4af37;
+  font-size: 0.8rem;
+  font-weight: bold;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+}
+
+.timeline-content h4 {
+  color: #ffffff;
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+}
+
+.timeline-content p {
+  color: #b0b0b5;
+  font-size: 0.92rem;
+  margin-bottom: 0;
+  line-height: 1.5;
+}
+
+/* Responsive for Mobile screens */
+@media screen and (max-width: 768px) {
+  .timeline::after {
+    left: 31px;
+  }
+  .timeline-item {
+    width: 100%;
+    padding-left: 70px;
+    padding-right: 25px;
+  }
+  .timeline-item.right {
+    left: 0%;
+  }
+  .timeline-item.left::after, .timeline-item.right::after {
+    left: 23px;
+  }
+}
