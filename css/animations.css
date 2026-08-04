@@ -25,3 +25,25 @@
   transform: none !important;
   visibility: visible !important;
 }
+/* Mobile Screen Fix: Disables layout hiding on scroll */
+@media (max-width: 991.98px) {
+  [data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+    transition: none !important;
+  }
+}
+
+/* Ensure Contact, Socials, and Footer are always rendered */
+#motivation, 
+#social, 
+#contact, 
+footer {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  position: relative;
+  z-index: 2;
+}
+
