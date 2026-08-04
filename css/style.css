@@ -280,3 +280,100 @@ body {
   .timeline-item.right { left: 0%; }
   .timeline-item.left::after, .timeline-item.right::after { left: 18px; }
 }
+
+/* ================= FAVORITE MOVIES TICKER CSS ================= -->
+.fav-movies-ticker-wrapper {
+  background-color: #060608;
+  border-top: 1px solid rgba(212, 175, 55, 0.25);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+  padding: 8px 0;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.ticker-title-badge {
+  text-align: center;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #a8a8b3;
+  margin-bottom: 5px;
+  font-family: 'Cinzel', serif;
+}
+
+.fav-movies-ticker-container {
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  width: 100%;
+}
+
+/* Fade gradients on edges */
+.fav-movies-ticker-container::before, 
+.fav-movies-ticker-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 80px;
+  height: 100%;
+  z-index: 3;
+  pointer-events: none;
+}
+.fav-movies-ticker-container::before { 
+  left: 0; 
+  background: linear-gradient(to right, #060608, transparent); 
+}
+.fav-movies-ticker-container::after { 
+  right: 0; 
+  background: linear-gradient(to left, #060608, transparent); 
+}
+
+.fav-movies-track {
+  display: inline-flex;
+  align-items: center;
+  gap: 25px;
+  /* Right to Left Animation */
+  animation: scrollRightToLeft 350s linear infinite;
+}
+
+/* Pause animation on mouse hover */
+.fav-movies-ticker-container:hover .fav-movies-track {
+  animation-play-state: paused;
+}
+
+.movie-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(18, 18, 22, 0.8);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  padding: 5px 16px;
+  border-radius: 20px;
+  color: #e6e6e6;
+  font-size: 0.85rem;
+  backdrop-filter: blur(5px);
+  white-space: nowrap;
+}
+
+.movie-pill .movie-num {
+  color: #d4af37;
+  font-weight: bold;
+  font-size: 0.75rem;
+}
+
+.movie-pill .movie-name {
+  color: #ffffff;
+  font-weight: 500;
+}
+
+/* Keyframes for Right to Left Smooth Movement */
+@keyframes scrollRightToLeft {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
