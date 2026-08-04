@@ -606,7 +606,7 @@ Deepak is credited in the upcoming feature film "Mastan – The Real Story", whe
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.4s ease-in-out;
   }
 
   /* Dual Ticker Container */
@@ -642,12 +642,13 @@ Deepak is credited in the upcoming feature film "Mastan – The Real Story", whe
     gap: 35px;
   }
 
+  /* Smooth & Slow Scroll Duration (480s) */
   .ticker-track-1 {
-    animation: haryanviScrollRightToLeft 240s linear infinite;
+    animation: haryanviScrollRightToLeft 480s linear infinite;
   }
 
   .ticker-track-2 {
-    animation: haryanviScrollLeftToRight 240s linear infinite;
+    animation: haryanviScrollLeftToRight 480s linear infinite;
   }
 
   .ticker-container:hover .ticker-track-1,
@@ -691,7 +692,7 @@ Deepak is credited in the upcoming feature film "Mastan – The Real Story", whe
   }
 </style>
 
-<section class="haryanvi-section">
+<section class="haryanvi-section" id="haryanvi-quotes">
   <div class="container mb-4">
     <div class="text-center mb-4">
       <span class="om-badge mb-2">ॐ धाकड़ प्रेरणा</span>
@@ -724,11 +725,10 @@ Deepak is credited in the upcoming feature film "Mastan – The Real Story", whe
     <div class="ticker-track-2" id="hrTrack2"></div>
   </div>
 </section>
-  
 
-<!-- JavaScript Engine for 50 Quotes -->
+<!-- Single Clean JavaScript Engine for Haryanvi Section -->
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
+  (function() {
     // 50 AUTHENTIC HARYANVI MOTIVATIONAL QUOTES
     const haryanviQuotes = [
       "मेहनत की गूंज इतनी रोवगी, के जलन आले खुद ताली बजावेंगे।",
@@ -783,46 +783,62 @@ Deepak is credited in the upcoming feature film "Mastan – The Real Story", whe
       "माटी तै जुड़के रहो, चाहे आसमान जितनी ऊँचाई छू लो।"
     ];
 
-    window.allHrQuotes = haryanviQuotes; // Store globally for shuffle function
+    window.allHrQuotes = haryanviQuotes; // Make available globally for manual shuffle button
 
-    const track1 = document.getElementById('hrTrack1');
-    const track2 = document.getElementById('hrTrack2');
+    document.addEventListener('DOMContentLoaded', function() {
+      // 1. Render Marquee Tickers
+      const track1 = document.getElementById('hrTrack1');
+      const track2 = document.getElementById('hrTrack2');
 
-    if (!track1 || !track2) return;
+      if (track1 && track2) {
+        const halfIndex = Math.ceil(haryanviQuotes.length / 2);
+        const set1 = haryanviQuotes.slice(0, halfIndex);
+        const set2 = haryanviQuotes.slice(halfIndex);
 
-    // Split quotes into 2 sets of 25
-    const halfIndex = Math.ceil(haryanviQuotes.length / 2);
-    const set1 = haryanviQuotes.slice(0, halfIndex);
-    const set2 = haryanviQuotes.slice(halfIndex);
+        function buildPillsHTML(quotesArray, startIndex) {
+          return quotesArray.map((quote, idx) => `
+            <div class="hr-quote-pill">
+              <span class="badge-num">#${startIndex + idx + 1}</span>
+              <span>"${quote}"</span>
+              <span class="tag">— दीपक 卐</span>
+            </div>
+          `).join('');
+        }
 
-    function buildPillsHTML(quotesArray, startIndex) {
-      return quotesArray.map((quote, idx) => `
-        <div class="hr-quote-pill">
-          <span class="badge-num">#${startIndex + idx + 1}</span>
-          <span>"${quote}"</span>
-          <span class="tag">— दीपक 卐</span>
-        </div>
-      `).join('');
-    }
+        track1.innerHTML = buildPillsHTML(set1, 0) + buildPillsHTML(set1, 0);
+        track2.innerHTML = buildPillsHTML(set2, halfIndex) + buildPillsHTML(set2, halfIndex);
+      }
 
-    // Render Track 1 (1-25) & Track 2 (26-50) with duplicate loops
-    track1.innerHTML = buildPillsHTML(set1, 0) + buildPillsHTML(set1, 0);
-    track2.innerHTML = buildPillsHTML(set2, halfIndex) + buildPillsHTML(set2, halfIndex);
-  });
+      // 2. Auto-Rotating Spotlight Engine (3.5 Seconds)
+      let spotlightIndex = 0;
+      setInterval(function() {
+        const textElem = document.getElementById('hrSpotlightText');
+        if (!textElem) return;
 
-  // Random Quote Switcher Function
+        textElem.style.opacity = '0';
+        setTimeout(function() {
+          spotlightIndex = (spotlightIndex + 1) % haryanviQuotes.length;
+          textElem.textContent = `"${haryanviQuotes[spotlightIndex]}"`;
+          textElem.style.opacity = '1';
+        }, 400);
+      }, 3500);
+    });
+  })();
+
+  // Manual Shuffle Trigger
   function getRandomHrQuote() {
     const textElem = document.getElementById('hrSpotlightText');
     if (!textElem || !window.allHrQuotes) return;
 
     textElem.style.opacity = '0';
-    setTimeout(() => {
+    setTimeout(function() {
       const randomIndex = Math.floor(Math.random() * window.allHrQuotes.length);
       textElem.textContent = `"${window.allHrQuotes[randomIndex]}"`;
       textElem.style.opacity = '1';
     }, 300);
   }
 </script>
+
 
 
     <!-- ================= 7. PORTFOLIO GALLERY (UNCROPPED IMAGES 3 - 9) ================= -->
