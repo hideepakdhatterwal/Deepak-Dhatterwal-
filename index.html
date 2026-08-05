@@ -33,7 +33,7 @@
       --color-dark: #0A0A0A;
       --color-darker: #040404;
       --color-white: #FFFFFF;
-      --color-glass-bg: rgba(15, 15, 15, 0.88);
+      --color-glass-bg: rgba(15, 15, 15, 0.9);
       --color-glass-border: rgba(212, 175, 55, 0.35);
       --font-cinzel: 'Cinzel', serif;
       --font-montserrat: 'Montserrat', sans-serif;
@@ -120,8 +120,8 @@
     /* Glassmorphism Cards */
     .glass-card {
       background: var(--color-glass-bg);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border: 1px solid var(--color-glass-border);
     }
 
@@ -148,9 +148,9 @@
       color: var(--color-gold) !important;
     }
 
-    /* MOBILE DISPLAY FIX FOR GEETA TICKER */
+    /* Mobile Display Spacing */
     .fix-ticker {
-      margin-top: 66px; /* Matches navbar height */
+      margin-top: 72px;
       position: relative;
       z-index: 1020;
       background: #000000;
@@ -158,13 +158,7 @@
     
     @media (max-width: 991px) {
       .fix-ticker {
-        margin-top: 58px; /* Correct spacing for mobile top nav */
-      }
-      .geeta-marquee-wrapper {
-        padding: 6px 0 !important;
-      }
-      .ticker-text {
-        font-size: 0.85rem !important;
+        margin-top: 62px;
       }
     }
 
@@ -192,24 +186,6 @@
       border-color: var(--color-gold) !important;
       transform: translateY(-5px);
       box-shadow: 0 10px 25px rgba(212, 175, 55, 0.2);
-    }
-
-    /* Dynamic Quotes Rotator Box (5-Second Rotator) */
-    .quote-rotator-box {
-      min-height: 180px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      transition: opacity 0.5s ease-in-out;
-    }
-
-    .fade-out {
-      opacity: 0;
-    }
-
-    .fade-in {
-      opacity: 1;
     }
 
     /* Form Control Formatting */
@@ -240,157 +216,157 @@
     .hover-gold:hover {
       color: var(--color-gold) !important;
     }
+
+    /* Custom CSS Marquee Ticker Engine */
+    .css-marquee-wrapper {
+      position: relative;
+      overflow: hidden;
+      white-space: nowrap;
+      background: #000;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+    }
+    .css-marquee-wrapper::before, .css-marquee-wrapper::after {
+      content: "";
+      position: absolute;
+      top: 0; width: 60px; height: 100%;
+      z-index: 2; pointer-events: none;
+    }
+    .css-marquee-wrapper::before { left: 0; background: linear-gradient(to right, #000, transparent); }
+    .css-marquee-wrapper::after { right: 0; background: linear-gradient(to left, #000, transparent); }
+
+    .css-marquee-track {
+      display: inline-flex;
+      gap: 30px;
+      animation: smoothScrollRightToLeft 50s linear infinite;
+    }
+    .css-marquee-wrapper:hover .css-marquee-track {
+      animation-play-state: paused;
+    }
+    @keyframes smoothScrollRightToLeft {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
   </style>
 </head>
 <body class="bg-dark text-white">
 
   <!-- ================= 1. UNIFIED NAVBAR ================= -->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top glass-nav">
-  <div class="container">
-    <!-- Brand Logo / Name -->
-    <a class="navbar-brand font-cinzel text-gold fw-bold" href="#hero">
-      <span class="brand-logo me-1">ॐ</span> DEEPAK DHATTERWAL
-    </a>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top glass-nav">
+    <div class="container">
+      <a class="navbar-brand font-cinzel text-gold fw-bold" href="#hero">
+        <span class="brand-logo me-1">ॐ</span> DEEPAK DHATTERWAL
+      </a>
 
-    <!-- Hamburger / Mobile Toggle Button -->
-    <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+      <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <!-- Nav Links Wrapper -->
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto align-items-lg-center text-uppercase small tracking-wider py-3 py-lg-0">
-        
-        <li class="nav-item">
-          <a class="nav-link" href="#hero">
-            <i class="fa-solid fa-house text-gold me-1 d-lg-none"></i> Home
-          </a>
-        </li>
-        
-        <li class="nav-item">
-          <a class="nav-link" href="#about">
-            <i class="fa-solid fa-user text-gold me-1 d-lg-none"></i> About
-          </a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="#skills">
-            <i class="fa-solid fa-layer-group text-gold me-1 d-lg-none"></i> Skills
-          </a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="#gallery">
-            <i class="fa-solid fa-images text-gold me-1 d-lg-none"></i> Gallery
-          </a>
-        </li>
-
-        <!-- Quotes Section -->
-        <li class="nav-item">
-          <a class="nav-link text-gold" href="#geeta-quotes">
-            <i class="fa-solid fa-om me-1"></i> Gita Updesh
-          </a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link text-gold" href="#haryanvi-quotes">
-            <i class="fa-solid fa-quote-right me-1"></i> Haryanvi Quotes
-          </a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="#acting-quotes">
-            <i class="fa-solid fa-clapperboard text-gold me-1 d-lg-none"></i> Acting Quotes
-          </a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="#social">
-            <i class="fa-solid fa-share-nodes text-gold me-1 d-lg-none"></i> Socials
-          </a>
-        </li>
-
-        <!-- Contact CTA Button -->
-        <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
-          <a class="btn btn-gold rounded-pill px-4 btn-sm w-100 w-lg-auto" href="#contact">
-            <i class="fa-solid fa-paper-plane me-1"></i> Contact Me
-          </a>
-        </li>
-
-      </ul>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center text-uppercase small tracking-wider py-3 py-lg-0">
+          <li class="nav-item"><a class="nav-link" href="#hero"><i class="fa-solid fa-house text-gold me-1 d-lg-none"></i> Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about"><i class="fa-solid fa-user text-gold me-1 d-lg-none"></i> About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#skills"><i class="fa-solid fa-layer-group text-gold me-1 d-lg-none"></i> Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="#gallery"><i class="fa-solid fa-images text-gold me-1 d-lg-none"></i> Gallery</a></li>
+          <li class="nav-item"><a class="nav-link text-gold" href="#geeta-ticker"><i class="fa-solid fa-om me-1"></i> Gita Updesh</a></li>
+          <li class="nav-item"><a class="nav-link text-gold" href="#haryanvi-quotes"><i class="fa-solid fa-quote-right me-1"></i> Haryanvi Quotes</a></li>
+          <li class="nav-item"><a class="nav-link" href="#acting-quotes"><i class="fa-solid fa-clapperboard text-gold me-1 d-lg-none"></i> Acting Quotes</a></li>
+          <li class="nav-item"><a class="nav-link" href="#social"><i class="fa-solid fa-share-nodes text-gold me-1 d-lg-none"></i> Socials</a></li>
+          <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
+            <a class="btn btn-gold rounded-pill px-4 btn-sm w-100 w-lg-auto" href="#contact">
+              <i class="fa-solid fa-paper-plane me-1"></i> Contact Me
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
 
-<!-- ================= AUTO-CLOSE JAVASCRIPT ================= -->
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const navLinks = document.querySelectorAll('#navbarNav .nav-link, #navbarNav .btn');
-    const navbarCollapse = document.getElementById('navbarNav');
-
-    navLinks.forEach(function (link) {
-      link.addEventListener('click', function () {
-        if (navbarCollapse && navbarCollapse.classList.contains('show')) {
-          const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
-            toggle: true
-          });
-        }
+  <!-- Navbar Auto-Close Script for Mobile -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const navLinks = document.querySelectorAll('#navbarNav .nav-link, #navbarNav .btn');
+      const navbarCollapse = document.getElementById('navbarNav');
+      navLinks.forEach(function (link) {
+        link.addEventListener('click', function () {
+          if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+            new bootstrap.Collapse(navbarCollapse, { toggle: true });
+          }
+        });
       });
     });
-  });
-</script>
+  </script>
 
-
-
-  <!-- ================= 2. BHAGAVAD GITA FLOATING MARQUEE TICKER (20 HINDI QUOTES - MOBILE VISIBLE) ================= -->
-  <div id="geeta-ticker" class="geeta-marquee-wrapper bg-black py-2 border-bottom border-gold-subtle fix-ticker">
-    <div class="container-fluid px-2">
-      <div class="d-flex align-items-center">
-        <!-- Om Bholde Emblem -->
-        <span class="om-badge text-nowrap me-2 small">
-          ॐ Bholde | श्रीमद्भगवद्गीता
-        </span>
-        
-        <!-- Slow Right to Left Floating Marquee containing 20 Hindi Geeta Quotes -->
-        <marquee class="text-gold-light ticker-text font-cinzel m-0" scrollamount="4" behavior="scroll" direction="left">
-          ✨ 1. कर्मण्येवाधिकारस्ते मा फलेषु कदाचन। (तुम्हारा अधिकार केवल कर्म करने पर है, उसके फल पर नहीं।) &nbsp;&nbsp; ॐ &nbsp;&nbsp;
-          2. हतो वा प्राप्स्यसि स्वर्गं जित्वा वा भोक्ष्यसे महीम्। (कर्मपथ पर वीरगति भी स्वर्ग है और विजय पृथ्वी का सुख।) &nbsp;&nbsp; ॐ &nbsp;&nbsp;
-          3. नैनं छिन्दन्ति शस्त्राणि नैनं दहति पावकः। (आत्मा अनश्वर है, इसे न शस्त्र काट सकते हैं न अग्नि जला सकती है।) &nbsp;&nbsp; ॐ &nbsp;&nbsp;
-          4. योगस्थः कुरु कर्माणि सङ्गं त्यक्त्वा धनञ्जय। (सफलता-विफलता की चिंता छोड़ समत्व भाव से कर्म करो।) &nbsp;&nbsp; ॐ &nbsp;&nbsp;
-          5. यदा यदा हि धर्मस्य ग्लानिर्भवति भारत। (जब-जब सत्य और धर्म की हानि होती है, तब-तब श्रेष्ठ चेतना का उदय होता है।) &nbsp;&nbsp; ॐ &nbsp;&nbsp;
-          6. संशयात्मा विनश्यति। (संशय और संदेह करने वाले मन की प्रगति संभव नहीं।) &nbsp;&nbsp; ॐ &nbsp;&nbsp;
-          7. मनः प्रशमने युक्तं योग इत्यभिधीयते। (मन की शांति और नियंत्रण ही जीवन का असली योग है।) &nbsp;&nbsp; ॐ &nbsp;&nbsp;
-          8. क्रोधाद्भवति सम्मोहः सम्मोहात्स्मृतिविभ्रमः। (क्रोध से बुद्धि भ्रमित होती है, इसलिए सदैव शांत रहें।) &nbsp;&nbsp; ॐ &nbsp;&nbsp;
-          9. श्रद्धावाँल्लभते ज्ञानं तत्परः संयतेन्द्रियः। (सच्ची श्रद्धा और संयम रखने वाला ही ज्ञान प्राप्त करता है।) &nbsp;&nbsp; ॐ &nbsp;&nbsp;
-          10. आत्मा अजर-अमर है, इसे मृत्यु का भय नहीं। &nbsp;&nbsp; ॐ &nbsp;&nbsp;
-          11. जो हुआ वह अच्छा हुआ, जो हो रहा है वह अच्छा हो रहा है, जो होगा वह भी अच्छा ही होगा। &nbsp;&nbsp; ॐ &nbsp;&nbsp;
-          12. परिवर्तन ही संसार का शाश्वत नियम है। &nbsp;&nbsp; ॐ &nbsp;&nbsp;
-          13. काम, क्रोध और लोभ - ये आत्मा के विनाश के तीन द्वार हैं। &nbsp;&nbsp; ॐ &nbsp;&nbsp;
-          14. शांत मन से लिया गया निर्णय ही जीवन में विजय दिलाता है। &nbsp;&nbsp; ॐ &nbsp;&nbsp;
-          15. अपने निर्धारित कर्तव्य मार्ग पर बिना रुके निरंतर बढ़ते रहो। &nbsp;&nbsp; ॐ &nbsp;&nbsp;
-          16. आत्म-विश्वास वह शक्ति है जो असंभव को भी संभव बना देती है। &nbsp;&nbsp; ॐ &nbsp;&nbsp;
-          17. बिना फल की लालसा के निस्वार्थ भाव से किया गया कार्य ही सच्चा योग है। &nbsp;&nbsp; ॐ &nbsp;&nbsp;
-          18. अपने मन को मित्र बनाओ, नियंत्रित न करने पर यह सबसे बड़ा शत्रु बन जाता है। &nbsp;&nbsp; ॐ &nbsp;&nbsp;
-          19. मनुष्य अपने विचारों से निर्मित होता है, जैसा वह सोचता है वैसा ही बन जाता है। &nbsp;&nbsp; ॐ &nbsp;&nbsp;
-          20. समत्वं योग उच्यते - सुख और दुःख में समान भाव बनाए रखना ही महानता है। ✨
-        </marquee>
+  <!-- ================= 2. BHAGAVAD GITA FLOATING MARQUEE TICKER (20 HINDI QUOTES) ================= -->
+  <div id="geeta-ticker" class="css-marquee-wrapper fix-ticker border-bottom border-gold-subtle">
+    <div class="d-flex align-items-center">
+      <div class="px-3 flex-shrink-0">
+        <span class="om-badge text-nowrap small">ॐ Bholde | श्रीमद्भगवद्गीता</span>
+      </div>
+      <div class="css-marquee-track" id="mainGeetaTickerTrack">
+        <!-- Injected via Script -->
       </div>
     </div>
   </div>
 
-  <main>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const quotes20 = [
+        "1. कर्मण्येवाधिकारस्ते मा फलेषु कदाचन। (तुम्हारा अधिकार केवल कर्म करने पर है, उसके फल पर नहीं।)",
+        "2. हतो वा प्राप्स्यसि स्वर्गं जित्वा वा भोक्ष्यसे महीम्। (कर्मपथ पर वीरगति भी स्वर्ग है और विजय पृथ्वी का सुख।)",
+        "3. नैनं छिन्दन्ति शस्त्राणि नैनं दहति पावकः। (आत्मा अनश्वर है, इसे न शस्त्र काट सकते हैं न अग्नि जला सकती है।)",
+        "4. योगस्थः कुरु कर्माणि सङ्गं त्यक्त्वा धनञ्जय। (सफलता-विफलता की चिंता छोड़ समत्व भाव से कर्म करो।)",
+        "5. यदा यदा हि धर्मस्य ग्लानिर्भवति भारत। (जब-जब सत्य और धर्म की हानि होती है, तब-तब श्रेष्ठ चेतना का उदय होता है।)",
+        "6. संशयात्मा विनश्यति। (संशय और संदेह करने वाले मन की प्रगति संभव नहीं।)",
+        "7. मनः प्रशमने युक्तं योग इत्यभिधीयते। (मन की शांति और नियंत्रण ही जीवन का असली योग है।)",
+        "8. क्रोधाद्भवति सम्मोहः सम्मोहात्स्मृतिविभ्रमः। (क्रोध से बुद्धि भ्रमित होती है, इसलिए सदैव शांत रहें।)",
+        "9. श्रद्धावाँल्लभते ज्ञानं तत्परः संयतेन्द्रियः। (सच्ची श्रद्धा और संयम रखने वाला ही ज्ञान प्राप्त करता है।)",
+        "10. आत्मा अजर-अमर है, इसे मृत्यु का भय नहीं।",
+        "11. जो हुआ वह अच्छा हुआ, जो हो रहा है वह अच्छा हो रहा है, जो होगा वह भी अच्छा ही होगा।",
+        "12. परिवर्तन ही संसार का शाश्वत नियम है।",
+        "13. काम, क्रोध और लोभ - ये आत्मा के विनाश के तीन द्वार हैं।",
+        "14. शांत मन से लिया गया निर्णय ही जीवन में विजय दिलाता है।",
+        "15. अपने निर्धारित कर्तव्य मार्ग पर बिना रुके निरंतर बढ़ते रहो।",
+        "16. आत्म-विश्वास वह शक्ति है जो असंभव को भी संभव बना देती है।",
+        "17. बिना फल की लालसा के निस्वार्थ भाव से किया गया कार्य ही सच्चा योग है।",
+        "18. अपने मन को मित्र बनाओ, नियंत्रित न करने पर यह सबसे बड़ा शत्रु बन जाता है।",
+        "19. मनुष्य अपने विचारों से निर्मित होता है, जैसा वह सोचता है वैसा ही बन जाता है।",
+        "20. समत्वं योग उच्यते - सुख और दुःख में समान भाव बनाए रखना ही महानता है।"
+      ];
+      const track = document.getElementById('mainGeetaTickerTrack');
+      if (track) {
+        const html = quotes20.map(q => `<span class="text-gold-light font-cinzel small">✨ ${q} &nbsp;&nbsp; ॐ &nbsp;&nbsp;</span>`).join('');
+        track.innerHTML = html + html;
+      }
+    });
+  </script>
 
-<!-- ================= ALL-TIME FAVORITE FILMS TICKER (1990 - 2026) ================= -->
-<div class="fav-movies-ticker-wrapper">
-  <div class="ticker-title-badge">
-    <span class="text-gold">ॐ</span> All-Time Favorite Masterpieces (1990–2026)
-  </div>
-  <div class="fav-movies-ticker-container">
-    <div class="fav-movies-track" id="favMoviesTrack">
-      <!-- JavaScript will dynamically inject 100+ movie pills here seamlessly -->
+  <main>
+    <!-- ================= ALL-TIME FAVORITE FILMS TICKER ================= -->
+    <div class="css-marquee-wrapper bg-black">
+      <div class="d-flex align-items-center">
+        <div class="px-3 flex-shrink-0 text-gold font-cinzel fw-bold small">
+          <span class="text-gold">ॐ</span> Masterpieces (1990–2026):
+        </div>
+        <div class="css-marquee-track" id="favMoviesTrack"></div>
+      </div>
     </div>
-  </div>
-</div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const movies = [
+          "Sholay", "Deewaar", "Pyaasa", "Mughal-e-Azam", "Shree 420", "Awara", "Guide", "Pakeezah", "Anand", "Mera Naam Joker",
+          "Gangs of Wasseypur", "3 Idiots", "Dangal", "Lagaan", "Taare Zameen Par", "Swades", "Chak De! India", "Zindagi Na Milegi Dobara", "Dil Chahta Hai", "Kantara",
+          "The Godfather", "The Shawshank Redemption", "The Dark Knight", "Inception", "Interstellar", "Schindler's List", "Pulp Fiction", "Fight Club", "Forrest Gump", "Gladiator",
+          "Parasite", "Spirited Away", "Whiplash", "The Lord of the Rings", "The Matrix", "GoodFellas", "The Silence of the Lambs", "Se7en", "The Departed", "Interstellar"
+        ];
+        const track = document.getElementById('favMoviesTrack');
+        if(track) {
+          const content = movies.map(m => `<span class="badge bg-gold-subtle text-gold border border-gold px-3 py-1 font-cinzel">${m}</span>`).join('');
+          track.innerHTML = content + content;
+        }
+      });
+    </script>
 
     <!-- ================= 3. HERO SECTION ================= -->
     <section id="hero" class="hero-section min-vh-100 d-flex align-items-center position-relative pt-4">
@@ -418,7 +394,6 @@
               </a>
             </div>
             
-            <!-- Social Links -->
             <div class="hero-socials mt-5 d-flex gap-4 fs-4">
               <a href="https://www.facebook.com/deepakdhatterwalofficial" target="_blank" class="text-gold hover-gold" title="Facebook"><i class="fa-brands fa-facebook"></i></a>
               <a href="https://in.linkedin.com/in/deepakdhatterwalofficial" target="_blank" class="text-gold hover-gold" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
@@ -429,7 +404,6 @@
           
           <div class="col-lg-6 text-center mt-5 mt-lg-0" data-aos="fade-left">
             <div class="gallery-container p-2 border-gold shadow-lg">
-              <!-- Provided Image 1 -->
               <img src="https://i.postimg.cc/Vvrdx43t/1000023153-01.jpg" alt="Deepak Dhatterwal Hero Portrait" class="img-uncropped" />
             </div>
           </div>
@@ -443,7 +417,6 @@
         <div class="row align-items-center g-5">
           <div class="col-lg-5" data-aos="fade-right">
             <div class="gallery-container p-2 border-gold shadow-lg">
-              <!-- Provided Image 2 -->
               <img src="https://i.postimg.cc/JhrtrRft/1000019796-01.jpg" alt="Deepak Dhatterwal About Portrait" class="img-uncropped" />
             </div>
           </div>
@@ -459,12 +432,12 @@
             </p>
             <p class="text-white leading-relaxed mb-4">
               Deepak completed his Bachelor of Technology (B.Tech.) in Electrical and Electronics Engineering (EEE) from BRCM College of Engineering & Technology. Although trained as an engineer, his passion for acting led him to pursue a full-time career in the entertainment industry. He later received professional acting training at Join Films Academy in Mumbai under renowned acting mentor Virendra Rathore.
-<p class="text-white leading-relaxed mb-4">
-
-After moving to Mumbai, Deepak dedicated himself to acting through extensive training, theatre, auditions, and film projects. He is known for his natural, emotionally expressive, and realistic acting style.
-<p class="text-white leading-relaxed mb-4">
-
-Deepak is credited in the upcoming feature film "Mastan – The Real Story", where he portrays the role of Inspector's Son. The film features an ensemble cast including Sanjay Dutt, Anil Kapoor, Jackie Shroff, Suniel Shetty, Sonu Sood, Prakash Raj, Raza Murad, Zareen Khan, Nora Fatehi, and several other notable artists.
+            </p>
+            <p class="text-white leading-relaxed mb-4">
+              After moving to Mumbai, Deepak dedicated himself to acting through extensive training, theatre, auditions, and film projects. He is known for his natural, emotionally expressive, and realistic acting style.
+            </p>
+            <p class="text-white leading-relaxed mb-4">
+              Deepak is credited in the upcoming feature film "Mastan – The Real Story", where he portrays the role of Inspector's Son. The film features an ensemble cast including Sanjay Dutt, Anil Kapoor, Jackie Shroff, Suniel Shetty, Sonu Sood, Prakash Raj, Raza Murad, Zareen Khan, Nora Fatehi, and several other notable artists.
             </p>
             
             <div class="row g-4 mt-2">
@@ -492,7 +465,7 @@ Deepak is credited in the upcoming feature film "Mastan – The Real Story", whe
       </div>
     </section>
 
-    <!-- ================= 5. DYNAMIC 5-SECOND ROTATING ACTING & DAILY LIFE QUOTES (20 ENGLISH QUOTES) ================= -->
+    <!-- ================= 5. DYNAMIC 5-SECOND ROTATING ACTING & DAILY LIFE QUOTES ================= -->
     <section id="acting-quotes" class="quotes-rotator-section py-5 bg-dark">
       <div class="container py-lg-4">
         <div class="section-title-wrapper text-center mb-4">
@@ -541,7 +514,7 @@ Deepak is credited in the upcoming feature film "Mastan – The Real Story", whe
                 </div>
               </div>
 
-       <div class="skill-item mb-4">
+              <div class="skill-item mb-4">
                 <div class="d-flex justify-content-between mb-2">
                   <span class="fw-semibold text-white">Dialogue Delivery & Diction</span>
                   <span class="text-gold fw-bold">92%</span>
@@ -586,276 +559,187 @@ Deepak is credited in the upcoming feature film "Mastan – The Real Story", whe
         </div>
       </div>
     </section>
-
-<!-- ================= 11. 50 HARYANVI MOTIVATION QUOTES SECTION ================= -->
-<style>
-  .haryanvi-section {
-    background-color: #08080a;
-    border-top: 1px solid rgba(212, 175, 55, 0.3);
-    border-bottom: 1px solid rgba(212, 175, 55, 0.3);
-    padding: 60px 0 30px 0;
-    position: relative;
-    overflow: hidden;
-  }
-
-  /* Interactive Spotlight Card */
-  .haryanvi-spotlight-card {
-    background: rgba(18, 18, 22, 0.75);
-    border: 1px solid rgba(212, 175, 55, 0.4);
-    border-radius: 16px;
-    padding: 30px;
-    max-width: 800px;
-    margin: 0 auto 40px auto;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(10px);
-  }
-
-  .haryanvi-quote-display {
-    font-size: 1.35rem;
-    color: #ffffff;
-    font-weight: 600;
-    line-height: 1.6;
-    min-height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: opacity 0.4s ease-in-out;
-  }
-
-  /* Dual Ticker Container */
-  .ticker-container {
-    overflow: hidden;
-    white-space: nowrap;
-    position: relative;
-    padding: 12px 0;
-  }
-
-  .ticker-container::before,
-  .ticker-container::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    width: 100px;
-    height: 100%;
-    z-index: 3;
-    pointer-events: none;
-  }
-  .ticker-container::before {
-    left: 0;
-    background: linear-gradient(to right, #08080a, transparent);
-  }
-  .ticker-container::after {
-    right: 0;
-    background: linear-gradient(to left, #08080a, transparent);
-  }
-
-  .ticker-track-1, .ticker-track-2 {
-    display: inline-flex;
-    align-items: center;
-    gap: 35px;
-  }
-
-  /* Smooth & Slow Scroll Duration (480s) */
-  .ticker-track-1 {
-    animation: haryanviScrollRightToLeft 480s linear infinite;
-  }
-
-  .ticker-track-2 {
-    animation: haryanviScrollLeftToRight 480s linear infinite;
-  }
-
-  .ticker-container:hover .ticker-track-1,
-  .ticker-container:hover .ticker-track-2 {
-    animation-play-state: paused;
-  }
-
-  /* Quote Badge Item */
-  .hr-quote-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    background: rgba(212, 175, 55, 0.08);
-    border: 1px solid rgba(212, 175, 55, 0.3);
-    padding: 8px 18px;
-    border-radius: 30px;
-    color: #e6e6e6;
-    font-size: 0.92rem;
-  }
-
-  .hr-quote-pill .badge-num {
-    color: #d4af37;
-    font-weight: bold;
-    font-size: 0.8rem;
-  }
-
-  .hr-quote-pill .tag {
-    color: #d4af37;
-    font-weight: 600;
-  }
-
-  /* Keyframe Animations */
-  @keyframes haryanviScrollRightToLeft {
-    0% { transform: translateX(0%); }
-    100% { transform: translateX(-50%); }
-  }
-
-  @keyframes haryanviScrollLeftToRight {
-    0% { transform: translateX(-50%); }
-    100% { transform: translateX(0%); }
-  }
-</style>
-
-<section class="haryanvi-section" id="haryanvi-quotes">
-  <div class="container mb-4">
-    <div class="text-center mb-4">
-      <span class="om-badge mb-2">ॐ धाकड़ प्रेरणा</span>
-      <h2 class="display-6 text-white font-cinzel">हरियाणवी <span class="text-gold">जुनून & विचार</span></h2>
-      <div class="gold-divider mx-auto"></div>
-    </div>
-
-    <!-- Spotlight Random Quote Card -->
-    <div class="haryanvi-spotlight-card">
-      <i class="fa-solid fa-quote-left text-gold fs-2 mb-3"></i>
-      <div class="haryanvi-quote-display" id="hrSpotlightText">
-        "मेहनत की गूंज इतनी रोवगी, के जलन आले खुद ताली बजावेंगे।"
-      </div>
-      <div class="mt-3">
-        <p class="text-gold small mb-2 fw-bold tracking-widest">— दीपक धत्तरवाल (Deepak Dhatterwal)</p>
-        <button type="button" class="btn btn-outline-gold btn-sm rounded-pill px-4 mt-2" onclick="getRandomHrQuote()">
-          <i class="fa-solid fa-shuffle me-2"></i> नया विचार देखें
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Row 1: Right to Left Scroll -->
-  <div class="ticker-container">
-    <div class="ticker-track-1" id="hrTrack1"></div>
-  </div>
-
-  <!-- Row 2: Left to Right Scroll -->
-  <div class="ticker-container mt-2">
-    <div class="ticker-track-2" id="hrTrack2"></div>
-  </div>
-</section>
-
-<!-- Single Clean JavaScript Engine for Haryanvi Section -->
-<script>
-  (function() {
-    // 50 AUTHENTIC HARYANVI MOTIVATIONAL QUOTES
-    const haryanviQuotes = [
-      "मेहनत की गूंज इतनी रोवगी, के जलन आले खुद ताली बजावेंगे।",
-      "बाप का नाम अर माँ का आशीर्वाद होवे, तो दुनिया की कोई ताकत रोक नी सकती।",
-      "गाम के माटी की महक अर सिर पै बुज़ुर्गों का हाथ, न्यू ए कोन्या मिल्या करे।",
-      "जिम्मेदारियां बड्डी होवैं तो नींद अपने आप उड़ जावै सै।",
-      "लोग के सोचेंगे, यो सोचणा बंद कर दो... अपणा काम खामोशी तै करे जाओ।",
-      "कामयाबी रोब तै नी, अपनी कड़ी मेहनत तै आया करे।",
-      "किस्मत का रोणा रोण आले कदे इतिहास नी रचा करते।",
-      "सबर राख भाइया, दिन अपणे भी आवेंगे अर दौर भी अपना ए होगा।",
-      "किसे के तलवे चाटन तै बड्ढिया सै, अपनी मेहनत के दम पै भूखे सो जाओ।",
-      "चरित्र ऐसा बनाओ के दुश्मन भी इज़्ज़त करण पै मजबूर हो जावै।",
-      "सपने बड्डे देखो, क्यूंकि छोटे सपने देखणा भी एक गुनाह सै।",
-      "राह आसान नी होती, पर हार मानना म्हारै खून में नी सै।",
-      "माटी का शरीर सै, एक दिन माटी में मिल जाणा सै... पर नाम ऐसा कर जाओ जो अमर रह जावै।",
-      "तूफान में भी दीया जलाणा सीखो, मुसीबत में मुस्कुराणा सीखो।",
-      "बातां तै नी, रातां तै लड़णा पड़े सै जब सपने पूरे करणे होवैं।",
-      "जिसने अपनी औकात अर औकात से बड्डे सपने देखे, उसने ए इतिहास रचा सै।",
-      "पीठ पीछे बोलने आळ्यां नै बोलण दो, कुत्ते भौंकदे रहवैं अर शेर अपणी चाल चलदा रहवै।",
-      "जिद होणी चाहिए जीतण की, हारण खातर तो एक डर ए काफी सै।",
-      "कलाकार की कोई जात नी होती, उसकी मेहनत अर उसका अभिनय ए उसकी पहचान होवै।",
-      "असफलता तै डरो मत, यो तो कामयाबी की पहली सीढ़ी होवै सै।",
-      "जो आज थारे पै हंसैं सैं, कल वही थारे खातर ताली बजावेंगे।",
-      "जिंदगी में न्यू ए नाम नी बण्या करता, पसीना बहाणा पड़े सै।",
-      "बापू की मूछ अर माँ की मुस्कान खातर कुछ भी कर जावेंगे।",
-      "किसे का बुरा मत सोचो, अर अपणे खातर कदे बुरा मत होण दो।",
-      "म्हारा अंदाज अलग सै, म्हाकी मेहनत कड़क सै।",
-      "वक़्त बदला सै, दौर भी बदलेगा... म्हारा टाइम भी आवेगा।",
-      "कामयाबी पाना खेल कोन्या, रातां की नींद गवाणी पड़े सै।",
-      "शरीर में दम अर इरादों में मजबूती होवै, तो कोई रुकावट नी रोक सकती।",
-      "दुनिया झुकैगी, बस झुकाण आला चाहिए।",
-      "सोच बदलोगे तो दुनिया बदलेगी, अर नियत साफ़ रखोगे तो किस्मत बदलेगी।",
-      "चुप रहना म्हारी कमज़ोरी नी, म्हारा सब्र सै।",
-      "खुद पै भरोसा राखो, दुनिया तो रोज अपणी राय बदले सै।",
-      "असली बड़प्पन पैसे में नी, संस्कार अर नियत में होवै सै।",
-      "तू मेहनत करदा जा, फल देण आला उपर बैठा सै।",
-      "जे इरादे पक्के होवैं तो पहाड़ भी रास्ता दे दिया करैं।",
-      "गाम का देसी छोरा जब रंगमंच पै आवेगा, तो तहलका ए मचावेगा।",
-      "दूसरयां की लकीर छोटी करण की बजाय, अपनी लकीर बड्डी करो।",
-      "असली ताक़त शरीर में नी, सोच अर चरित्र में होवै सै।",
-      "जंगल में शेर अर मैदान में हरियाणवी जब उतरैं, तो माहौल बदल जावै।",
-      "मेहनत का पसीना कदे बेकार नी जाता, देर-सबेर रंग ज़रूर लावै सै।",
-      "सपने ओ कोन्या जो सोती आंख्या तै दिखे, सपने ओ सैं जो सोण ना देवैं।",
-      "भीड़ का हिस्सा मत बनो, भीड़ जिस खातर खड़ी होवै वो चेहरा बनो।",
-      "जो डरेगा वो मरेगा, जो लड़ेगा वही जीतेगा।",
-      "इज़्ज़त कमाई जावै सै, मंगी नी जांदी।",
-      "दिल साफ़ अर नीयत सुथरी रखो, रब अपने आप रास्ते खोल देगा।",
-      "परिस्थितियों से भागना नी, उनका सामना करना सीखो।",
-      "अरे थम बस मेहनत पे ध्यान दो, फल देण आला भगवान सै।",
-      "अकेले चलणा सीखो, क्यूंकि कामयाबी के रस्ते पै भीड़ नी होती।",
-      "म्हारी शांति नै म्हारी कमज़ोरी मत समझे, तूफ़ान तै पहलां सन्नाटा ए होया करै।",
-      "माटी तै जुड़के रहो, चाहे आसमान जितनी ऊँचाई छू लो।"
-    ];
-
-    window.allHrQuotes = haryanviQuotes; // Make available globally for manual shuffle button
-
-    document.addEventListener('DOMContentLoaded', function() {
-      // 1. Render Marquee Tickers
-      const track1 = document.getElementById('hrTrack1');
-      const track2 = document.getElementById('hrTrack2');
-
-      if (track1 && track2) {
-        const halfIndex = Math.ceil(haryanviQuotes.length / 2);
-        const set1 = haryanviQuotes.slice(0, halfIndex);
-        const set2 = haryanviQuotes.slice(halfIndex);
-
-        function buildPillsHTML(quotesArray, startIndex) {
-          return quotesArray.map((quote, idx) => `
-            <div class="hr-quote-pill">
-              <span class="badge-num">#${startIndex + idx + 1}</span>
-              <span>"${quote}"</span>
-              <span class="tag">— दीपक 卐</span>
-            </div>
-          `).join('');
-        }
-
-        track1.innerHTML = buildPillsHTML(set1, 0) + buildPillsHTML(set1, 0);
-        track2.innerHTML = buildPillsHTML(set2, halfIndex) + buildPillsHTML(set2, halfIndex);
+ <!-- ================= 7. 50 HARYANVI MOTIVATION QUOTES SECTION ================= -->
+    <style>
+      .haryanvi-section {
+        background-color: #08080a;
+        border-top: 1px solid rgba(212, 175, 55, 0.3);
+        border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+        padding: 60px 0 30px 0;
+        position: relative;
+        overflow: hidden;
       }
+      .haryanvi-spotlight-card {
+        background: rgba(18, 18, 22, 0.85);
+        border: 1px solid rgba(212, 175, 55, 0.4);
+        border-radius: 16px;
+        padding: 30px;
+        max-width: 800px;
+        margin: 0 auto 40px auto;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(10px);
+      }
+      .haryanvi-quote-display {
+        font-size: 1.35rem;
+        color: #ffffff;
+        font-weight: 600;
+        line-height: 1.6;
+        min-height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.4s ease-in-out;
+      }
+      .hr-quote-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: rgba(212, 175, 55, 0.08);
+        border: 1px solid rgba(212, 175, 55, 0.3);
+        padding: 8px 18px;
+        border-radius: 30px;
+        color: #e6e6e6;
+        font-size: 0.92rem;
+      }
+      .hr-quote-pill .badge-num { color: #d4af37; font-weight: bold; font-size: 0.8rem; }
+    </style>
 
-      // 2. Auto-Rotating Spotlight Engine (3.5 Seconds)
-      let spotlightIndex = 0;
-      setInterval(function() {
-        const textElem = document.getElementById('hrSpotlightText');
-        if (!textElem) return;
+    <section class="haryanvi-section" id="haryanvi-quotes">
+      <div class="container mb-4">
+        <div class="text-center mb-4">
+          <span class="om-badge mb-2">ॐ धाकड़ प्रेरणा</span>
+          <h2 class="display-6 text-white font-cinzel">हरियाणवी <span class="text-gold">जुनून & विचार</span></h2>
+          <div class="gold-divider mx-auto"></div>
+        </div>
 
-        textElem.style.opacity = '0';
-        setTimeout(function() {
-          spotlightIndex = (spotlightIndex + 1) % haryanviQuotes.length;
-          textElem.textContent = `"${haryanviQuotes[spotlightIndex]}"`;
-          textElem.style.opacity = '1';
-        }, 400);
-      }, 3500);
-    });
-  })();
+        <div class="haryanvi-spotlight-card">
+          <i class="fa-solid fa-quote-left text-gold fs-2 mb-3"></i>
+          <div class="haryanvi-quote-display" id="hrSpotlightText">
+            "मेहनत की गूंज इतनी रोवगी, के जलन आले खुद ताली बजावेंगे।"
+          </div>
+          <div class="mt-3">
+            <p class="text-gold small mb-2 fw-bold tracking-widest">— दीपक धत्तरवाल (Deepak Dhatterwal)</p>
+            <button type="button" class="btn btn-outline-gold btn-sm rounded-pill px-4 mt-2" onclick="getRandomHrQuote()">
+              <i class="fa-solid fa-shuffle me-2"></i> नया विचार देखें
+            </button>
+          </div>
+        </div>
+      </div>
 
-  // Manual Shuffle Trigger
-  function getRandomHrQuote() {
-    const textElem = document.getElementById('hrSpotlightText');
-    if (!textElem || !window.allHrQuotes) return;
+      <div class="css-marquee-wrapper mb-2">
+        <div class="css-marquee-track" id="hrTrack1"></div>
+      </div>
+      <div class="css-marquee-wrapper">
+        <div class="css-marquee-track" id="hrTrack2"></div>
+      </div>
+    </section>
 
-    textElem.style.opacity = '0';
-    setTimeout(function() {
-      const randomIndex = Math.floor(Math.random() * window.allHrQuotes.length);
-      textElem.textContent = `"${window.allHrQuotes[randomIndex]}"`;
-      textElem.style.opacity = '1';
-    }, 300);
-  }
-</script>
+    <script>
+      (function() {
+        const haryanviQuotes = [
+          "मेहनत की गूंज इतनी रोवगी, के जलन आले खुद ताली बजावेंगे।",
+          "बाप का नाम अर माँ का आशीर्वाद होवे, तो दुनिया की कोई ताकत रोक नी सकती।",
+          "गाम के माटी की महक अर सिर पै बुज़ुर्गों का हाथ, न्यू ए कोन्या मिल्या करे।",
+          "जिम्मेदारियां बड्डी होवैं तो नींद अपने आप उड़ जावै सै।",
+          "लोग के सोचेंगे, यो सोचणा बंद कर दो... अपणा काम खामोशी तै करे जाओ।",
+          "कामयाबी रोब तै नी, अपनी कड़ी मेहनत तै आया करे।",
+          "किस्मत का रोणा रोण आले कदे इतिहास नी रचा करते।",
+          "सबर राख भाइया, दिन अपणे भी आवेंगे अर दौर भी अपना ए होगा।",
+          "किसे के तलवे चाटन तै बड्ढिया सै, अपनी मेहनत के दम पै भूखे सो जाओ।",
+          "चरित्र ऐसा बनाओ के दुश्मन भी इज़्ज़त करण पै मजबूर हो जावै।",
+          "सपने बड्डे देखो, क्यूंकि छोटे सपने देखणा भी एक गुनाह सै।",
+          "राह आसान नी होती, पर हार मानना म्हारै खून में नी सै।",
+          "माटी का शरीर सै, एक दिन माटी में मिल जाणा सै... पर नाम ऐसा कर जाओ जो अमर रह जावै।",
+          "तूफान में भी दीया जलाणा सीखो, मुसीबत में मुस्कुराणा सीखो।",
+          "बातां तै नी, रातां तै लड़णा पड़े सै जब सपने पूरे करणे होवैं।",
+          "जिसने अपनी औकात अर औकात से बड्डे सपने देखे, उसने ए इतिहास रचा सै।",
+          "पीठ पीछे बोलने आळ्यां नै बोलण दो, कुत्ते भौंकदे रहवैं अर शेर अपणी चाल चलदा रहवै।",
+          "जिद होणी चाहिए जीतण की, हारण खातर तो एक डर ए काफी सै।",
+          "कलाकार की कोई जात नी होती, उसकी मेहनत अर उसका अभिनय ए उसकी पहचान होवै।",
+          "असफलता तै डरो मत, यो तो कामयाबी की पहली सीढ़ी होवै सै।",
+          "जो आज थारे पै हंसैं सैं, कल वही थारे खातर ताली बजावेंगे।",
+          "जिंदगी में न्यू ए नाम नी बण्या करता, पसीना बहाणा पड़े सै।",
+          "बापू की मूछ अर माँ की मुस्कान खातर कुछ भी कर जावेंगे।",
+          "किसे का बुरा मत सोचो, अर अपणे खातर कदे बुरा मत होण दो।",
+          "म्हारा अंदाज अलग सै, म्हाकी मेहनत कड़क सै।",
+          "वक़्त बदला सै, दौर भी बदलेगा... म्हारा टाइम भी आवेगा।",
+          "कामयाबी पाना खेल कोन्या, रातां की नींद गवाणी पड़े सै।",
+          "शरीर में दम अर इरादों में मजबूती होवै, तो कोई रुकावट नी रोक सकती।",
+          "दुनिया झुकैगी, बस झुकाण आला चाहिए।",
+          "सोच बदलोगे तो दुनिया बदलेगी, अर नियत साफ़ रखोगे तो किस्मत बदलेगी।",
+          "चुप रहना म्हारी कमज़ोरी नी, म्हारा सब्र सै।",
+          "खुद पै भरोसा राखो, दुनिया तो रोज अपणी राय बदले सै।",
+          "असली बड़प्पन पैसे में नी, संस्कार अर नियत में होवै सै।",
+          "तू मेहनत करदा जा, फल देण आला उपर बैठा सै।",
+          "जे इरादे पक्के होवैं तो पहाड़ भी रास्ता दे दिया करैं।",
+          "गाम का देसी छोरा जब रंगमंच पै आवेगा, तो तहलका ए मचावेगा।",
+          "दूसरयां की लकीर छोटी करण की बजाय, अपनी लकीर बड्डी करो।",
+          "असली ताक़त शरीर में नी, सोच अर चरित्र में होवै सै।",
+          "जंगल में शेर अर मैदान में हरियाणवी जब उतरैं, तो माहौल बदल जावै।",
+          "मेहनत का पसीना कदे बेकार नी जाता, देर-सबेर रंग ज़रूर लावै सै।",
+          "सपने ओ कोन्या जो सोती आंख्या तै दिखे, सपने ओ सैं जो सोण ना देवैं।",
+          "भीड़ का हिस्सा मत बनो, भीड़ जिस खातर खड़ी होवै वो चेहरा बनो।",
+          "जो डरेगा वो मरेगा, जो लड़ेगा वही जीतेगा।",
+          "इज़्ज़त कमाई जावै सै, मंगी नी जांदी।",
+          "दिल साफ़ अर नीयत सुथरी रखो, रब अपने आप रास्ते खोल देगा।",
+          "परिस्थितियों से भागना नी, उनका सामना करना सीखो।",
+          "अरे थम बस मेहनत पे ध्यान दो, फल देण आला भगवान सै।",
+          "अकेले चलणा सीखो, क्यूंकि कामयाबी के रस्ते पै भीड़ नी होती।",
+          "म्हारी शांति नै म्हारी कमज़ोरी मत समझे, तूफ़ान तै पहलां सन्नाटा ए होया करै।",
+          "माटी तै जुड़के रहो, चाहे आसमान जितनी ऊँचाई छू लो।"
+        ];
+        window.allHrQuotes = haryanviQuotes;
 
+        document.addEventListener('DOMContentLoaded', function() {
+          const track1 = document.getElementById('hrTrack1');
+          const track2 = document.getElementById('hrTrack2');
 
+          if (track1 && track2) {
+            const half = Math.ceil(haryanviQuotes.length / 2);
+            const set1 = haryanviQuotes.slice(0, half);
+            const set2 = haryanviQuotes.slice(half);
 
-    <!-- ================= 7. PORTFOLIO GALLERY (UNCROPPED IMAGES 3 - 9) ================= -->
+            function build(arr, offset) {
+              return arr.map((q, i) => `
+                <div class="hr-quote-pill">
+                  <span class="badge-num">#${offset + i + 1}</span>
+                  <span>"${q}"</span>
+                  <span class="text-gold fw-bold">— दीपक 卐</span>
+                </div>
+              `).join('');
+            }
+            track1.innerHTML = build(set1, 0) + build(set1, 0);
+            track2.innerHTML = build(set2, half) + build(set2, half);
+          }
+
+          let sIdx = 0;
+          setInterval(function() {
+            const el = document.getElementById('hrSpotlightText');
+            if(!el) return;
+            el.style.opacity = '0';
+            setTimeout(() => {
+              sIdx = (sIdx + 1) % haryanviQuotes.length;
+              el.textContent = `"${haryanviQuotes[sIdx]}"`;
+              el.style.opacity = '1';
+            }, 400);
+          }, 3500);
+        });
+      })();
+
+      function getRandomHrQuote() {
+        const el = document.getElementById('hrSpotlightText');
+        if(!el || !window.allHrQuotes) return;
+        el.style.opacity = '0';
+        setTimeout(() => {
+          const r = Math.floor(Math.random() * window.allHrQuotes.length);
+          el.textContent = `"${window.allHrQuotes[r]}"`;
+          el.style.opacity = '1';
+        }, 300);
+      }
+    </script>
+
+<!-- ================= 8. PORTFOLIO GALLERY ================= -->
     <section id="gallery" class="gallery-section py-5">
       <div class="container py-lg-5">
         <div class="section-title-wrapper text-center mb-5" data-aos="fade-up">
@@ -865,159 +749,120 @@ Deepak is credited in the upcoming feature film "Mastan – The Real Story", whe
         </div>
 
         <div class="row g-4 align-items-center">
-          <!-- Image 3 -->
           <div class="col-md-6 col-lg-4" data-aos="zoom-in">
-            <div class="gallery-container">
-              <img src="https://i.postimg.cc/kGbg1GbS/1768246941476.jpg" alt="Deepak Dhatterwal Still 3" class="img-uncropped" />
-            </div>
+            <div class="gallery-container"><img src="https://i.postimg.cc/kGbg1GbS/1768246941476.jpg" alt="Portfolio Still 3" class="img-uncropped" /></div>
           </div>
-          <!-- Image 4 -->
           <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="100">
-            <div class="gallery-container">
-              <img src="https://i.postimg.cc/SKVrqV54/1000019132-01.jpg" alt="Deepak Dhatterwal Still 4" class="img-uncropped" />
-            </div>
+            <div class="gallery-container"><img src="https://i.postimg.cc/SKVrqV54/1000019132-01.jpg" alt="Portfolio Still 4" class="img-uncropped" /></div>
           </div>
-          <!-- Image 5 -->
           <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="200">
-            <div class="gallery-container">
-              <img src="https://i.postimg.cc/tRWgTzWh/1000019809-02.jpg" alt="Deepak Dhatterwal Still 5" class="img-uncropped" />
-            </div>
+            <div class="gallery-container"><img src="https://i.postimg.cc/tRWgTzWh/1000019809-02.jpg" alt="Portfolio Still 5" class="img-uncropped" /></div>
           </div>
-          <!-- Image 6 -->
           <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="300">
-            <div class="gallery-container">
-              <img src="https://i.postimg.cc/tCzCdCrv/1000024481-01.jpg" alt="Deepak Dhatterwal Still 6" class="img-uncropped" />
-            </div>
+            <div class="gallery-container"><img src="https://i.postimg.cc/tCzCdCrv/1000024481-01.jpg" alt="Portfolio Still 6" class="img-uncropped" /></div>
           </div>
-          <!-- Image 7 -->
           <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="400">
-            <div class="gallery-container">
-              <img src="https://i.postimg.cc/rFTwtt9p/IMG-20260202-094302-802.webp" alt="Deepak Dhatterwal Still 7" class="img-uncropped" />
-            </div>
+            <div class="gallery-container"><img src="https://i.postimg.cc/rFTwtt9p/IMG-20260202-094302-802.webp" alt="Portfolio Still 7" class="img-uncropped" /></div>
           </div>
-          <!-- Image 8 -->
           <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="500">
-            <div class="gallery-container">
-              <img src="https://i.postimg.cc/Fs2CnWtf/1000020662-01.jpg" alt="Deepak Dhatterwal Still 8" class="img-uncropped" />
-            </div>
+            <div class="gallery-container"><img src="https://i.postimg.cc/Fs2CnWtf/1000020662-01.jpg" alt="Portfolio Still 8" class="img-uncropped" /></div>
           </div>
-          <!-- Image 9 -->
           <div class="col-md-6 col-lg-4 mx-auto" data-aos="zoom-in" data-aos-delay="600">
-            <div class="gallery-container">
-              <img src="https://i.postimg.cc/kXwL1FJp/1000003687-01.jpg" alt="Deepak Dhatterwal Still 9" class="img-uncropped" />
-            </div>
+            <div class="gallery-container"><img src="https://i.postimg.cc/kXwL1FJp/1000003687-01.jpg" alt="Portfolio Still 9" class="img-uncropped" /></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ================= 8. ACTING PHILOSOPHY (DYNAMIC ROTATOR - 40 QUOTES) ================= -->
-<section id="acting-quotes" class="philosophy-section py-5 bg-darker">
-  <div class="container py-lg-5">
-    <div class="row justify-content-center text-center">
-      <div class="col-lg-9" data-aos="fade-up">
-        <span class="om-badge fs-5 mb-3">ॐ Bholde</span>
-        
-        <!-- Rotating Philosophy Content Box -->
-        <div id="philosophyBox" style="transition: opacity 0.5s ease-in-out; min-height: 150px;" class="d-flex flex-column justify-content-center align-items-center">
-          <i class="fa-solid fa-quote-left text-gold display-4 mb-3 d-block"></i>
-          <h2 class="font-cinzel text-white display-6 mb-4 px-3" id="philosophyText">
-            "अभिनय केवल संवाद बोलना नहीं, बल्कि खामोशी में छिपे सत्य को जीवन देना है।"
-          </h2>
+    <!-- ================= 9. ACTING PHILOSOPHY (40 QUOTES ROTATOR) ================= -->
+    <section id="acting-philosophy" class="philosophy-section py-5 bg-darker">
+      <div class="container py-lg-5">
+        <div class="row justify-content-center text-center">
+          <div class="col-lg-9" data-aos="fade-up">
+            <span class="om-badge fs-5 mb-3">ॐ Bholde</span>
+            
+            <div id="philosophyBox" style="transition: opacity 0.5s ease-in-out; min-height: 150px;" class="d-flex flex-column justify-content-center align-items-center">
+              <i class="fa-solid fa-quote-left text-gold display-4 mb-3 d-block"></i>
+              <h2 class="font-cinzel text-white display-6 mb-4 px-3" id="philosophyText">
+                "अभिनय केवल संवाद बोलना नहीं, बल्कि खामोशी में छिपे सत्य को जीवन देना है।"
+              </h2>
+            </div>
+
+            <div class="gold-divider mx-auto mb-3"></div>
+            <p class="text-gold font-cinzel tracking-widest text-uppercase fw-bold mb-2">— Deepak Dhatterwal</p>
+            
+            <span class="badge bg-gold-subtle text-gold font-cinzel border border-gold px-3 py-1" id="philosophyCounter">
+              Philosophy 1 / 40
+            </span>
+          </div>
         </div>
-
-        <div class="gold-divider mx-auto mb-3"></div>
-        <p class="text-gold font-cinzel tracking-widest text-uppercase fw-bold mb-2">— Deepak Dhatterwal</p>
-        
-        <!-- Counter Badge -->
-        <span class="badge bg-gold-subtle text-gold font-cinzel border border-gold px-3 py-1" id="philosophyCounter">
-          Philosophy 1 / 40
-        </span>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- Auto-rotation Script with 40 Quotes (Hindi + English) -->
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const philosophies = [
-      // --- HINDI ACTING QUOTES (25) ---
-      "अभिनय केवल संवाद बोलना नहीं, बल्कि खामोशी में छिपे सत्य को जीवन देना है।",
-      "एक सच्चा अभिनेता किरदार को निभाता नहीं, बल्कि उसके भीतर खुद को खोकर नया जन्म लेता है।",
-      "कैमरा केवल आपके चेहरे को नहीं देखता, वो आपकी आत्मा के भावों को पकड़ता है।",
-      "मंच पर बोली गई पंक्तियों से कहीं ज्यादा गहरा असर आपकी आंखों के सन्नाटे का होता है।",
-      "अभिनय का पहला नियम है—दिखावा बंद करो और उस क्षण में पूरी ईमानदारी से जियो।",
-      "किरदार कागज़ पर लिखे शब्द हैं, अभिनेता उन्हें अपनी सांसों से हकीकत बनाता है।",
-      "एक कलाकार अपनी भावनाओं से डरता नहीं, उन्हें अपनी ढाल बनाकर कैमरे का सामना करता है।",
-      "अच्छा अभिनेता वह है जो बोलना कम और सुनना पूरे शरीर से सीख लेता है।",
-      "रंगमंच कोई पेशा नहीं, यह मानव जीवन के विभिन्न रंगों को महसूस करने की साधना है।",
-      "डायरेक्टर जब 'Action' बोलता है, तब आपका अपना वजूद मिटकर किरदार का जन्म होता है।",
-      "अभिनय वह पुल है जो एक अनजान इंसान की कहानी को दर्शकों के दिल से जोड़ता है।",
-      "जब तक आप किरदार के दर्द को महसूस नहीं करेंगे, दर्शक आपके आंसुओं पर भरोसा नहीं करेंगे।",
-      "आवाज़ और शरीर एक अभिनेता के औज़ार हैं, इन्हें इंसानियत के हर भाव के लिए तैयार रखो।",
-      "कलाकार का अहंकार उसकी सबसे बड़ी बाधा है, सादगी ही अभिनय की असली खूबसूरती है।",
-      "हर एक सीन एक आध्यात्मिक आदान-प्रदान है—कहानी, कलाकार और दर्शक के बीच।",
-      "अभिनय में पूर्णता कोई मंज़िल नहीं, यह हर नए किरदार के साथ शुरू होने वाली एक अनंत यात्रा है।",
-      "संवाद रटना आसान है, पर संवादों के पीछे छिपी भावना को जीना ही असली हुनर है।",
-      "जब आप कैमरा भूलकर पूरी तरह से सिर्फ और सिर्फ किरदार में होते हैं, वही पल जादुई होता है।",
-      "अनुशासन ही आपकी कच्ची प्रतिभा को एक महान कला में बदलता है।",
-      "जो दर्द आपने कभी नहीं सहा, उसे भी अपनी आंखों में ले आना ही एक अभिनेता की ताकत है।",
-      "मंच की लाइटें केवल आपके शरीर को चमकाती हैं, पर आपका अभिनय दर्शक की आत्मा को छूता है।",
-      "किरदार को जज मत करो, उसे बिना किसी शर्त के अपनाओ और समझो।",
-      "सच्चा कलाकार असफलताओं से नहीं डरता, वो हर गिरावट से एक नया भाव सीखता है।",
-      "रीटेक से मत घबराओ, हर नया टेक आपकी कला को और अधिक निखारने का मौका देता है।",
-      "अभिनय सिर्फ एक कला नहीं, यह अपनी आत्मा को किसी और के वजूद के नाम कर देने का नाम है।",
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const philosophies = [
+          "अभिनय केवल संवाद बोलना नहीं, बल्कि खामोशी में छिपे सत्य को जीवन देना है।",
+          "एक सच्चा अभिनेता किरदार को निभाता नहीं, बल्कि उसके भीतर खुद को खोकर नया जन्म लेता है।",
+          "कैमरा केवल आपके चेहरे को नहीं देखता, वो आपकी आत्मा के भावों को पकड़ता है।",
+          "मंच पर बोली गई पंक्तियों से कहीं ज्यादा गहरा असर आपकी आंखों के सन्नाटे का होता है।",
+          "अभिनय का पहला नियम है—दिखावा बंद करो और उस क्षण में पूरी ईमानदारी से जियो।",
+          "किरदार कागज़ पर लिखे शब्द हैं, अभिनेता उन्हें अपनी सांसों से हकीकत बनाता है।",
+          "एक कलाकार अपनी भावनाओं से डरता नहीं, उन्हें अपनी ढाल बनाकर कैमरे का सामना करता है।",
+          "अच्छा अभिनेता वह है जो बोलना कम और सुनना पूरे शरीर से सीख लेता है।",
+"An actor does not merely recite lines; he inhabits the unsaid, giving breath to silence and truth to fiction.",
+          "To act is to lend your soul to a stranger’s story and make it undeniably real.",
+          "True performance lies not in dramatic gestures, but in the subtle truth hidden behind the eyes.",
+          "Screen acting is the art of intimacy—letting the camera eavesdrop on your honest emotions.",
+          "Characters are not played; they are discovered within the deep spaces of human experience.",
+          "Silence on stage is as powerful as speech when filled with genuine emotional resonance.",
+          "A script is only a map; the actor must embark on the journey and bring the landscape to life.",
+          "Discipline transforms raw passion into refined art that moves minds and touches hearts.",
+          "Great actors do not fear vulnerability; they wear it as their armor on camera.",
+          "रंगमंच कोई पेशा नहीं, यह मानव जीवन के विभिन्न रंगों को महसूस करने की साधना है।",
+          "डायरेक्टर जब 'Action' बोलता है, तब आपका अपना वजूद मिटकर किरदार का जन्म होता है।",
+          "अभिनय वह पुल है जो एक अनजान इंसान की कहानी को दर्शकों के दिल से जोड़ता है।",
+          "जब तक आप किरदार के दर्द को महसूस नहीं करेंगे, दर्शक आपके आंसुओं पर भरोसा नहीं करेंगे।",
+          "आवाज़ और शरीर एक अभिनेता के औज़ार हैं, इन्हें इंसानियत के हर भाव के लिए तैयार रखो।",
+          "कलाकार का अहंकार उसकी सबसे बड़ी बाधा है, सादगी ही अभिनय की असली खूबसूरती है।",
+          "हर एक सीन एक आध्यात्मिक आदान-प्रदान है—कहानी, कलाकार और दर्शक के बीच।",
+          "अभिनय में पूर्णता कोई मंज़िल नहीं, यह हर नए किरदार के साथ शुरू होने वाली एक अनंत यात्रा है।",
+          "संवाद रटना आसान है, पर संवादों के पीछे छिपी भावना को जीना ही असली हुनर है।",
+          "जब आप कैमरा भूलकर पूरी तरह से सिर्फ और सिर्फ किरदार में होते हैं, वही पल जादुई होता है।",
+          "अनुशासन ही आपकी कच्ची प्रतिभा को एक महान कला में बदलता है।",
+          "जो दर्द आपने कभी नहीं सहा, उसे भी अपनी आंखों में ले आना ही एक अभिनेता की ताकत है।",
+          "मंच की लाइटें केवल आपके शरीर को चमकाती हैं, पर आपका अभिनय दर्शक की आत्मा को छूता है।",
+          "किरदार को जज मत करो, उसे बिना किसी शर्त के अपनाओ और समझो।",
+          "सच्चा कलाकार असफलताओं से नहीं डरता, वो हर गिरावट से एक नया भाव सीखता है।",
+          "रीटेक से मत घबराओ, हर नया टेक आपकी कला को और अधिक निखारने का मौका देता है।",
+          "अभिनय सिर्फ एक कला नहीं, यह अपनी आत्मा को किसी और के वजूद के नाम कर देने का नाम है।",
+          
+          "Every scene is a spiritual exchange between the performer, the story, and the audience.",
+          "The craft demands that you listen with your entire body, not just your ears.",
+          "Authenticity in drama begins when you stop performing and start simply existing in the moment.",
+          "An actor’s body and voice are sacred instruments—keep them attuned to every nuance of human truth.",
+          "Method is not a rigid cage, but a set of wings to help you fly into uncharted emotional depths.",
+          "When the director calls action, step out of your ego and surrender fully to the character's journey."
+        ];
 
-      // --- ENGLISH ACTING QUOTES (15) ---
-      "An actor does not merely recite lines; he inhabits the unsaid, giving breath to silence and truth to fiction.",
-      "To act is to lend your soul to a stranger’s story and make it undeniably real.",
-      "True performance lies not in dramatic gestures, but in the subtle truth hidden behind the eyes.",
-      "Screen acting is the art of intimacy—letting the camera eavesdrop on your honest emotions.",
-      "Characters are not played; they are discovered within the deep spaces of human experience.",
-      "Silence on stage is as powerful as speech when filled with genuine emotional resonance.",
-      "A script is only a map; the actor must embark on the journey and bring the landscape to life.",
-      "Discipline transforms raw passion into refined art that moves minds and touches hearts.",
-      "Great actors do not fear vulnerability; they wear it as their armor on camera.",
-      "Every scene is a spiritual exchange between the performer, the story, and the audience.",
-      "The craft demands that you listen with your entire body, not just your ears.",
-      "Authenticity in drama begins when you stop performing and start simply existing in the moment.",
-      "An actor’s body and voice are sacred instruments—keep them attuned to every nuance of human truth.",
-      "Method is not a rigid cage, but a set of wings to help you fly into uncharted emotional depths.",
-      "When the director calls action, step out of your ego and surrender fully to the character's journey."
-    ];
+        let pIndex = 0;
+        setInterval(() => {
+          const box = document.getElementById('philosophyBox');
+          const text = document.getElementById('philosophyText');
+          const counter = document.getElementById('philosophyCounter');
+          if(!box || !text) return;
+          box.style.opacity = '0';
+          setTimeout(() => {
+            pIndex = (pIndex + 1) % philosophies.length;
+            text.textContent = `"${philosophies[pIndex]}"`;
+            if(counter) counter.textContent = `Philosophy ${pIndex + 1} / ${philosophies.length}`;
+            box.style.opacity = '1';
+          }, 500);
+        }, 4000);
+      });
+    </script>
 
-    let philosophyIndex = 0;
-
-    function rotatePhilosophy() {
-      const philoBox = document.getElementById('philosophyBox');
-      const philoText = document.getElementById('philosophyText');
-      const philoCounter = document.getElementById('philosophyCounter');
-
-      if (!philoBox || !philoText) return;
-
-      philoBox.style.opacity = '0';
-
-      setTimeout(() => {
-        philosophyIndex = (philosophyIndex + 1) % philosophies.length;
-        philoText.textContent = `"${philosophies[philosophyIndex]}"`;
-        
-        if (philoCounter) {
-          philoCounter.textContent = `Philosophy ${philosophyIndex + 1} / ${philosophies.length}`;
-        }
-
-        philoBox.style.opacity = '1';
-      }, 500);
-    }
-
-    // Har 4 second mein quote automatic change hoga
-    setInterval(rotatePhilosophy, 4000);
-  });
-</script>
-
-
-
-    <!-- ================= 9. SOCIAL MEDIA HUB ================= -->
+    <!-- ================= 10. SOCIAL MEDIA HUB ================= -->
     <section id="social" class="social-section py-5">
       <div class="container py-lg-4">
         <div class="section-title-wrapper text-center mb-5">
@@ -1061,236 +906,238 @@ Deepak is credited in the upcoming feature film "Mastan – The Real Story", whe
       </div>
     </section>
 
+<!-- ================= 11. DIRECT CONTACT FORM WITH AJAX THANK YOU NOTE ================= -->
+    <style>
+      .thankyou-card {
+        text-align: center;
+        padding: 30px 10px;
+        animation: fadeIn 0.5s ease-in-out;
+      }
+      .thankyou-card .check-circle {
+        width: 80px; height: 80px;
+        margin: 0 auto 25px auto;
+        border-radius: 50%;
+        background: #c8a45d;
+        display: flex; justify-content: center; align-items: center;
+        font-size: 40px; color: #111;
+        box-shadow: 0 0 25px rgba(200, 164, 93, 0.4);
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; transform: scale(0.96); }
+        to { opacity: 1; transform: scale(1); }
+      }
+    </style>
 
-<!-- ================= 10. DIRECT CONTACT FORM WITH INSTANT THANK YOU NOTE ================= -->
-<style>
-  /* Custom Styling for Instant Thank You Note inside Glass Card */
-  .thankyou-card {
-    text-align: center;
-    padding: 30px 10px;
-    animation: fadeIn 0.5s ease-in-out;
-  }
-
-  .thankyou-card .check-circle {
-    width: 80px;
-    height: 80px;
-    margin: 0 auto 25px auto;
-    border-radius: 50%;
-    background: #c8a45d;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 40px;
-    color: #111;
-    box-shadow: 0 0 25px rgba(200, 164, 93, 0.4);
-  }
-
-  .thankyou-card h3 {
-    font-size: 38px;
-    color: #ffffff;
-    margin-bottom: 15px;
-  }
-
-  .thankyou-card p {
-    font-size: 16px;
-    color: #cfcfcf;
-    line-height: 1.8;
-    margin-bottom: 30px;
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.96); }
-    to { opacity: 1; transform: scale(1); }
-  }
-</style>
-
-<section id="contact" class="contact-section py-5 bg-darker">
-  <div class="container py-lg-4">
-    
-    <!-- Section Header -->
-    <div class="section-title-wrapper text-center mb-5">
-      <span class="om-badge mb-2">ॐ Bholde</span>
-      <h2 class="display-5 text-white">Direct <span class="text-gold">Inquiries</span></h2>
-      <div class="gold-divider mx-auto"></div>
-    </div>
-
-    <div class="row g-5">
-      
-      <!-- LEFT COLUMN: Contact Details -->
-      <div class="col-lg-5">
-        <div class="contact-info-wrapper h-100 d-flex flex-column justify-content-between">
-          <div>
-            <h3 class="font-cinzel text-gold mb-4">Casting & Work Inquiries</h3>
-            <p class="text-white mb-4">Open for feature film projects, web series, commercials, and theatrical auditions across India and abroad.</p>
-            
-            <!-- Email -->
-            <div class="contact-item d-flex align-items-center mb-4">
-              <div class="contact-icon me-3"><i class="fa-solid fa-envelope text-gold fs-4"></i></div>
-              <div>
-                <span class="text-gold small d-block">Official Email</span>
-                <a href="mailto:hideepakdhatterwal@gmail.com" class="text-white text-decoration-none fw-semibold">hideepakdhatterwal@gmail.com</a>
-              </div>
-            </div>
-
-            <!-- Phone -->
-            <div class="contact-item d-flex align-items-center mb-4">
-              <div class="contact-icon me-3"><i class="fa-solid fa-phone text-gold fs-4"></i></div>
-              <div>
-                <span class="text-gold small d-block">Direct Contact</span>
-                <a href="tel:+918607326295" class="text-white text-decoration-none fw-semibold">+91 8607326295</a>
-              </div>
-            </div>
-
-            <!-- WhatsApp -->
-            <div class="contact-item d-flex align-items-center mb-4">
-              <div class="contact-icon me-3"><i class="fa-brands fa-whatsapp text-gold fs-3"></i></div>
-              <div>
-                <span class="text-gold small d-block">WhatsApp Chat</span>
-                <a href="https://wa.me/918607326295" target="_blank" class="text-white text-decoration-none fw-semibold">+91 8607326295</a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Location Badge -->
-          <div class="location-badge p-3 rounded-3 glass-card mt-3 border-gold">
-            <i class="fa-solid fa-location-dot text-gold me-2"></i>
-            <span class="text-white small">Mumbai / New Delhi, India</span>
-          </div>
+    <section id="contact" class="contact-section py-5 bg-darker">
+      <div class="container py-lg-4">
+        <div class="section-title-wrapper text-center mb-5">
+          <span class="om-badge mb-2">ॐ Bholde</span>
+          <h2 class="display-5 text-white">Direct <span class="text-gold">Inquiries</span></h2>
+          <div class="gold-divider mx-auto"></div>
         </div>
-      </div>
 
-      <!-- RIGHT COLUMN: Contact Form & Instant Thank You Note -->
-      <div class="col-lg-7">
-        <div class="glass-card p-4 p-md-5 rounded-4 border-gold">
-          
-          <!-- 1. FORM CONTAINER -->
-          <div id="formContainer">
-            <form id="contact-form" action="https://formsubmit.co/hideepakdhatterwal@gmail.com" method="POST">
-              <input type="hidden" name="_captcha" value="false" />
-              <input type="hidden" name="_template" value="table" />
-              <input type="hidden" name="_subject" value="★ New Portfolio Inquiry for Deepak Dhatterwal" />
-
-              <div class="row g-3">
-                <!-- Name Field -->
-                <div class="col-md-6">
-                  <label for="name" class="form-label text-gold small fw-bold">Your Full Name *</label>
-                  <input type="text" class="form-control form-control-dark" id="name" name="Name" required placeholder="Enter name" />
-                </div>
+        <div class="row g-5">
+          <div class="col-lg-5">
+            <div class="contact-info-wrapper h-100 d-flex flex-column justify-content-between">
+              <div>
+                <h3 class="font-cinzel text-gold mb-4">Casting & Work Inquiries</h3>
+                <p class="text-white mb-4">Open for feature film projects, web series, commercials, and theatrical auditions across India and abroad.</p>
                 
-                <!-- Email Field -->
-                <div class="col-md-6">
-                  <label for="email" class="form-label text-gold small fw-bold">Your Email Address *</label>
-                  <input type="email" class="form-control form-control-dark" id="email" name="Email" required placeholder="email@example.com" />
+                <div class="contact-item d-flex align-items-center mb-4">
+                  <div class="contact-icon me-3"><i class="fa-solid fa-envelope text-gold fs-4"></i></div>
+                  <div>
+                    <span class="text-gold small d-block">Official Email</span>
+                    <a href="mailto:hideepakdhatterwal@gmail.com" class="text-white text-decoration-none fw-semibold">hideepakdhatterwal@gmail.com</a>
+                  </div>
                 </div>
 
-                <!-- Mobile Field -->
-                <div class="col-md-6">
-                  <label for="mobile" class="form-label text-gold small fw-bold">Mobile / Phone Number *</label>
-                  <input type="tel" class="form-control form-control-dark" id="mobile" name="Mobile_Number" required placeholder="+91 9876543210" />
+                <div class="contact-item d-flex align-items-center mb-4">
+                  <div class="contact-icon me-3"><i class="fa-solid fa-phone text-gold fs-4"></i></div>
+                  <div>
+                    <span class="text-gold small d-block">Direct Contact</span>
+                    <a href="tel:+918607326295" class="text-white text-decoration-none fw-semibold">+91 8607326295</a>
+                  </div>
                 </div>
 
-                <!-- Subject Field -->
-                <div class="col-md-6">
-                  <label for="subject" class="form-label text-gold small fw-bold">Subject / Purpose</label>
-                  <input type="text" class="form-control form-control-dark" id="subject" name="Subject" placeholder="Casting / Audition" />
-                </div>
-
-                <!-- Message Field -->
-                <div class="col-12">
-                  <label for="message" class="form-label text-gold small fw-bold">Your Message *</label>
-                  <textarea class="form-control form-control-dark" id="message" name="Message" rows="4" required placeholder="Write message here..."></textarea>
-                </div>
-
-                <!-- Submit Button -->
-                <div class="col-12 mt-4">
-                  <button type="submit" id="contact-submit-btn" class="btn btn-gold w-100 py-3 text-uppercase tracking-wider">
-                    <i class="fa-solid fa-paper-plane me-2"></i> Send Message
-                  </button>
+                <div class="contact-item d-flex align-items-center mb-4">
+                  <div class="contact-icon me-3"><i class="fa-brands fa-whatsapp text-gold fs-3"></i></div>
+                  <div>
+                    <span class="text-gold small d-block">WhatsApp Chat</span>
+                    <a href="https://wa.me/918607326295" target="_blank" class="text-white text-decoration-none fw-semibold">+91 8607326295</a>
+                  </div>
                 </div>
               </div>
-            </form>
+
+              <div class="location-badge p-3 rounded-3 glass-card mt-3 border-gold">
+                <i class="fa-solid fa-location-dot text-gold me-2"></i>
+                <span class="text-white small">Mumbai / New Delhi, India</span>
+              </div>
+            </div>
           </div>
 
-          <!-- 2. INSTANT THANK YOU NOTE CONTAINER (Hidden by default) -->
-          <div id="thankYouNote" class="thankyou-card" style="display: none;">
-            <div class="check-circle">✓</div>
-            <h3 class="font-cinzel">Thank You!</h3>
-            <p>
-              Your inquiry has been received successfully.<br>
-              Thank you for contacting <strong>Deepak Dhatterwal</strong>.<br>
-              Your message is important, and you can expect a response as soon as possible.
-            </p>
-            <button type="button" class="btn btn-gold px-4 py-2 rounded-pill font-cinzel text-uppercase" onclick="showFormAgain()">
-              <i class="fa-solid fa-rotate-left me-2"></i> Send Another Message
-            </button>
+          <div class="col-lg-7">
+            <div class="glass-card p-4 p-md-5 rounded-4 border-gold">
+              <div id="formContainer">
+                <form id="contact-form" action="https://formsubmit.co/hideepakdhatterwal@gmail.com" method="POST">
+                  <input type="hidden" name="_captcha" value="false" />
+                  <input type="hidden" name="_template" value="table" />
+                  <input type="hidden" name="_subject" value="★ New Portfolio Inquiry for Deepak Dhatterwal" />
+
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label for="name" class="form-label text-gold small fw-bold">Your Full Name *</label>
+                      <input type="text" class="form-control form-control-dark" id="name" name="Name" required placeholder="Enter name" />
+                    </div>
+                    
+                    <div class="col-md-6">
+                      <label for="email" class="form-label text-gold small fw-bold">Your Email Address *</label>
+                      <input type="email" class="form-control form-control-dark" id="email" name="Email" required placeholder="email@example.com" />
+                    </div>
+
+                    <div class="col-md-6">
+                      <label for="mobile" class="form-label text-gold small fw-bold">Mobile / Phone Number *</label>
+                      <input type="tel" class="form-control form-control-dark" id="mobile" name="Mobile_Number" required placeholder="+91 9876543210" />
+                    </div>
+
+                    <div class="col-md-6">
+                      <label for="subject" class="form-label text-gold small fw-bold">Subject / Purpose</label>
+                      <input type="text" class="form-control form-control-dark" id="subject" name="Subject" placeholder="Casting / Audition" />
+                    </div>
+
+                    <div class="col-12">
+                      <label for="message" class="form-label text-gold small fw-bold">Your Message *</label>
+                      <textarea class="form-control form-control-dark" id="message" name="Message" rows="4" required placeholder="Write message here..."></textarea>
+                    </div>
+
+                    <div class="col-12 mt-4">
+                      <button type="submit" id="contact-submit-btn" class="btn btn-gold w-100 py-3 text-uppercase tracking-wider">
+                        <i class="fa-solid fa-paper-plane me-2"></i> Send Message
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+
+              <div id="thankYouNote" class="thankyou-card" style="display: none;">
+                <div class="check-circle">✓</div>
+                <h3 class="font-cinzel">Thank You!</h3>
+                <p class="text-white">
+                  Your inquiry has been received successfully.<br>
+                  Thank you for contacting <strong>Deepak Dhatterwal</strong>.<br>
+                  Your message is important, and you can expect a response as soon as possible.
+                </p>
+                <button type="button" class="btn btn-gold px-4 py-2 rounded-pill font-cinzel text-uppercase" onclick="showFormAgain()">
+                  <i class="fa-solid fa-rotate-left me-2"></i> Send Another Message
+                </button>
+              </div>
+
+            </div>
           </div>
 
         </div>
       </div>
+    </section>
 
-    </div>
-  </div>
-</section>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const contactForm = document.getElementById('contact-form');
+        const formContainer = document.getElementById('formContainer');
+        const thankYouNote = document.getElementById('thankYouNote');
+        const submitBtn = document.getElementById('contact-submit-btn');
 
-<!-- ================= JAVASCRIPT FOR AJAX SUBMISSION ================= -->
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const contactForm = document.getElementById('contact-form');
-    const formContainer = document.getElementById('formContainer');
-    const thankYouNote = document.getElementById('thankYouNote');
-    const submitBtn = document.getElementById('contact-submit-btn');
+        if (contactForm) {
+          contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const originalBtnContent = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin me-2"></i> Sending...';
+            submitBtn.disabled = true;
 
-    if (contactForm) {
-      contactForm.addEventListener('submit', function(e) {
-        e.preventDefault(); // Page reload ko rokega
+            const formData = new FormData(contactForm);
 
-        // Button state update
-        const originalBtnContent = submitBtn.innerHTML;
-        submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin me-2"></i> Sending...';
-        submitBtn.disabled = true;
-
-        const formData = new FormData(contactForm);
-
-        // FormSubmit ko background AJAX request bhejna
-        fetch(contactForm.action, {
-          method: 'POST',
-          body: formData,
-          headers: { 'Accept': 'application/json' }
-        })
-        .then(response => {
-          if (response.ok) {
-            // Form ko chupakar instant Thank You Note dikhana
-            formContainer.style.display = 'none';
-            thankYouNote.style.display = 'block';
-            contactForm.reset();
-          } else {
-            alert('Oops! Message bhejne mein koi samasya aayi. Kripya dobara koshish karein.');
-          }
-        })
-        .catch(error => {
-          alert('Network Error! Kripya apna internet connection check karein.');
-        })
-        .finally(() => {
-          submitBtn.innerHTML = originalBtnContent;
-          submitBtn.disabled = false;
-        });
+            fetch(contactForm.action, {
+              method: 'POST',
+              body: formData,
+              headers: { 'Accept': 'application/json' }
+            })
+            .then(response => {
+              if (response.ok) {
+                formContainer.style.display = 'none';
+                thankYouNote.style.display = 'block';
+                contactForm.reset();
+              } else {
+                alert('Oops! Message bhejne mein koi samasya aayi. Kripya dobara koshish karein.');
+              }
+            })
+            .catch(() => {
+              alert('Network Error! Kripya apna internet connection check karein.');
+            })
+            .finally(() => {
+              submitBtn.innerHTML = originalBtnContent;
+              submitBtn.disabled = false;
+            });
+          });
+        }
       });
-    }
-  });
 
-  // Wapas Form par aane ke liye Function
-  function showFormAgain() {
-    document.getElementById('thankYouNote').style.display = 'none';
-    document.getElementById('formContainer').style.display = 'block';
-  }
-</script>
+      function showFormAgain() {
+        document.getElementById('thankYouNote').style.display = 'none';
+        document.getElementById('formContainer').style.display = 'block';
+      }
+    </script>
 
+    <!-- ================= 12. GEETA 25 SHLOKAS BOTTOM TICKER ================= -->
+    <div class="css-marquee-wrapper bg-black border-top border-gold-subtle">
+      <div class="d-flex align-items-center">
+        <div class="px-3 flex-shrink-0 text-gold font-cinzel fw-bold small">
+          <span class="text-gold">ॐ</span> Shlokas:
+        </div>
+        <div class="css-marquee-track" id="geetaTickerTrackBottom"></div>
+      </div>
+    </div>
 
-  <!-- ================= 11. GRAND FOOTER ================= -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const shlokas25 = [
+          { sanskrit: "कर्मण्येवाधिकारस्ते मा फलेषु कदाचन।", hindi: "कर्म पर आपका अधिकार है, फल पर नहीं।" },
+          { sanskrit: "योगः कर्मसु कौशलम्।", hindi: "कर्मों में कुशलता ही योग है।" },
+          { sanskrit: "उद्धरेदात्मनात्मानं नात्मानमवसादयेत्।", hindi: "अपना उद्धार स्वयं करो, खुद को कमजोर मत समझो।" },
+          { sanskrit: "समत्वं योग उच्यते।", hindi: "सुख और दुःख में सम भाव रखना ही योग है।" },
+          { sanskrit: "संशयात्मा विनश्यति।", hindi: "संदेह करने वाले व्यक्ति का पतन होता है।" },
+          { sanskrit: "श्रद्धावाँल्लभते ज्ञानम्।", hindi: "पूर्ण श्रद्धा रखने वाला ही ज्ञान प्राप्त करता है।" },
+          { sanskrit: "अभ्यासेन तु कौन्तेय वैराग्येण च गृह्यते।", hindi: "निरंतर अभ्यास से मन वश में होता है।" },
+          { sanskrit: "क्रोधाद्भवति सम्मोहः सम्मोहात्स्मृतिविभ्रमः।", hindi: "क्रोध से बुद्धि भ्रमित होती है।" },
+          { sanskrit: "श्रेयान स्वधर्मो विगुणः परधर्मात्स्वनुष्ठितात्।", hindi: "अपना स्वधर्म श्रेष्ठ है।" },
+          { sanskrit: "आत्मैव ह्यात्मनो बंधुरात्मैव रिपुरात्मनः।", hindi: "मन ही मित्र और शत्रु है।" },
+          { sanskrit: "नैनं छिन्दन्ति शस्त्राणि नैनं दहति पावकः।", hindi: "आत्मा अमर है।" },
+          { sanskrit: "यद्यदाचरति श्रेष्ठस्तत्तदेवेतरो जनः।", hindi: "श्रेष्ठ पुरुष जैसा आचरण करते हैं, समाज अनुसरण करता है।" },
+          { sanskrit: "ज्ञानाग्निः सर्वकर्माणि भस्मसात्कुरुते तथा।", hindi: "ज्ञान अज्ञान को भस्म करता है।" },
+          { sanskrit: "युक्ताहारविहारस्य युक्ताचेष्टस्य कर्मसु।", hindi: "संतुलित जीवन ही सुख लाता है।" },
+          { sanskrit: "वासांसि जीर्णानि यथा विहाय नवानि गृह्णाति।", hindi: "परिवर्तन प्रकृति का नियम है।" },
+          { sanskrit: "दुःखेष्वनुद्विग्नमनाः सुखेषु विगतस्पृहः।", hindi: "दुख-सुख में समान रहने वाला स्थिर बुद्धि है।" },
+          { sanskrit: "न हि कश्चित्क्षणमपि जातु तिष्ठत्यकर्मकृत्।", hindi: "बिना कर्म किए कोई नहीं रह सकता।" },
+          { sanskrit: "मच्चित्तः सर्वदुर्गाणि मत्प्रसादात्तरिष्यसि।", hindi: "लक्ष्य पर ध्यान से हर बाधा पार होती है।" },
+          { sanskrit: "पत्रं पुष्पं फलं तोयं यो मे भक्त्या प्रयच्छति।", hindi: "सच्चा भाव ही सबसे बड़ा है।" },
+          { sanskrit: "तस्मादसक्तः सतत कार्यं कर्म समाचर।", hindi: "मोह त्यागकर कर्तव्य करो।" },
+          { sanskrit: "अज्ञानेनावृतं ज्ञानं तेन मुह्यन्ति जन्तवः।", hindi: "अज्ञान से ज्ञान ढका रहता है।" },
+          { sanskrit: "मय्यर्पितमनोबुद्धिर्यो मद्भक्तः स मे प्रियः।", hindi: "अहंकारहीन कर्म ही प्रार्थना है।" },
+          { sanskrit: "विद्याविनयसंपन्ने ब्राह्मणे गवि हस्तिनि।", hindi: "सच्चा ज्ञानी सभी को समान देखता है।" },
+          { sanskrit: "सर्वधर्मान्परित्यज्य मामेकं शरणं व्रज।", hindi: "ईश्वर में पूर्ण समर्पण रखो।" },
+          { sanskrit: "शांतियोगः समाधिस्थो निर्द्वंद्वो नित्यसत्त्वस्थः।", hindi: "द्वंद्वमुक्त व्यक्ति ही शांति पाता है।" }
+        ];
+
+        const track = document.getElementById('geetaTickerTrackBottom');
+        if(track) {
+          const html = shlokas25.map(s => `<span class="text-gold-light font-cinzel small">ॐ <span class="text-white">${s.sanskrit}</span> — ${s.hindi} &nbsp;&nbsp; ❙ &nbsp;&nbsp;</span>`).join('');
+          track.innerHTML = html + html;
+        }
+      });
+    </script>
+  </main>
+
+  <!-- ================= 13. GRAND FOOTER ================= -->
   <footer class="footer-section bg-black text-white pt-5 pb-4 border-top border-gold-subtle">
     <div class="container">
       <div class="row g-4 pb-4 border-bottom border-gold-subtle">
-        
         <div class="col-lg-4 col-md-6">
           <a class="navbar-brand font-cinzel text-gold fw-bold fs-4 d-block mb-3" href="#hero">
             <span class="om-badge me-2">ॐ Bholde</span> DEEPAK DHATTERWAL
@@ -1298,9 +1145,7 @@ Deepak is credited in the upcoming feature film "Mastan – The Real Story", whe
           <p class="text-white small leading-relaxed mb-3">
             Indian Actor, Cinema & Stage Performer dedicated to authentic storytelling, method performance, and psychological depth.
           </p>
-          <p class="text-gold font-cinzel small mb-0">
-            "कर्मण्येवाधिकारस्ते मा फलेषु कदाचन।"
-          </p>
+          <p class="text-gold font-cinzel small mb-0">"कर्मण्येवाधिकारस्ते मा फलेषु कदाचन।"</p>
         </div>
 
         <div class="col-lg-3 col-md-6">
@@ -1335,7 +1180,6 @@ Deepak is credited in the upcoming feature film "Mastan – The Real Story", whe
             <a href="https://youtube.com/@deepakdhatterwal6268?si=pX-TGyWIsqbYImtB" target="_blank" class="text-white text-decoration-none hover-gold"><i class="fa-brands fa-youtube text-gold me-2"></i>YouTube</a>
           </div>
         </div>
-
       </div>
 
       <div class="d-flex flex-column flex-md-row align-items-center justify-content-between pt-4 small">
@@ -1351,13 +1195,12 @@ Deepak is credited in the upcoming feature film "Mastan – The Real Story", whe
     </div>
   </footer>
 
-  <!-- External JavaScript Files -->
+  <!-- Bootstrap & AOS JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
-  <!-- Custom JavaScript Logic -->
+  <!-- Global App Init Script -->
   <script>
-    // 20 ENGLISH ACTING & DAILY LIFE MOTIVATIONAL QUOTES ARRAY
     const actingQuotes = [
       "Act with conviction, live with passion, and create art with complete honesty.",
       "An actor’s greatest strength is emotional truth in a world of illusion.",
@@ -1372,8 +1215,7 @@ Deepak is credited in the upcoming feature film "Mastan – The Real Story", whe
       "The camera reads your mind; ensure your heart is fully invested in the line.",
       "Living truthfully under imaginary circumstances is the highest form of acting art.",
       "Focus on process over applause; authentic effort always resonates with viewers.",
-         
- "Overcome stage fear by transforming nervous energy into creative power.",
+      "Overcome stage fear by transforming nervous energy into creative power.",
       "Your unique voice and story are your biggest assets in cinema.",
       "Patience and perseverance turn audition struggles into iconic roles.",
       "Master your craft so well that art appears effortless to the audience.",
@@ -1384,320 +1226,32 @@ Deepak is credited in the upcoming feature film "Mastan – The Real Story", whe
     let currentQuoteIndex = 0;
 
     document.addEventListener('DOMContentLoaded', () => {
-      // 1. Dynamic Year Update
       const yearSpan = document.getElementById('current-year');
       if (yearSpan) yearSpan.textContent = new Date().getFullYear();
 
-      // 2. 5-Second Quote Auto-Rotator Logic
       const quoteTextElem = document.getElementById('actingQuoteText');
       const counterElem = document.getElementById('quoteCounter');
       const boxElem = document.getElementById('quoteRotatorBox');
 
       function rotateQuote() {
         if (!quoteTextElem || !boxElem) return;
-        
-        // Fade out transition
-        boxElem.classList.add('fade-out');
-
+        boxElem.style.opacity = '0';
         setTimeout(() => {
           currentQuoteIndex = (currentQuoteIndex + 1) % actingQuotes.length;
           quoteTextElem.textContent = `"${actingQuotes[currentQuoteIndex]}"`;
           if (counterElem) {
             counterElem.textContent = `Quote ${currentQuoteIndex + 1} / ${actingQuotes.length}`;
           }
-          // Fade in transition
-          boxElem.classList.remove('fade-out');
-          boxElem.classList.add('fade-in');
-        }, 500);
+          boxElem.style.opacity = '1';
+        }, 300);
       }
 
-      // Start 5-Second Interval Rotator
       setInterval(rotateQuote, 5000);
 
-      // 3. Marquee Pause on Mouse Hover
-      const marquee = document.querySelector('marquee');
-      if (marquee) {
-        marquee.addEventListener('mouseover', () => marquee.stop());
-        marquee.addEventListener('mouseout', () => marquee.start());
-      }
-
-      // 4. Form Submit Loader Feedback
-      const contactForm = document.getElementById('contact-form');
-      const submitBtn = document.getElementById('contact-submit-btn');
-      if (contactForm && submitBtn) {
-        contactForm.addEventListener('submit', () => {
-          submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin me-2"></i> Sending Message...';
-          submitBtn.disabled = true;
-        });
-      }
-
-      // 5. Initialize AOS Safely
       if (typeof AOS !== 'undefined') {
-        AOS.init({
-          duration: 700,
-          once: true,
-          offset: 40
-        });
+        AOS.init({ duration: 700, once: true, offset: 40 });
       }
     });
   </script>
-
-<!-- Success Notification Pop-up Modal -->
-<div class="modal fade" id="successModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content glass-card border-gold text-center p-4">
-      <div class="modal-body">
-        <i class="fa-solid fa-circle-check text-gold display-3 mb-3"></i>
-        <h3 class="font-cinzel text-white">Message Sent Successfully!</h3>
-        <p class="text-white mt-2">Aapka message सफलतापूर्वक bhej diya gaya hai. Hum jald hi aapse sampark karenge.</p>
-        <button type="button" class="btn btn-gold px-4 mt-3 rounded-pill" data-bs-dismiss="modal">OK</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ================= 25 GEETA SHLOKAS & HINDI QUOTES TICKER ================= -->
-<style>
-  .geeta-ticker-wrapper {
-    background-color: #0b0c10;
-    border-top: 1px solid rgba(212, 175, 55, 0.35);
-    border-bottom: 1px solid rgba(212, 175, 55, 0.35);
-    overflow: hidden;
-    white-space: nowrap;
-    position: relative;
-    padding: 16px 0;
-    box-shadow: 0 0 25px rgba(0, 0, 0, 0.8);
-  }
-  
-  /* Gradient Side Masks for Smooth Edge Dissolve */
-  .geeta-ticker-wrapper::before,
-  .geeta-ticker-wrapper::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    width: 90px;
-    height: 100%;
-    z-index: 2;
-    pointer-events: none;
-  }
-  .geeta-ticker-wrapper::before {
-    left: 0;
-    background: linear-gradient(to right, #0b0c10, transparent);
-  }
-  .geeta-ticker-wrapper::after {
-    right: 0;
-    background: linear-gradient(to left, #0b0c10, transparent);
-  }
-
-  /* Right to Left Continuous Track */
-    .geeta-ticker-track {
-    display: inline-flex;
-    align-items: center;
-    gap: 50px;
-    animation: geetaScrollRightToLeft 280s linear infinite; /* 110s se 280s kar diya gaya hai */
-  
-
-  }
-
-  /* Hover to Pause Feature */
-  .geeta-ticker-wrapper:hover .geeta-ticker-track {
-    animation-play-state: paused;
-  }
-
-  /* Single Item Styling */
-  .geeta-item {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    font-family: 'Cinzel', serif, sans-serif;
-    font-size: 0.95rem;
-  }
-
-  .geeta-om-badge {
-    color: #d4af37;
-    font-weight: bold;
-    font-size: 1.1rem;
-    background: rgba(212, 175, 55, 0.12);
-    border: 1px solid rgba(212, 175, 55, 0.5);
-    padding: 3px 10px;
-    border-radius: 20px;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  .sanskrit-text {
-    color: #ffd700;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-  }
-
-  .divider-symbol {
-    color: #d4af37;
-    opacity: 0.6;
-  }
-
-  .hindi-text {
-    color: #e6e6e6;
-    font-weight: 400;
-  }
-
-  .author-tag {
-    color: #d4af37;
-    font-size: 0.85rem;
-    font-weight: bold;
-    margin-left: 10px;
-    letter-spacing: 1px;
-  }
-
-  /* Keyframe for Smooth Continuous Right-to-Left Loop */
-  @keyframes geetaScrollRightToLeft {
-    0% {
-      transform: translateX(0%);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
-  }
-</style>
-
-<div class="geeta-ticker-wrapper">
-  <div class="geeta-ticker-track" id="geetaTickerTrack">
-    <!-- Content injected dynamically via JavaScript -->
-  </div>
-</div>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // 25 REALISTIC BHAGAVAD GITA SHLOKAS + HINDI TRANSLATIONS
-    const geetaData = [
-      {
-        sanskrit: "कर्मण्येवाधिकारस्ते मा फलेषु कदाचन।",
-        hindi: "कर्म पर आपका अधिकार है, फल पर नहीं। परिणाम की चिंता छोड़कर प्रयास पर ध्यान दो।"
-      },
-      {
-        sanskrit: "योगः कर्मसु कौशलम्।",
-        hindi: "कर्मों में कुशलता ही योग है। अपनी कला और काम को पूरी दक्षता से करना ही सच्ची पूजा है।"
-      },
-      {
-        sanskrit: "उद्धरेदात्मनात्मानं नात्मानमवसादयेत्।",
-        hindi: "अपना उद्धार स्वयं करो, खुद को कमजोर मत समझो। आप ही अपने सबसे बड़े मित्र और शत्रु हैं।"
-      },
-      {
-        sanskrit: "समत्वं योग उच्यते।",
-        hindi: "सफलता और विफलता, सुख और दुःख में सम भाव रखना ही वास्तविक योग है।"
-      },
-      {
-        sanskrit: "संशयात्मा विनश्यति।",
-        hindi: "संदेह करने वाले व्यक्ति को न शांति मिलती है न सफलता। विश्वास ही सबसे बड़ी शक्ति है।"
-      },
-      {
-        sanskrit: "श्रद्धावाँल्लभते ज्ञानम्।",
-        hindi: "पूर्ण श्रद्धा और समर्पण रखने वाला ही अपनी कला का वास्तविक ज्ञान प्राप्त करता है।"
-      },
-      {
-        sanskrit: "अभ्यासेन तु कौन्तेय वैराग्येण च गृह्यते।",
-        hindi: "निरंतर अभ्यास और सजगता से ही चंचल मन को वश में किया जा सकता है।"
-      },
-      {
-        sanskrit: "क्रोधाद्भवति सम्मोहः सम्मोहात्स्मृतिविभ्रमः।",
-        hindi: "क्रोध से भ्रम पैदा होता है और भ्रम से बुद्धि का नाश। हर परिस्थिति में मन शांत रखें।"
-      },
-      {
-        sanskrit: "श्रेयान स्वधर्मो विगुणः परधर्मात्स्वनुष्ठितात्।",
-        hindi: "दूसरों की नकल करने से बेहतर है अपनी कला और स्वधर्म का ईमानदारी से पालन करना।"
-      },
-      {
-        sanskrit: "आत्मैव ह्यात्मनो बंधुरात्मैव रिपुरात्मनः।",
-        hindi: "आपका मन ही आपका सबसे अच्छा मित्र है और अनुशासित न हो तो वही आपका सबसे बड़ा शत्रु।"
-      },
-      {
-        sanskrit: "नैनं छिन्दन्ति शस्त्राणि नैनं दहति पावकः।",
-        hindi: "आपकी आंतरिक शक्ति और सत्य अजर-अमर हैं, किसी भी बाहरी डर से घबराएं नहीं।"
-      },
-      {
-        sanskrit: "यद्यदाचरति श्रेष्ठस्तत्तदेवेतरो जनः।",
-        hindi: "श्रेष्ठ पुरुष जैसा आचरण करते हैं, समाज उसी का अनुसरण करता है। अपने काम में आदर्श बनें।"
-      },
-      {
-        sanskrit: "ज्ञानाग्निः सर्वकर्माणि भस्मसात्कुरुते तथा।",
-        hindi: "सच्चा ज्ञान और समझ इंसान के सारे संशय और अज्ञान के अंधकार को भस्म कर देती है।"
-      },
-      {
-        sanskrit: "युक्ताहारविहारस्य युक्ताचेष्टस्य कर्मसु।",
-        hindi: "खान-पान, विचार और मेहनत में संतुलन ही जीवन में मानसिक शांति और सफलता लाता है।"
-      },
-      {
-        sanskrit: "वासांसि जीर्णानि यथा विहाय नवानि गृह्णाति।",
-        hindi: "परिवर्तन ही संसार का नियम है। पुरानी आदतों को छोड़ नए बदलावों को अपनाने से मत डरें।"
-      },
-      {
-        sanskrit: "दुःखेष्वनुद्विग्नमनाः सुखेषु विगतस्पृहः।",
-        hindi: "जो दुख में व्याकुल नहीं होता और सुख में अंधा नहीं होता, वही स्थिर बुद्धि इंसान है।"
-      },
-      {
-        sanskrit: "न हि कश्चित्क्षणमपि जातु तिष्ठत्यकर्मकृत्।",
-        hindi: "कोई भी इंसान एक पल भी बिना कर्म किए नहीं रह सकता। निरंतर सक्रिय रहना ही जीवन है।"
-      },
-      {
-        sanskrit: "मच्चित्तः सर्वदुर्गाणि मत्प्रसादात्तरिष्यसि।",
-        hindi: "यदि आपका ध्यान लक्ष्य पर केंद्रित है, तो आप हर कठिनाई और बाधा को पार कर लेंगे।"
-      },
-      {
-        sanskrit: "पत्रं पुष्पं फलं तोयं यो मे भक्त्या प्रयच्छति।",
-        hindi: "भाव और नीयत सच्ची हो तो छोटा सा प्रयास भी जीवन में महान परिणाम देता है।"
-      },
-      {
-        sanskrit: "तस्मादसक्तः सतत कार्यं कर्म समाचर।",
-        hindi: "परिणाम से मोह हटाकर लगातार अपने कर्तव्य और कला का निष्ठापूर्वक पालन करते रहें।"
-      },
-      {
-        sanskrit: "अज्ञानेनावृतं ज्ञानं तेन मुह्यन्ति जन्तवः।",
-        hindi: "अज्ञान के आवरण से ज्ञान ढका रहता है। निरंतर सीखने की इच्छा से ही अज्ञान मिटता है।"
-      },
-      {
-        sanskrit: "मय्यर्पितमनोबुद्धिर्यो मद्भक्तः स मे प्रियः।",
-        hindi: "जब आप बिना किसी अहंकार के काम करते हैं, तब आपका हर प्रयास एक प्रार्थना बन जाता है।"
-      },
-      {
-        sanskrit: "विद्याविनयसंपन्ने ब्राह्मणे गवि हस्तिनि।",
-        hindi: "सच्चा ज्ञानी वही है जो हर जीव को सम्मान और निष्पक्ष भाव से देखता है।"
-      },
-      {
-        sanskrit: "सर्वधर्मान्परित्यज्य मामेकं शरणं व्रज।",
-        hindi: "सभी व्यर्थ चिंताओं को छोड़कर अपनी अंतरात्मा और कर्म के प्रति पूरी तरह समर्पित हो जाओ।"
-      },
-      {
-        sanskrit: "शांतियोगः समाधिस्थो निर्द्वंद्वो नित्यसत्त्वस्थः।",
-        hindi: "जो तुलनाओं और द्वंद्वों से मुक्त है, वही वास्तविक शांति और सफलता का अनुभव करता है।"
-      }
-    ];
-
-    const track = document.getElementById('geetaTickerTrack');
-    if (!track) return;
-
-    // Generate Item HTML
-    function buildTickerHTML() {
-      return geetaData.map((item, index) => `
-        <div class="geeta-item">
-          <span class="geeta-om-badge">ॐ #${index + 1}</span>
-          <span class="sanskrit-text">${item.sanskrit}</span>
-          <span class="divider-symbol">❙</span>
-          <span class="hindi-text">"${item.hindi}"</span>
-          <span class="author-tag">— Deepak Dhatterwal 卐</span>
-        </div>
-      `).join('');
-    }
-
-    // Double the items for seamless infinite right-to-left loop
-    track.innerHTML = buildTickerHTML() + buildTickerHTML();
-  });
-</script>
-
 </body>
 </html>
-
-
-
-
-
