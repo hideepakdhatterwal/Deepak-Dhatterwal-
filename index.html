@@ -1087,12 +1087,12 @@
     </script>
 
     <!-- ================= 12. GEETA 25 SHLOKAS BOTTOM TICKER ================= -->
-    <div class="css-marquee-wrapper bg-black border-top border-gold-subtle">
-      <div class="d-flex align-items-center">
-        <div class="px-3 flex-shrink-0 text-gold font-cinzel fw-bold small">
-          <span class="text-gold">ॐ</span> Shlokas:
+    <div class="css-marquee-wrapper fix-ticker border-top border-gold-subtle" style="overflow: hidden; position: relative; width: 100%; background-color: #0b0b0b !important;">
+      <div class="d-flex align-items-center" style="background-color: #0b0b0b !important;">
+        <div class="px-3 flex-shrink-0 font-cinzel fw-bold small" style="color: #ffd700; opacity: 1 !important; z-index: 5; background-color: #0b0b0b !important;">
+          <span style="color: #ffd700;">ॐ</span> Shlokas:
         </div>
-        <div class="css-marquee-track" id="geetaTickerTrackBottom"></div>
+        <div class="css-marquee-track" id="geetaTickerTrackBottom" style="animation-duration: 45s; display: flex; white-space: nowrap; background-color: #0b0b0b !important;"></div>
       </div>
     </div>
 
@@ -1128,12 +1128,13 @@
 
         const track = document.getElementById('geetaTickerTrackBottom');
         if(track) {
-          const html = shlokas25.map(s => `<span class="text-gold-light font-cinzel small">ॐ <span class="text-white">${s.sanskrit}</span> — ${s.hindi} &nbsp;&nbsp; ❙ &nbsp;&nbsp;</span>`).join('');
+          const html = shlokas25.map(s => `<span class="font-cinzel small fw-semibold mx-3" style="color: #ffecb3; opacity: 1 !important; display: inline-block; background-color: #0b0b0b;"><span style="color: #ffd700;">ॐ</span> <span style="color: #ffffff;">${s.sanskrit}</span> — ${s.hindi} &nbsp;&nbsp; ❙ &nbsp;&nbsp;</span>`).join('');
           track.innerHTML = html + html;
         }
       });
     </script>
   </main>
+
 
   <!-- ================= 13. GRAND FOOTER ================= -->
   <footer class="footer-section bg-black text-white pt-5 pb-4 border-top border-gold-subtle">
