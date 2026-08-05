@@ -296,14 +296,14 @@
       });
     });
   </script>
-
-  <!-- ================= 2. BHAGAVAD GITA FLOATING MARQUEE TICKER (20 HINDI QUOTES) ================= -->
+<!-- ================= 2. BHAGAVAD GITA FLOATING MARQUEE TICKER (20 HINDI QUOTES) ================= -->
   <div id="geeta-ticker" class="css-marquee-wrapper fix-ticker border-bottom border-gold-subtle">
     <div class="d-flex align-items-center">
       <div class="px-3 flex-shrink-0">
-        <span class="om-badge text-nowrap small">ॐ Bholde | श्रीमद्भगवद्गीता</span>
+        <span class="om-badge text-nowrap small fw-bold" style="color: #ffd700; opacity: 1 !important;">ॐ Bholde | श्रीमद्भगवद्गीता</span>
       </div>
-      <div class="css-marquee-track" id="mainGeetaTickerTrack">
+      <!-- style tag se animation speed slow (35s) ki gayi hai -->
+      <div class="css-marquee-track" id="mainGeetaTickerTrack" style="animation-duration: 35s;">
         <!-- Injected via Script -->
       </div>
     </div>
@@ -335,7 +335,8 @@
       ];
       const track = document.getElementById('mainGeetaTickerTrack');
       if (track) {
-        const html = quotes20.map(q => `<span class="text-gold-light font-cinzel small">✨ ${q} &nbsp;&nbsp; ॐ &nbsp;&nbsp;</span>`).join('');
+        // Transparency hatane ke liye style mein opacity: 1 aur solid color use kiya gaya hai
+        const html = quotes20.map(q => `<span class="font-cinzel small fw-semibold" style="color: #ffecb3; opacity: 1 !important;">✨ ${q} &nbsp;&nbsp; ॐ &nbsp;&nbsp;</span>`).join('');
         track.innerHTML = html + html;
       }
     });
@@ -345,10 +346,11 @@
     <!-- ================= ALL-TIME FAVORITE FILMS TICKER ================= -->
     <div class="css-marquee-wrapper bg-black">
       <div class="d-flex align-items-center">
-        <div class="px-3 flex-shrink-0 text-gold font-cinzel fw-bold small">
-          <span class="text-gold">ॐ</span> Masterpieces (1990–2026):
+        <div class="px-3 flex-shrink-0 font-cinzel fw-bold small" style="color: #ffd700; opacity: 1 !important;">
+          <span>ॐ</span> Masterpieces (1990–2026):
         </div>
-        <div class="css-marquee-track" id="favMoviesTrack"></div>
+        <!-- style tag se animation speed slow (35s) ki gayi hai -->
+        <div class="css-marquee-track" id="favMoviesTrack" style="animation-duration: 35s;"></div>
       </div>
     </div>
 
@@ -362,12 +364,14 @@
         ];
         const track = document.getElementById('favMoviesTrack');
         if(track) {
-          const content = movies.map(m => `<span class="badge bg-gold-subtle text-gold border border-gold px-3 py-1 font-cinzel">${m}</span>`).join('');
+          // Transparency hatane ke liye background aur text ki opacity ko 1 kiya gaya hai
+          const content = movies.map(m => `<span class="badge font-cinzel fw-bold px-3 py-1" style="background-color: rgba(212, 175, 55, 0.2); color: #ffd700; border: 1px solid #ffd700; opacity: 1 !important;">${m}</span>`).join('');
           track.innerHTML = content + content;
         }
       });
     </script>
 
+ 
     <!-- ================= 3. HERO SECTION ================= -->
     <section id="hero" class="hero-section min-vh-100 d-flex align-items-center position-relative pt-4">
       <div class="container position-relative z-2">
