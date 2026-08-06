@@ -1,0 +1,19 @@
+backend:
+  name: git-gateway
+  branch: main # आपकी GitHub ब्रांच का नाम
+
+media_folder: "images/blogs" # फोटो कहाँ सेव होगी
+public_folder: "/images/blogs"
+
+collections:
+  - name: "blog"
+    label: "Blogs"
+    folder: "blogs" # ब्लॉग्स इस फोल्डर में सेव होंगे
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Title / शीर्षक", name: "title", widget: "string"}
+      - {label: "Publish Date / तारीख", name: "date", widget: "datetime"}
+      - {label: "Cover Photo / फोटो", name: "image", widget: "image", required: false}
+      - {label: "Short Summary / छोटा विवरण", name: "description", widget: "text"}
+      - {label: "Blog Content / मुख्य कहानी", name: "body", widget: "markdown"}
