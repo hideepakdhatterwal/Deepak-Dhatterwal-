@@ -29,337 +29,68 @@
   <!-- CUSTOM STYLESHEET (STRICT GOLD & WHITE THEME + RESPONSIVE MOBILE FIXES) -->
   <style>
 
+
+
 <style>
-/* ======================================================
-   DEEPAK DHATTERWAL - ULTRA PREMIUM & ENGAGING WHITE THEME
-   Pure White (#FFFFFF) & Deep Black (#000000) High-Contrast Design
-====================================================== */
+/* --- ULTRA LIGHTWEIGHT WHITE THEME OVERRIDE --- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
-
-/* Global Reset & Strict Variables */
-:root {
-    --bg-pure: #FFFFFF !important;
-    --bg-soft: #F9FAFB !important;
-    --text-dark: #000000 !important;
-    --text-sub: #333333 !important;
-    --accent-orange: #D8532B !important;
-    --accent-gold: #C5A059 !important;
-    --border-light: #E5E7EB !important;
-    --border-dark: #000000 !important;
-    --shadow-sm: 0 4px 15px rgba(0,0,0,0.04);
-    --shadow-lg: 0 12px 35px rgba(0,0,0,0.08);
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box !important;
-    -webkit-tap-highlight-color: transparent;
-}
-
-html, body {
+/* Pure White Background & Deep Black Text */
+html, body, section, div, main, article, nav, header {
     background-color: #FFFFFF !important;
     color: #000000 !important;
-    font-family: 'Plus Jakarta Sans', sans-serif !important;
-    line-height: 1.8;
-    scroll-behavior: smooth;
-    overflow-x: hidden;
+    font-family: 'Poppins', sans-serif;
 }
 
-/* Force All Main Containers to White Background */
-div, section, article, main, header, nav, footer {
-    background-color: transparent;
+/* Headings */
+h1, h2, h3, h4, .section-title {
     color: #000000 !important;
+    font-family: 'Cormorant Garamond', serif;
 }
 
-section {
-    background-color: #FFFFFF !important;
-    padding: 90px 7% !important;
-    position: relative;
+/* Fixed White Navbar */
+#header {
+    position: fixed; top: 0; left: 0; width: 100%;
+    background: rgba(255, 255, 255, 0.98) !important;
+    border-bottom: 1px solid #E5E7EB; z-index: 1000; padding: 15px 6%;
 }
 
-section:nth-child(even) {
-    background-color: #F9FAFB !important;
-}
-
-/* Headings & Typography */
-h1, h2, h3, h4, h5, h6, .section-title {
-    color: #000000 !important;
-    font-family: 'Cormorant Garamond', serif !important;
-    font-weight: 700 !important;
-    letter-spacing: -0.5px;
-}
-
-.section-title {
-    font-size: 3rem !important;
-    text-align: center;
-    margin-bottom: 50px !important;
-    position: relative;
-    display: table;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.section-title::after {
-    content: '';
-    display: block;
-    width: 60px;
-    height: 3px;
-    background: var(--accent-orange);
-    margin: 12px auto 0 auto;
-    border-radius: 2px;
-}
-
-p, span, li, a, label {
-    color: #000000 !important;
-    font-size: 1.02rem;
-}
-
-/* 1. HEADER & NAVIGATION */
-#header, navbar, header {
-    position: fixed !important;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 18px 7% !important;
-    background: rgba(255, 255, 255, 0.96) !important;
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border-light) !important;
-    z-index: 9999;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo {
-    font-family: 'Cormorant Garamond', serif !important;
-    font-size: 1.8rem !important;
-    font-weight: 700 !important;
-    color: #000000 !important;
-    text-decoration: none;
-    letter-spacing: 1px;
-}
-
-.nav-menu {
-    display: flex;
-    gap: 32px;
-    list-style: none;
-}
-
-.nav-menu a {
-    font-size: 0.85rem !important;
-    font-weight: 600 !important;
-    color: #000000 !important;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-.nav-menu a:hover {
-    color: var(--accent-orange) !important;
-}
-
-/* 2. GEETA TICKER SLIDER */
-.geeta-ticker-wrapper, .ticker-wrapper {
-    width: 100%;
-    overflow: hidden;
-    background: #000000 !important;
-    color: #FFFFFF !important;
-    padding: 14px 0;
-    margin-top: 70px;
-    position: relative;
-}
-
-.geeta-ticker-content, .ticker-content {
-    display: inline-block;
-    white-space: nowrap;
-    padding-left: 100%;
-    animation: tickerMove 85s linear infinite;
-    font-size: 0.95rem;
-    color: #FFFFFF !important;
-    font-weight: 500;
-}
-
-.gold-om {
-    color: #FFD700 !important;
-    margin: 0 12px;
-    font-size: 1.1rem;
-}
-
-@keyframes tickerMove {
-    0% { transform: translateX(0%); }
-    100% { transform: translateX(-100%); }
-}
-
-/* 3. ENGAGING CARDS & QUOTES */
-.quote-box, .quote-card, .card, .info-box, .contact-wrapper {
+/* Clean Cards & Boxes */
+.quote-box, .portfolio-item, .contact-wrapper, .card, .info-box {
     background: #FFFFFF !important;
-    border: 1px solid var(--border-light) !important;
-    border-radius: 16px !important;
-    padding: 38px 32px !important;
-    box-shadow: var(--shadow-sm) !important;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
-    position: relative;
-    overflow: hidden;
+    border: 1px solid #E5E7EB !important;
+    border-radius: 12px; padding: 25px; margin-bottom: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: 0.3s;
 }
 
-.quote-box:hover, .quote-card:hover, .card:hover {
-    transform: translateY(-8px) !important;
-    border-color: #000000 !important;
-    box-shadow: var(--shadow-lg) !important;
+.quote-box:hover, .portfolio-item:hover {
+    border-color: #000000 !important; transform: translateY(-4px);
 }
 
-.quote-badge, .badge {
-    display: inline-block;
-    background: #000000 !important;
-    color: #FFFFFF !important;
-    padding: 6px 16px;
-    border-radius: 30px;
-    font-size: 0.75rem !important;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1.2px;
-    margin-bottom: 20px;
-}
-
-.quote-text {
-    font-family: 'Cormorant Garamond', serif !important;
-    font-size: 1.5rem !important;
-    color: #000000 !important;
-    font-style: italic;
-    line-height: 1.6;
-}
-
-/* 4. GALLERY & STILLS GRID */
-.portfolio-grid, .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-    gap: 30px;
-    max-width: 1250px;
-    margin: 0 auto;
-}
-
-.portfolio-item, .gallery-card {
-    background: #FFFFFF !important;
-    border: 1px solid var(--border-light) !important;
-    border-radius: 16px !important;
-    overflow: hidden;
-    aspect-ratio: 1 / 1;
-    position: relative;
-    box-shadow: var(--shadow-sm);
-    transition: all 0.4s ease;
-}
-
-.portfolio-item img, .gallery-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.portfolio-item:hover, .gallery-card:hover {
-    transform: translateY(-6px);
-    border-color: #000000 !important;
-    box-shadow: var(--shadow-lg);
-}
-
-.portfolio-item:hover img, .gallery-card:hover img {
-    transform: scale(1.08);
-}
-
-/* 5. ENGAGING BUTTONS */
-.btn, button, .submit-btn, a.btn {
-    display: inline-flex !important;
-    align-items: center;
-    justify-content: center;
-    padding: 16px 36px !important;
-    background: #000000 !important;
-    color: #FFFFFF !important;
-    border: 2px solid #000000 !important;
-    border-radius: 10px !important;
-    font-size: 0.9rem !important;
-    font-weight: 700 !important;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    cursor: pointer;
-    text-decoration: none;
-    transition: all 0.3s ease !important;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+/* High Contrast Buttons */
+.btn, button, .submit-btn {
+    background: #000000 !important; color: #FFFFFF !important;
+    padding: 12px 28px; border-radius: 8px; border: none;
+    font-weight: 600; cursor: pointer; transition: 0.3s;
 }
 
 .btn:hover, button:hover, .submit-btn:hover {
-    background: var(--accent-orange) !important;
-    border-color: var(--accent-orange) !important;
-    color: #FFFFFF !important;
-    transform: translateY(-3px) !important;
-    box-shadow: 0 8px 25px rgba(216, 83, 43, 0.3) !important;
+    background: #D8532B !important;
 }
 
-/* 6. FORM INPUTS */
+/* Input Fields */
 .form-group input, .form-group textarea {
-    width: 100%;
-    padding: 16px 20px !important;
-    background: #F9FAFB !important;
-    border: 1.5px solid var(--border-light) !important;
-    border-radius: 10px !important;
-    color: #000000 !important;
-    font-size: 0.95rem;
-    outline: none;
-    transition: all 0.3s ease;
+    width: 100%; padding: 12px; background: #F9FAFB !important;
+    border: 1px solid #D1D5DB !important; color: #000000 !important;
+    border-radius: 8px; margin-bottom: 12px; outline: none;
 }
 
-.form-group input:focus, .form-group textarea:focus {
-    background: #FFFFFF !important;
-    border-color: #000000 !important;
-    box-shadow: 0 0 0 4px rgba(0,0,0,0.06);
+/* Dark Ticker & Footer Contrast */
+.geeta-ticker-wrapper, footer {
+    background: #111111 !important; color: #FFFFFF !important;
 }
-
-/* 7. FOOTER & BACK TO TOP */
-footer, .footer {
-    background: #000000 !important;
-    color: #FFFFFF !important;
-    text-align: center;
-    padding: 40px 20px !important;
-    font-size: 0.88rem;
-}
-
-footer p, .footer p {
-    color: #FFFFFF !important;
-}
-
-#backToTop {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 50px;
-    height: 50px;
-    background: #000000 !important;
-    color: #FFFFFF !important;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 999;
-    box-shadow: var(--shadow-lg);
-    transition: all 0.3s ease;
-}
-
-#backToTop:hover {
-    background: var(--accent-orange) !important;
-    transform: translateY(-4px);
-}
-
-/* Responsive Mobile Rules */
-@media (max-width: 768px) {
-    #header { padding: 14px 5% !important; }
-    .section-title { font-size: 2.3rem !important; }
-    section { padding: 60px 5% !important; }
-}
+.geeta-ticker-content, footer p { color: #FFFFFF !important; }
 </style>
-
 
 
 
