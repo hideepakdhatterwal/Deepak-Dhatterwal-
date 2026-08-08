@@ -1,38 +1,41 @@
 /*======================================================
-  DEEPAK DHATTERWAL - OFFICIAL ACTOR WEBSITE
-  High-End Cinematic Dark & Gold Theme (Complete Consolidated CSS)
+  DEEPAK DHATTERWAL - OFFICIAL WEBSITE
+  Hector Beverages / Paper Boat Inspired Organic Theme
 ======================================================*/
 
 /* ==========================================
    1. GOOGLE FONTS & GLOBAL VARIABLES
 ========================================== */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,500&family=Poppins:wght@300;400;500;600;700&display=swap');
 
 :root {
-    /* Color Palette */
-    --primary-gold: #c8a45d;
-    --gold-light: #e2c07d;
-    --gold-bright: #ffd700;
-    --gold-glow: rgba(200, 164, 93, 0.35);
+    /* Hector Beverages Inspired Earthy Palette */
+    --primary-accent: #D8532B;      /* Paperboat Terracotta Orange */
+    --primary-hover: #C0441E;
+    --secondary-accent: #2D5A43;    /* Natural Earthy Green */
+    --accent-yellow: #E3A835;       /* Warm Mustard / Gold */
     
-    --bg-dark: #080808;
-    --bg-card: rgba(18, 18, 18, 0.75);
-    --bg-card-hover: rgba(28, 28, 28, 0.85);
-    --bg-ticker: #050505;
+    --bg-main: #FAF7F2;             /* Soft Warm Paper/Craft Cream */
+    --bg-card: #FFFFFF;             /* Pure Clean White */
+    --bg-ticker: #2C2523;           /* Dark Charcoal Ticker */
+    --bg-footer: #211C1A;
     
-    --text-light: #f8f8f8;
-    --text-muted: #a0a0a0;
-    --border-gold: rgba(200, 164, 93, 0.22);
-    --border-gold-bright: rgba(200, 164, 93, 0.6);
+    --text-main: #2C2523;           /* Soft Dark Charcoal */
+    --text-muted: #6E665E;          /* Muted Earthy Gray */
+    --text-light: #FAF7F2;
+    
+    --border-subtle: rgba(216, 83, 43, 0.15);
+    --border-soft: #EADFD4;
     
     /* Typography */
     --font-heading: 'Cormorant Garamond', serif;
     --font-body: 'Poppins', sans-serif;
     
-    /* Transitions & Shadows */
-    --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    --shadow-gold: 0 10px 30px -10px rgba(200, 164, 93, 0.25);
-    --shadow-card: 0 15px 35px rgba(0, 0, 0, 0.6);
+    /* Soft Organic Shadows & Radius */
+    --transition-smooth: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    --shadow-soft: 0 10px 30px rgba(44, 37, 35, 0.06);
+    --shadow-hover: 0 18px 40px rgba(216, 83, 43, 0.12);
+    --radius-organic: 18px;
 }
 
 /* ==========================================
@@ -48,17 +51,16 @@
 html {
     scroll-behavior: smooth;
     font-family: var(--font-body);
-    background-color: var(--bg-dark);
-    color: var(--text-light);
+    background-color: var(--bg-main);
+    color: var(--text-main);
     overflow-x: hidden;
 }
 
 body {
     line-height: 1.7;
-    background-color: var(--bg-dark);
-    background-image: 
-        radial-gradient(circle at 15% 15%, rgba(200, 164, 93, 0.03) 0%, transparent 40%),
-        radial-gradient(circle at 85% 85%, rgba(200, 164, 93, 0.03) 0%, transparent 40%);
+    background-color: var(--bg-main);
+    background-image: radial-gradient(circle at 10% 10%, rgba(216, 83, 43, 0.03) 0%, transparent 50%),
+                      radial-gradient(circle at 90% 90%, rgba(45, 90, 67, 0.03) 0%, transparent 50%);
     background-attachment: fixed;
 }
 
@@ -76,13 +78,13 @@ img {
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-    width: 6px;
+    width: 8px;
 }
 ::-webkit-scrollbar-track {
-    background: #000;
+    background: var(--bg-main);
 }
 ::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, var(--primary-gold), #8a6d3b);
+    background: var(--primary-accent);
     border-radius: 10px;
 }
 
@@ -95,23 +97,21 @@ img {
     left: 0;
     width: 100%;
     height: 100%;
-    background: #030303;
+    background: var(--bg-main);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 99999;
-    transition: opacity 0.8s ease, visibility 0.8s ease;
+    transition: opacity 0.6s ease;
 }
 
 .spinner {
-    width: 55px;
-    height: 55px;
-    border: 2px solid rgba(200, 164, 93, 0.15);
-    border-top-color: var(--primary-gold);
-    border-bottom-color: var(--gold-bright);
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(216, 83, 43, 0.15);
+    border-top-color: var(--primary-accent);
     border-radius: 50%;
-    animation: spin 1.2s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
-    box-shadow: 0 0 20px var(--gold-glow);
+    animation: spin 1s infinite linear;
 }
 
 @keyframes spin {
@@ -122,11 +122,10 @@ img {
     position: fixed;
     top: 0;
     left: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--primary-gold), var(--gold-bright), #ffffff);
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-accent), var(--accent-yellow));
     z-index: 10001;
     width: 0%;
-    box-shadow: 0 0 10px var(--gold-bright);
     transition: width 0.1s linear;
 }
 
@@ -138,7 +137,7 @@ img {
     top: 0;
     left: 0;
     width: 100%;
-    padding: 24px 6%;
+    padding: 22px 6%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -148,59 +147,52 @@ img {
 }
 
 #header.scrolled {
-    background: rgba(8, 8, 8, 0.88);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    background: rgba(250, 247, 242, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     padding: 14px 6%;
-    border-bottom: 1px solid var(--border-gold);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+    border-bottom: 1px solid var(--border-soft);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
 }
 
 .logo {
     font-family: var(--font-heading);
     font-size: 1.8rem;
     font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    background: linear-gradient(135deg, var(--gold-light), var(--primary-gold));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 20px rgba(200, 164, 93, 0.2);
+    letter-spacing: 1px;
+    color: var(--primary-accent);
 }
 
 .nav-menu {
     display: flex;
-    gap: 35px;
+    gap: 32px;
     list-style: none;
 }
 
 .nav-menu a {
-    font-size: 0.88rem;
-    font-weight: 500;
-    color: var(--text-light);
-    letter-spacing: 1.5px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-main);
+    letter-spacing: 1px;
     text-transform: uppercase;
     position: relative;
-    padding: 6px 0;
-    opacity: 0.85;
+    padding: 4px 0;
 }
 
 .nav-menu a::after {
     content: '';
     position: absolute;
     bottom: 0;
-    left: 50%;
+    left: 0;
     width: 0%;
     height: 2px;
-    background: linear-gradient(90deg, transparent, var(--primary-gold), transparent);
+    background: var(--primary-accent);
     transition: var(--transition-smooth);
-    transform: translateX(-50%);
 }
 
 .nav-menu a:hover,
 .nav-menu a.active {
-    color: var(--primary-gold);
-    opacity: 1;
+    color: var(--primary-accent);
 }
 
 .nav-menu a:hover::after,
@@ -210,50 +202,40 @@ img {
 
 .menu-btn {
     display: none;
-    font-size: 1.6rem;
-    color: var(--primary-gold);
+    font-size: 1.5rem;
+    color: var(--primary-accent);
     cursor: pointer;
-    background: rgba(200, 164, 93, 0.1);
+    background: rgba(216, 83, 43, 0.08);
     padding: 8px 12px;
     border-radius: 8px;
-    border: 1px solid var(--border-gold);
-    transition: var(--transition-smooth);
-}
-
-.menu-btn:active {
-    transform: scale(0.95);
 }
 
 /* ==========================================
-   5. GEETA TICKER (Right-to-Left Slow Float)
+   5. GEETA TICKER (Warm Earthy Banner)
 ========================================== */
 .geeta-ticker-wrapper {
     width: 100%;
     overflow: hidden;
     background: var(--bg-ticker);
-    border-top: 1px solid var(--border-gold);
-    border-bottom: 1px solid var(--border-gold);
-    padding: 14px 0;
+    color: var(--text-light);
+    padding: 12px 0;
     white-space: nowrap;
     position: relative;
-    margin-top: 90px;
-    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.9);
+    margin-top: 85px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .geeta-ticker-content {
     display: inline-block;
     padding-left: 100%;
-    /* Slow Right to Left Animation */
     animation: floatRightToLeft 95s linear infinite;
     font-size: 0.95rem;
-    color: var(--text-light);
     letter-spacing: 0.8px;
     font-weight: 300;
 }
 
 .gold-om {
-    color: var(--gold-bright);
-    text-shadow: 0 0 12px rgba(255, 215, 0, 0.9);
+    color: var(--accent-yellow);
     font-weight: bold;
     font-size: 1.1rem;
     margin: 0 10px;
@@ -271,89 +253,10 @@ img {
 }
 
 /* ==========================================
-   6. DYNAMIC QUOTES (3.5s Blur Transition)
-========================================== */
-.quotes-display-section {
-    padding: 60px 6%;
-}
-
-.quotes-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 30px;
-}
-
-.quote-box {
-    background: var(--bg-card);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid var(--border-gold);
-    border-radius: 16px;
-    padding: 35px 30px;
-    text-align: center;
-    position: relative;
-    box-shadow: var(--shadow-card);
-    transition: var(--transition-smooth);
-    overflow: hidden;
-}
-
-.quote-box::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(200, 164, 93, 0.08), transparent);
-    transition: 0.8s ease;
-}
-
-.quote-box:hover::before {
-    left: 100%;
-}
-
-.quote-box:hover {
-    border-color: var(--border-gold-bright);
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-gold);
-}
-
-.quote-badge {
-    display: inline-block;
-    background: rgba(200, 164, 93, 0.12);
-    color: var(--gold-light);
-    padding: 6px 18px;
-    border-radius: 30px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    margin-bottom: 22px;
-    border: 1px solid var(--border-gold);
-    box-shadow: 0 0 10px rgba(200, 164, 93, 0.1);
-}
-
-.quote-text {
-    font-family: var(--font-heading);
-    font-size: 1.35rem;
-    color: var(--text-light);
-    font-style: italic;
-    line-height: 1.6;
-    margin: 0;
-    min-height: 90px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* ==========================================
-   7. SECTIONS & TITLES
+   6. DYNAMIC QUOTES & BLOG CARDS
 ========================================== */
 section {
-    padding: 90px 6%;
+    padding: 80px 6%;
 }
 
 .section-title {
@@ -361,46 +264,76 @@ section {
     text-align: center;
     font-size: 2.8rem;
     font-weight: 700;
-    color: var(--primary-gold);
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    margin-bottom: 60px;
+    color: var(--primary-accent);
+    letter-spacing: 1px;
+    margin-bottom: 50px;
     position: relative;
-    background: linear-gradient(180deg, #ffffff 0%, var(--primary-gold) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
 }
 
 .section-title::after {
-    content: '✦';
+    content: '🍂';
     display: block;
     font-size: 1.2rem;
-    color: var(--primary-gold);
     margin-top: 5px;
-    -webkit-text-fill-color: var(--primary-gold);
-    opacity: 0.8;
+}
+
+.quotes-container, .portfolio-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+/* Paper Boat Style Organic White Card */
+.quote-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-organic);
+    padding: 35px 30px;
+    box-shadow: var(--shadow-soft);
+    transition: var(--transition-smooth);
+    position: relative;
+}
+
+.quote-box:hover {
+    border-color: var(--primary-accent);
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-hover);
+}
+
+.quote-badge {
+    display: inline-block;
+    background: rgba(45, 90, 67, 0.1);
+    color: var(--secondary-accent);
+    padding: 6px 16px;
+    border-radius: 30px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 18px;
+}
+
+.quote-text {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    color: var(--text-main);
+    font-style: italic;
+    line-height: 1.6;
 }
 
 /* ==========================================
-   8. PORTFOLIO & GALLERY GRID
+   7. PORTFOLIO & IMAGES
 ========================================== */
-.portfolio-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-    gap: 25px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
 .portfolio-item {
     position: relative;
-    border-radius: 14px;
+    border-radius: var(--radius-organic);
     overflow: hidden;
     aspect-ratio: 1 / 1;
-    border: 1px solid var(--border-gold);
-    background: #000;
-    cursor: pointer;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--border-soft);
+    background: #EAE3D9;
+    box-shadow: var(--shadow-soft);
     transition: var(--transition-smooth);
 }
 
@@ -408,23 +341,21 @@ section {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: brightness(0.9) contrast(1.05);
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
+    transition: transform 0.6s ease;
 }
 
 .portfolio-item:hover {
-    border-color: var(--gold-bright);
-    box-shadow: 0 15px 35px var(--gold-glow);
     transform: translateY(-6px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--primary-accent);
 }
 
 .portfolio-item:hover img {
-    transform: scale(1.08);
-    filter: brightness(1) contrast(1.1);
+    transform: scale(1.06);
 }
 
 /* ==========================================
-   9. LIGHTBOX & SHOWREEL POPUPS
+   8. LIGHTBOX & MODALS
 ========================================== */
 .lightbox, .video-popup {
     position: fixed;
@@ -432,9 +363,8 @@ section {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(3, 3, 3, 0.94);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    background: rgba(33, 28, 26, 0.88);
+    backdrop-filter: blur(12px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -452,89 +382,63 @@ section {
 .lightbox-img-wrapper img {
     max-width: 90vw;
     max-height: 82vh;
-    border-radius: 12px;
-    border: 1px solid var(--border-gold-bright);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9), 0 0 30px var(--gold-glow);
+    border-radius: var(--radius-organic);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
 }
 
 .lightbox-close, .lightbox-prev, .lightbox-next, .close-video {
     position: absolute;
     color: var(--text-light);
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     cursor: pointer;
-    background: rgba(200, 164, 93, 0.15);
-    border: 1px solid var(--border-gold);
-    width: 50px;
-    height: 50px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    width: 46px;
+    height: 46px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
     transition: var(--transition-smooth);
-    backdrop-filter: blur(10px);
 }
 
 .lightbox-close:hover, .lightbox-prev:hover, 
 .lightbox-next:hover, .close-video:hover {
-    background: var(--primary-gold);
-    color: #000;
-    box-shadow: 0 0 15px var(--gold-bright);
+    background: var(--primary-accent);
+    color: #fff;
     transform: scale(1.1);
 }
 
 .lightbox-close { top: 25px; right: 25px; }
-.lightbox-prev { left: 25px; top: 50%; transform: translateY(-50%); }
-.lightbox-next { right: 25px; top: 50%; transform: translateY(-50%); }
-
-.video-container {
-    width: 92%;
-    max-width: 900px;
-    aspect-ratio: 16 / 9;
-    position: relative;
-    border-radius: 16px;
-    overflow: hidden;
-    border: 1px solid var(--border-gold-bright);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9), 0 0 30px var(--gold-glow);
-}
-
-.video-container iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-}
-
-.close-video {
-    top: -60px;
-    right: 0;
-}
+.lightbox-prev { left: 20px; top: 50%; transform: translateY(-50%); }
+.lightbox-next { right: 20px; top: 50%; transform: translateY(-50%); }
 
 /* ==========================================
-   10. CONTACT FORM
+   9. CONTACT FORM
 ========================================== */
 .contact-wrapper {
     max-width: 650px;
     margin: 0 auto;
     background: var(--bg-card);
-    border: 1px solid var(--border-gold);
-    border-radius: 20px;
-    padding: 45px 35px;
-    backdrop-filter: blur(12px);
-    box-shadow: var(--shadow-card);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-organic);
+    padding: 40px 35px;
+    box-shadow: var(--shadow-soft);
 }
 
 .contact-form {
     display: flex;
     flex-direction: column;
-    gap: 22px;
+    gap: 20px;
 }
 
 .form-group input, .form-group textarea {
     width: 100%;
     padding: 16px 20px;
-    background: rgba(10, 10, 10, 0.6);
-    border: 1px solid var(--border-gold);
-    border-radius: 10px;
-    color: var(--text-light);
+    background: #FAF7F2;
+    border: 1px solid var(--border-soft);
+    border-radius: 12px;
+    color: var(--text-main);
     font-family: inherit;
     font-size: 0.95rem;
     outline: none;
@@ -542,60 +446,54 @@ section {
 }
 
 .form-group input:focus, .form-group textarea:focus {
-    border-color: var(--gold-bright);
-    background: rgba(15, 15, 15, 0.9);
-    box-shadow: 0 0 15px rgba(200, 164, 93, 0.25);
+    border-color: var(--primary-accent);
+    background: #FFFFFF;
+    box-shadow: 0 0 0 3px rgba(216, 83, 43, 0.1);
 }
 
 .submit-btn {
     padding: 16px 35px;
-    background: linear-gradient(135deg, var(--gold-light), var(--primary-gold));
-    color: #000;
+    background: var(--primary-accent);
+    color: #FFFFFF;
     border: none;
-    border-radius: 10px;
+    border-radius: 12px;
     font-size: 0.95rem;
-    font-weight: 700;
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 1.5px;
+    letter-spacing: 1px;
     cursor: pointer;
     transition: var(--transition-smooth);
-    box-shadow: 0 5px 20px rgba(200, 164, 93, 0.3);
+    box-shadow: 0 6px 20px rgba(216, 83, 43, 0.25);
 }
 
 .submit-btn:hover {
-    background: linear-gradient(135deg, #ffffff, var(--gold-bright));
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.5);
-}
-
-#formStatus {
-    margin-top: 10px;
-    text-align: center;
-    font-weight: 500;
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(216, 83, 43, 0.35);
 }
 
 /* ==========================================
-   11. BACK TO TOP & FOOTER
+   10. FOOTER & BACK TO TOP
 ========================================== */
 #backToTop {
     position: fixed;
     bottom: 30px;
     right: 30px;
-    width: 48px;
-    height: 48px;
-    background: rgba(200, 164, 93, 0.2);
-    border: 1px solid var(--border-gold);
-    color: var(--primary-gold);
+    width: 46px;
+    height: 46px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-soft);
+    color: var(--primary-accent);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     cursor: pointer;
     opacity: 0;
     visibility: hidden;
     transition: var(--transition-smooth);
-    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow-soft);
     z-index: 999;
 }
 
@@ -605,98 +503,44 @@ section {
 }
 
 #backToTop:hover {
-    background: var(--primary-gold);
-    color: #000;
-    box-shadow: 0 0 20px var(--gold-bright);
-    transform: translateY(-5px);
+    background: var(--primary-accent);
+    color: #FFF;
+    transform: translateY(-4px);
 }
 
 .footer {
     text-align: center;
-    padding: 40px 20px;
-    border-top: 1px solid var(--border-gold);
+    padding: 35px 20px;
+    border-top: 1px solid var(--border-soft);
     font-size: 0.85rem;
-    color: var(--text-muted);
-    letter-spacing: 1px;
-    background: #040404;
+    color: var(--text-light);
+    background: var(--bg-footer);
 }
 
 /* ==========================================
-   12. SCROLL REVEAL ANIMATIONS
+   11. MEDIA QUERIES (MOBILE)
 ========================================== */
-.section-title, .about-wrapper, .journey-card, 
-.portfolio-item, .showreel-wrapper, .contact-wrapper, .footer {
-    opacity: 0;
-    transform: translateY(35px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
-
-.section-title.show, .about-wrapper.show, .journey-card.show, 
-.portfolio-item.show, .showreel-wrapper.show, .contact-wrapper.show, .footer.show {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* ==========================================
-   13. ULTRA-RESPONSIVE MEDIA QUERIES
-========================================== */
-/* Tablet Devices (<= 1024px) */
-@media (max-width: 1024px) {
-    section { padding: 70px 5%; }
-    .section-title { font-size: 2.4rem; }
-    .quotes-container { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-}
-
-/* Mobile Devices (<= 768px) */
 @media (max-width: 768px) {
-    #header { padding: 18px 5%; }
-    
+    #header { padding: 16px 5%; }
     .menu-btn { display: block; }
 
     .nav-menu {
         position: fixed;
         top: 0;
         right: -100%;
-        width: 80%;
-        max-width: 320px;
+        width: 78%;
+        max-width: 300px;
         height: 100vh;
-        background: rgba(10, 10, 10, 0.96);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
+        background: var(--bg-card);
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 30px;
+        gap: 25px;
         transition: var(--transition-smooth);
-        border-left: 1px solid var(--border-gold);
-        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.9);
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
     }
 
     .nav-menu.active { right: 0; }
-    
-    .nav-menu a { font-size: 1rem; }
-
-    .geeta-ticker-wrapper { margin-top: 75px; padding: 10px 0; }
-    
-    .section-title { font-size: 2rem; margin-bottom: 40px; }
-    
-    .portfolio-grid {
-        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-        gap: 15px;
-    }
-
-    .contact-wrapper { padding: 30px 20px; }
-
-    .lightbox-prev { left: 10px; }
-    .lightbox-next { right: 10px; }
-    .lightbox-close { top: 15px; right: 15px; }
-}
-
-/* Small Mobile Screens (<= 480px) */
-@media (max-width: 480px) {
-    .logo { font-size: 1.4rem; }
-    .quote-box { padding: 25px 20px; }
-    .quote-text { font-size: 1.1rem; min-height: 100px; }
-    .portfolio-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-    #backToTop { bottom: 20px; right: 20px; width: 42px; height: 42px; }
+    .geeta-ticker-wrapper { margin-top: 70px; }
+    .section-title { font-size: 2.2rem; }
 }
