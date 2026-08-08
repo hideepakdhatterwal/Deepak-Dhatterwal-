@@ -1,242 +1,354 @@
-/*======================================================
-  DEEPAK DHATTERWAL - OFFICIAL WEBSITE
-  High-Contrast Clean White Background & Deep Black Text Theme
-======================================================*/
+/* ======================================================
+   DEEPAK DHATTERWAL - OFFICIAL WEBSITE
+   COMPLETE CLEAN WHITE (#FFFFFF) & DEEP BLACK (#000000) THEME
+====================================================== */
 
-/* ==========================================
-   1. GOOGLE FONTS & GLOBAL VARIABLES
-========================================== */
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,500&family=Poppins:wght@300;400;500;600;700&display=swap');
 
+/* Force Global Variables to Clean White Theme */
 :root {
-    /* Pure White & Deep Black Palette */
-    --bg-main: #FFFFFF;             /* Pure White Background */
-    --bg-card: #FFFFFF;             /* Crisp White Card */
-    --bg-alt: #F8F9FA;              /* Very Soft Off-White for contrast */
-    --bg-ticker: #111111;           /* Dark Bar for Geeta Ticker for contrast */
-    --bg-footer: #111111;           /* Dark Elegant Footer */
-    
-    --text-main: #000000;           /* Pure/Deep Black Text */
-    --text-muted: #555555;          /* Secondary Dark Gray Text */
-    --text-light: #FFFFFF;          /* Light text for dark sections */
-    
-    --primary-accent: #D8532B;      /* Stylish Terracotta Orange Accent */
-    --primary-hover: #111111;       /* Black on hover */
-    --accent-yellow: #FFD700;       /* Gold/Yellow for Om symbol */
-    
-    --border-color: #E2E8F0;        /* Subtle Clean Border */
-    --border-dark: #000000;         /* Sharp Black Border */
-    
-    /* Typography */
+    --bg-main: #FFFFFF !important;
+    --bg-card: #FFFFFF !important;
+    --bg-alt: #F8F9FA !important;
+    --bg-header: #FFFFFF !important;
+    --bg-ticker: #111111 !important;
+    --bg-footer: #111111 !important;
+
+    --text-main: #000000 !important;
+    --text-dark: #000000 !important;
+    --text-muted: #444444 !important;
+    --text-light: #FFFFFF !important;
+
+    --primary-accent: #D8532B !important;
+    --primary-hover: #000000 !important;
+    --accent-gold: #D4AF37 !important;
+
+    --border-subtle: #E2E8F0 !important;
+    --border-strong: #000000 !important;
+
     --font-heading: 'Cormorant Garamond', serif;
     --font-body: 'Poppins', sans-serif;
-    
-    /* Smooth Transitions & Clean Shadows */
-    --transition-smooth: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.06);
-    --shadow-hover: 0 10px 30px rgba(0, 0, 0, 0.12);
-    --radius-clean: 12px;
+    --shadow-hover: 0 10px 25px rgba(0, 0, 0, 0.12);
 }
 
-/* ==========================================
-   2. BASE RESET & SCROLLBAR
-========================================== */
-* {
+/* Global Reset & Universal Background Force */
+*, *::before, *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
 }
 
-html {
-    scroll-behavior: smooth;
+html, body {
+    background-color: #FFFFFF !important;
+    color: #000000 !important;
     font-family: var(--font-body);
-    background-color: var(--bg-main);
-    color: var(--text-main);
+    line-height: 1.7;
+    scroll-behavior: smooth;
     overflow-x: hidden;
 }
 
-body {
-    line-height: 1.7;
-    background-color: var(--bg-main);
-    color: var(--text-main);
+/* Force All Main Containers & Sections to White Background */
+div, section, main, article, header, nav, aside {
+    background-color: transparent;
+    color: #000000;
 }
 
-a {
-    text-decoration: none;
-    color: inherit;
-    transition: var(--transition-smooth);
+section {
+    background-color: #FFFFFF !important;
+    color: #000000 !important;
+    padding: 70px 6%;
 }
 
-img {
-    max-width: 100%;
-    height: auto;
+/* All Headings - Deep Black */
+h1, h2, h3, h4, h5, h6,
+.section-title, .title, .heading {
+    color: #000000 !important;
+    font-family: var(--font-heading);
+    font-weight: 700;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.6rem;
+    margin-bottom: 40px;
+    position: relative;
+    letter-spacing: 0.5px;
+}
+
+.section-title::after {
+    content: '✦';
     display: block;
+    font-size: 0.9rem;
+    color: var(--primary-accent);
+    margin-top: 6px;
 }
 
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-    width: 8px;
-}
-::-webkit-scrollbar-track {
-    background: var(--bg-main);
-}
-::-webkit-scrollbar-thumb {
-    background: #222222;
-    border-radius: 10px;
+/* All Paragraphs & Text - Deep Black / Dark Gray */
+p, span, li, a, label {
+    color: #000000;
 }
 
-/* ==========================================
-   3. LOADER & PROGRESS BAR
-========================================== */
-#loader {
+.text-muted, p.subtitle, .sub-text {
+    color: #444444 !important;
+}
+
+/* Header & Navigation Bar */
+#header, .header, navbar, nav {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    background: var(--bg-main);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 99999;
-    transition: opacity 0.5s ease;
-}
-
-.spinner {
-    width: 48px;
-    height: 48px;
-    border: 3px solid #E2E8F0;
-    border-top-color: var(--text-main);
-    border-radius: 50%;
-    animation: spin 0.9s infinite linear;
-}
-
-@keyframes spin {
-    100% { transform: rotate(360deg); }
-}
-
-#scroll-progress {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 3px;
-    background: var(--primary-accent);
-    z-index: 10001;
-    width: 0%;
-    transition: width 0.1s linear;
-}
-
-/* ==========================================
-   4. ELEGANT HEADER & NAVBAR
-========================================== */
-#header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 20px 6%;
+    padding: 16px 6%;
+    background: rgba(255, 255, 255, 0.98) !important;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #E2E8F0 !important;
+    z-index: 1000;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 1000;
-    transition: var(--transition-smooth);
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--border-color);
 }
 
-#header.scrolled {
-    padding: 12px 6%;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-}
-
-.logo {
+.logo, .brand-name {
     font-family: var(--font-heading);
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     font-weight: 700;
-    letter-spacing: 1px;
-    color: var(--text-main);
+    color: #000000 !important;
+    text-decoration: none;
 }
 
 .nav-menu {
     display: flex;
-    gap: 30px;
+    gap: 25px;
     list-style: none;
 }
 
 .nav-menu a {
-    font-size: 0.88rem;
+    font-size: 0.85rem;
     font-weight: 600;
-    color: var(--text-main);
-    letter-spacing: 1px;
+    color: #000000 !important;
     text-transform: uppercase;
-    position: relative;
-    padding: 4px 0;
+    letter-spacing: 1px;
+    text-decoration: none;
+    transition: all 0.3s ease;
 }
 
-.nav-menu a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0%;
-    height: 2px;
-    background: var(--primary-accent);
-    transition: var(--transition-smooth);
+.nav-menu a:hover, .nav-menu a.active {
+    color: var(--primary-accent) !important;
 }
 
-.nav-menu a:hover,
-.nav-menu a.active {
-    color: var(--primary-accent);
-}
-
-.nav-menu a:hover::after,
-.nav-menu a.active::after {
-    width: 100%;
-}
-
-.menu-btn {
+.menu-btn, .hamburger {
     display: none;
     font-size: 1.5rem;
-    color: var(--text-main);
+    color: #000000 !important;
     cursor: pointer;
-    background: var(--bg-alt);
-    padding: 8px 12px;
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
 }
 
-/* ==========================================
-   5. GEETA TICKER (Right to Left Slow Float)
-========================================== */
-.geeta-ticker-wrapper {
+/* Action Buttons */
+.btn, button, .submit-btn, a.btn, .action-btn {
+    display: inline-block;
+    padding: 12px 28px;
+    background-color: #000000 !important;
+    color: #FFFFFF !important;
+    border: 1px solid #000000 !important;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.btn:hover, button:hover, .submit-btn:hover, a.btn:hover {
+    background-color: var(--primary-accent) !important;
+    border-color: var(--primary-accent) !important;
+    color: #FFFFFF !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+}
+
+.btn-secondary, .btn-outline {
+    background-color: #FFFFFF !important;
+    color: #000000 !important;
+    border: 1px solid #000000 !important;
+}
+
+.btn-secondary:hover, .btn-outline:hover {
+    background-color: #000000 !important;
+    color: #FFFFFF !important;
+}
+
+/* Cards, Bio & Quote Sections */
+.quote-box, .quote-card, .card, .info-box, .bio-wrapper, .contact-wrapper {
+    background-color: #FFFFFF !important;
+    border: 1px solid #E2E8F0 !important;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: var(--shadow-soft);
+    margin-bottom: 25px;
+    transition: all 0.3s ease;
+}
+
+.quote-box:hover, .quote-card:hover, .card:hover {
+    border-color: #000000 !important;
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-4px);
+}
+
+.quote-badge, .badge, .tag {
+    display: inline-block;
+    background-color: #000000 !important;
+    color: #FFFFFF !important;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+}
+
+.quote-text {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    color: #000000 !important;
+    font-style: italic;
+    line-height: 1.6;
+}
+
+/* Stats & Capabilities Progress Bars */
+.stat-box, .stat-item {
+    text-align: center;
+    padding: 20px;
+    background: #F8F9FA !important;
+    border: 1px solid #E2E8F0 !important;
+    border-radius: 10px;
+}
+
+.stat-number, .stat-val {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #000000 !important;
+}
+
+.progress-bar-container, .skill-bar {
+    margin-bottom: 20px;
+}
+
+.skill-name, .bar-label {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #000000 !important;
+    margin-bottom: 8px;
+}
+
+.bar-bg, .progress-track {
+    width: 100%;
+    height: 8px;
+    background-color: #E2E8F0 !important;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.bar-fill, .progress-fill {
+    height: 100%;
+    background-color: #000000 !important;
+    border-radius: 10px;
+}
+
+/* Image Gallery & Stills */
+.portfolio-grid, .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.portfolio-item, .gallery-card {
+    background-color: #F8F9FA !important;
+    border: 1px solid #E2E8F0 !important;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.portfolio-item img, .gallery-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.portfolio-item:hover, .gallery-card:hover {
+    border-color: #000000 !important;
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-hover);
+}
+
+.portfolio-item:hover img, .gallery-card:hover img {
+    transform: scale(1.04);
+}
+
+/* Form Inputs */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group input, .form-group textarea, select {
+    width: 100%;
+    padding: 14px 18px;
+    background-color: #F8F9FA !important;
+    border: 1px solid #CBD5E1 !important;
+    border-radius: 8px;
+    color: #000000 !important;
+    font-family: inherit;
+    font-size: 0.95rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus, .form-group textarea:focus {
+    background-color: #FFFFFF !important;
+    border-color: #000000 !important;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);
+}
+
+.form-group input::placeholder, .form-group textarea::placeholder {
+    color: #777777 !important;
+}
+
+/* Geeta Ticker / Shlokas Bar */
+.geeta-ticker-wrapper, .shloka-bar, .ticker-wrapper {
     width: 100%;
     overflow: hidden;
-    background: var(--bg-ticker);
-    color: var(--text-light);
+    background-color: #111111 !important;
+    color: #FFFFFF !important;
     padding: 12px 0;
     white-space: nowrap;
     position: relative;
-    margin-top: 75px;
+    margin-top: 65px;
 }
 
-.geeta-ticker-content {
+.geeta-ticker-content, .ticker-content {
     display: inline-block;
     padding-left: 100%;
     animation: floatRightToLeft 95s linear infinite;
     font-size: 0.95rem;
-    letter-spacing: 0.8px;
-    font-weight: 300;
+    color: #FFFFFF !important;
 }
 
 .gold-om {
-    color: var(--accent-yellow);
-    font-weight: bold;
-    font-size: 1.1rem;
+    color: #FFD700 !important;
     margin: 0 10px;
-    display: inline-block;
-    vertical-align: middle;
+    font-weight: bold;
 }
 
 @keyframes floatRightToLeft {
@@ -244,285 +356,40 @@ img {
     100% { transform: translateX(-100%); }
 }
 
-.geeta-ticker-wrapper:hover .geeta-ticker-content {
-    animation-play-state: paused;
-}
-
-/* ==========================================
-   6. SECTIONS & TITLES
-========================================== */
-section {
-    padding: 80px 6%;
-    background-color: var(--bg-main);
-}
-
-.section-title {
-    font-family: var(--font-heading);
+/* Footer */
+footer, .footer {
+    background-color: #111111 !important;
+    color: #FFFFFF !important;
     text-align: center;
-    font-size: 2.8rem;
-    font-weight: 700;
-    color: var(--text-main);
-    letter-spacing: 1px;
-    margin-bottom: 50px;
-    position: relative;
+    padding: 30px 20px;
+    font-size: 0.85rem;
 }
 
-.section-title::after {
-    content: '✦';
-    display: block;
-    font-size: 1rem;
-    color: var(--primary-accent);
-    margin-top: 5px;
+footer p, .footer p {
+    color: #FFFFFF !important;
 }
 
-/* ==========================================
-   7. QUOTES & BLOG CARDS
-========================================== */
-.quotes-container, .portfolio-grid {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-}
-
-/* Clean White Card with Black Border & Shadow */
-.quote-box {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-clean);
-    padding: 35px 30px;
-    box-shadow: var(--shadow-soft);
-    transition: var(--transition-smooth);
-    position: relative;
-}
-
-.quote-box:hover {
-    border-color: var(--text-main);
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-hover);
-}
-
-.quote-badge {
-    display: inline-block;
-    background: #000000;
-    color: #FFFFFF;
-    padding: 5px 14px;
-    border-radius: 20px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 18px;
-}
-
-.quote-text {
-    font-family: var(--font-heading);
-    font-size: 1.35rem;
-    color: var(--text-main);
-    font-style: italic;
-    line-height: 1.6;
-}
-
-/* ==========================================
-   8. PORTFOLIO & IMAGES
-========================================== */
-.portfolio-item {
-    position: relative;
-    border-radius: var(--radius-clean);
-    overflow: hidden;
-    aspect-ratio: 1 / 1;
-    border: 1px solid var(--border-color);
-    background: var(--bg-alt);
-    box-shadow: var(--shadow-soft);
-    transition: var(--transition-smooth);
-}
-
-.portfolio-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-}
-
-.portfolio-item:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-hover);
-    border-color: var(--text-main);
-}
-
-.portfolio-item:hover img {
-    transform: scale(1.05);
-}
-
-/* ==========================================
-   9. LIGHTBOX & MODALS
-========================================== */
-.lightbox, .video-popup {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.9);
-    backdrop-filter: blur(8px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 20000;
-    opacity: 0;
-    visibility: hidden;
-    transition: var(--transition-smooth);
-}
-
-.lightbox.active, .video-popup.active {
-    opacity: 1;
-    visibility: visible;
-}
-
-.lightbox-img-wrapper img {
-    max-width: 90vw;
-    max-height: 82vh;
-    border-radius: var(--radius-clean);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-}
-
-.lightbox-close, .lightbox-prev, .lightbox-next, .close-video {
-    position: absolute;
-    color: #FFFFFF;
-    font-size: 1.4rem;
-    cursor: pointer;
-    background: rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    width: 44px;
-    height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    transition: var(--transition-smooth);
-}
-
-.lightbox-close:hover, .lightbox-prev:hover, 
-.lightbox-next:hover, .close-video:hover {
-    background: #FFFFFF;
-    color: #000000;
-    transform: scale(1.1);
-}
-
-.lightbox-close { top: 25px; right: 25px; }
-.lightbox-prev { left: 20px; top: 50%; transform: translateY(-50%); }
-.lightbox-next { right: 20px; top: 50%; transform: translateY(-50%); }
-
-.video-container {
-    width: 90%;
-    max-width: 850px;
-    aspect-ratio: 16 / 9;
-    position: relative;
-    border-radius: 12px;
-    overflow: hidden;
-}
-
-.video-container iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-}
-
-.close-video {
-    top: -55px;
-    right: 0;
-}
-
-/* ==========================================
-   10. CONTACT FORM
-========================================== */
-.contact-wrapper {
-    max-width: 650px;
-    margin: 0 auto;
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-clean);
-    padding: 40px 35px;
-    box-shadow: var(--shadow-soft);
-}
-
-.contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.form-group input, .form-group textarea {
-    width: 100%;
-    padding: 15px 18px;
-    background: var(--bg-alt);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    color: var(--text-main);
-    font-family: inherit;
-    font-size: 0.95rem;
-    outline: none;
-    transition: var(--transition-smooth);
-}
-
-.form-group input:focus, .form-group textarea:focus {
-    border-color: var(--text-main);
-    background: #FFFFFF;
-    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
-}
-
-.submit-btn {
-    padding: 15px 30px;
-    background: #000000;
-    color: #FFFFFF;
-    border: none;
-    border-radius: 8px;
-    font-size: 0.95rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    cursor: pointer;
-    transition: var(--transition-smooth);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-}
-
-.submit-btn:hover {
-    background: var(--primary-accent);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-}
-
-#formStatus {
-    margin-top: 10px;
-    text-align: center;
-    font-weight: 500;
-    color: var(--text-main);
-}
-
-/* ==========================================
-   11. BACK TO TOP & FOOTER
-========================================== */
+/* Back to Top Button */
 #backToTop {
     position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 44px;
-    height: 44px;
-    background: #000000;
+    bottom: 25px;
+    right: 25px;
+    width: 45px;
+    height: 45px;
+    background-color: #000000 !important;
+    color: #FFFFFF !important;
     border: none;
-    color: #FFFFFF;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.1rem;
     cursor: pointer;
-    opacity: 0;
-    visibility: hidden;
-    transition: var(--transition-smooth);
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
 }
 
 #backToTop.show {
@@ -531,44 +398,69 @@ section {
 }
 
 #backToTop:hover {
-    background: var(--primary-accent);
-    transform: translateY(-4px);
+    background-color: var(--primary-accent) !important;
+    transform: translateY(-3px);
 }
 
-.footer {
-    text-align: center;
-    padding: 35px 20px;
-    border-top: 1px solid var(--border-color);
-    font-size: 0.85rem;
-    color: var(--text-light);
-    background: var(--bg-footer);
+/* Lightbox & Video Popup Modals */
+.lightbox, .video-popup, .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.88) !important;
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 20000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
 }
 
-/* ==========================================
-   12. RESPONSIVE MEDIA QUERIES
-========================================== */
+.lightbox.active, .video-popup.active, .modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Responsive Mobile Rules */
 @media (max-width: 768px) {
-    #header { padding: 16px 5%; }
-    .menu-btn { display: block; }
+    #header, .header {
+        padding: 14px 5%;
+    }
+    
+    .menu-btn, .hamburger {
+        display: block !important;
+    }
 
     .nav-menu {
         position: fixed;
         top: 0;
         right: -100%;
-        width: 78%;
+        width: 80%;
         max-width: 300px;
         height: 100vh;
-        background: #FFFFFF;
+        background-color: #FFFFFF !important;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         gap: 25px;
-        transition: var(--transition-smooth);
-        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
-        border-left: 1px solid var(--border-color);
+        transition: all 0.3s ease;
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.15);
+        border-left: 1px solid #E2E8F0 !important;
     }
 
-    .nav-menu.active { right: 0; }
-    .geeta-ticker-wrapper { margin-top: 65px; }
-    .section-title { font-size: 2.2rem; }
+    .nav-menu.active {
+        right: 0;
+    }
+
+    .geeta-ticker-wrapper, .shloka-bar {
+        margin-top: 60px;
+    }
+
+    .section-title {
+        font-size: 2.1rem;
+    }
 }
