@@ -2,173 +2,399 @@
 <html lang="en">
 
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta charset="UTF-8">
+  <title>Thank You | Deepak Dhatterwal</title>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
 
-<title>Thank You | Deepak Dhatterwal</title>
+  <!-- Premium editorial typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link rel="stylesheet" href="style.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet">
 
-<style>
+  <style>
 
-body{
+    :root {
+      --black: #090909;
+      --black-soft: #111111;
+      --gold: #c8a45d;
+      --gold-light: #d8bb7b;
+      --white: #ffffff;
+      --text-soft: #bcbcbc;
+      --border: rgba(200,164,93,.25);
+    }
 
-margin:0;
+    * {
+      box-sizing: border-box;
+    }
 
-display:flex;
+    body {
+      margin: 0;
+      min-height: 100vh;
 
-justify-content:center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-align-items:center;
+      padding: 30px 18px;
 
-height:100vh;
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(200,164,93,.07),
+          transparent 45%
+        ),
+        var(--black);
 
-background:#0b0b0b;
+      color: var(--white);
 
-font-family:Inter,sans-serif;
+      font-family: "Inter", sans-serif;
 
-color:#fff;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
 
-}
+    .thankyou {
+      width: 100%;
+      max-width: 720px;
 
-.thankyou{
+      padding: 55px 45px;
 
-text-align:center;
+      text-align: center;
 
-max-width:650px;
+      background: rgba(17,17,17,.72);
 
-padding:40px;
+      border: 1px solid var(--border);
 
-}
+      border-radius: 24px;
 
-.check{
+      box-shadow:
+        0 30px 80px rgba(0,0,0,.45);
 
-width:100px;
+      backdrop-filter: blur(12px);
 
-height:100px;
+      animation: fadeUp .8s ease both;
+    }
 
-margin:auto;
+    /* Gold confirmation mark */
 
-border-radius:50%;
+    .check {
+      width: 86px;
+      height: 86px;
 
-background:#c8a45d;
+      margin: 0 auto 28px;
 
-display:flex;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-justify-content:center;
+      border-radius: 50%;
 
-align-items:center;
+      background: var(--gold);
 
-font-size:50px;
+      color: #111;
 
-color:#111;
+      font-size: 42px;
+      font-weight: 600;
 
-margin-bottom:30px;
+      box-shadow:
+        0 0 0 8px rgba(200,164,93,.08),
+        0 12px 35px rgba(200,164,93,.18);
 
-}
+      animation: checkIn .7s ease .2s both;
+    }
 
-h1{
+    /* Small editorial label */
 
-font-size:52px;
+    .eyebrow {
+      margin-bottom: 12px;
 
-margin-bottom:20px;
+      color: var(--gold);
 
-font-family:'Cormorant Garamond',serif;
+      font-size: 11px;
+      font-weight: 600;
 
-}
+      letter-spacing: .22em;
+      text-transform: uppercase;
+    }
 
-p{
+    h1 {
+      margin: 0 0 20px;
 
-font-size:18px;
+      color: var(--white);
 
-color:#cfcfcf;
+      font-family:
+        "Cormorant Garamond",
+        Georgia,
+        "Times New Roman",
+        serif;
 
-line-height:1.8;
+      font-size: clamp(42px, 7vw, 68px);
 
-margin-bottom:40px;
+      line-height: .95;
 
-}
+      font-weight: 600;
 
-a{
+      letter-spacing: -.025em;
+    }
 
-display:inline-block;
+    .gold-line {
+      width: 55px;
+      height: 1px;
 
-padding:16px 40px;
+      margin: 0 auto 28px;
 
-background:#c8a45d;
+      background: var(--gold);
+    }
 
-color:#111;
+    .message {
+      margin: 0 auto 28px;
 
-text-decoration:none;
+      max-width: 590px;
 
-border-radius:50px;
+      color: var(--text-soft);
 
-font-weight:600;
+      font-size: 16px;
 
-transition:.3s;
+      line-height: 1.8;
+    }
 
-}
+    .message strong {
+      color: var(--white);
+      font-weight: 600;
+    }
 
-a:hover{
+    .signature {
+      margin-top: 32px;
 
-transform:translateY(-4px);
+      color: var(--text-soft);
 
-}
+      font-size: 14px;
 
-</style>
+      line-height: 1.7;
+    }
+
+    .signature strong {
+      color: var(--gold-light);
+    }
+
+    /* Button */
+
+    .home-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      margin-top: 30px;
+
+      min-height: 52px;
+
+      padding: 0 34px;
+
+      border: 1px solid var(--gold);
+
+      border-radius: 999px;
+
+      background: var(--gold);
+
+      color: #111;
+
+      text-decoration: none;
+
+      font-size: 14px;
+      font-weight: 600;
+
+      letter-spacing: .02em;
+
+      transition:
+        transform .3s ease,
+        background .3s ease,
+        box-shadow .3s ease;
+    }
+
+    .home-button:hover {
+      transform: translateY(-3px);
+
+      background: var(--gold-light);
+
+      box-shadow:
+        0 12px 30px rgba(200,164,93,.18);
+    }
+
+    .home-button:active {
+      transform: translateY(-1px);
+    }
+
+    /* Bottom identity */
+
+    .identity {
+      margin-top: 34px;
+
+      color: #777;
+
+      font-size: 11px;
+
+      letter-spacing: .13em;
+
+      text-transform: uppercase;
+    }
+
+    .identity span {
+      color: var(--gold);
+    }
+
+    /* Animations */
+
+    @keyframes fadeUp {
+
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+    }
+
+    @keyframes checkIn {
+
+      from {
+        opacity: 0;
+        transform: scale(.75);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+    }
+
+    /* Mobile */
+
+    @media (max-width: 600px) {
+
+      body {
+        padding: 18px;
+      }
+
+      .thankyou {
+        padding: 42px 22px;
+
+        border-radius: 20px;
+      }
+
+      .check {
+        width: 74px;
+        height: 74px;
+
+        font-size: 36px;
+
+        margin-bottom: 24px;
+      }
+
+      h1 {
+        font-size: clamp(40px, 13vw, 56px);
+      }
+
+      .message {
+        font-size: 14px;
+        line-height: 1.75;
+      }
+
+      .home-button {
+        width: 100%;
+      }
+
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+
+    }
+
+  </style>
 
 </head>
 
+
 <body>
 
-<div class="thankyou">
+  <main class="thankyou">
 
-<div class="check">
+    <div class="check" aria-hidden="true">
+      ✓
+    </div>
 
-✓
+    <div class="eyebrow">
+      Inquiry Received
+    </div>
 
-</div>
+    <h1>
+      Thank You
+    </h1>
 
-<h1>Thank You!</h1>
+    <div class="gold-line"></div>
 
-<p>
+    <p class="message">
+      Your message has been received successfully.
+    </p>
 
-Thank You!
+    <p class="message">
+      Thank you for contacting
+      <strong>Deepak Dhatterwal</strong>
+      — Official Website.
+    </p>
 
-<h2>Thank You!</h2>
+    <p class="message">
+      Your inquiry has been received and will be reviewed carefully.
+      A response will be shared at the earliest opportunity.
+    </p>
 
-<p>Your message has been received successfully.</p>
+    <p class="message">
+      We sincerely appreciate your interest, support, and patience.
+      We look forward to connecting with you soon.
+    </p>
 
-<p>
-  Thank you for contacting
-  <strong>Deepak Dhatterwal</strong> – Official Website.
-</p>
+    <div class="signature">
 
-<p>
-  Your inquiry is appreciated and has been forwarded for review.
-  You can expect a response at the earliest opportunity.
-</p>
+      With gratitude,<br>
 
-<p>
-  We sincerely appreciate your interest, support, and patience.
-  We look forward to connecting with you soon.
-</p>
+      <strong>
+        Team Deepak Dhatterwal
+      </strong>
 
-<p><strong>With gratitude,</strong><br>
-Team <strong>Deepak Dhatterwal</strong></p>
+    </div>
 
-</p>
+    <a
+      href="index.html"
+      class="home-button"
+    >
+      Back to Home
+    </a>
 
-<a href="index.html">
+    <div class="identity">
+      Deepak Dhatterwal
+      <span>•</span>
+      Official Website
+    </div>
 
-Back to Home
-
-</a>
-
-</div>
+  </main>
 
 </body>
 
-</html>
+      </html>
