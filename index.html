@@ -11,9 +11,13 @@
 <meta content="Deepak Dhatterwal" name="author"/>
 <meta content="#0d8f83" name="theme-color"/>
 <link rel="icon" type="image/x-icon" href="favicon.ico"/>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
 <link rel="icon" type="image/png" sizes="48x48" href="favicon-48.png"/>
 <link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png"/>
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"/>
+<link rel="icon" type="image/svg+xml" href="favicon.svg"/>
+<link rel="shortcut icon" href="favicon.svg"/>
+
 <meta content="Deepak Dhatterwal | Official Profile" property="og:title"/>
 <meta content="Official profile of Deepak Dhatterwal — actor, artist." property="og:description"/>
 <meta content="website" property="og:type"/>
@@ -7995,6 +7999,126 @@ footer strong{color:#111!important}
 }
 </style>
 
+
+<style id="deepak-dd-premium-logo">
+/* ===== DEEPAK DHATTERWAL — PREMIUM DD MONOGRAM ===== */
+.deepak-logo-mark{
+  position:relative!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  overflow:hidden!important;
+  isolation:isolate;
+  background:
+    radial-gradient(circle at 35% 25%,rgba(255,255,255,.16),transparent 35%),
+    linear-gradient(145deg,#082f2b 0%,#075e54 48%,#043a35 100%)!important;
+  border:1px solid rgba(255,217,120,.75)!important;
+  color:#ffd978!important;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.07),
+    inset 0 8px 18px rgba(255,255,255,.05),
+    0 7px 22px rgba(7,59,53,.20),
+    0 0 0 3px rgba(242,200,107,.08)!important;
+  font-family:Georgia,"Times New Roman",serif!important;
+  line-height:1!important;
+  letter-spacing:-.18em!important;
+  transform:translateZ(0);
+}
+.deepak-logo-mark::before{
+  content:"";
+  position:absolute;
+  inset:4px;
+  border:1px solid rgba(255,217,120,.24);
+  border-radius:inherit;
+  pointer-events:none;
+}
+.deepak-logo-mark::after{
+  content:"";
+  position:absolute;
+  width:46%;
+  height:160%;
+  left:-62%;
+  top:-30%;
+  transform:rotate(25deg);
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent);
+  transition:left .7s ease;
+  pointer-events:none;
+}
+.wa-brand-single:hover .deepak-logo-mark::after,
+.footer-clean-brand:hover .deepak-logo-mark::after{left:118%}
+.dd-letter{
+  position:relative;
+  z-index:2;
+  display:block;
+  font-family:Georgia,"Times New Roman",serif!important;
+  font-weight:700!important;
+  font-style:italic!important;
+  color:#ffe39a!important;
+  text-shadow:0 2px 7px rgba(0,0,0,.38);
+  line-height:.8!important;
+}
+.dd-d{transform:translateX(3px) scaleX(.9)}
+.dd-d2{
+  transform:translateX(-3px) translateY(4px) scaleX(.9);
+  opacity:.92;
+}
+.glass-nav .deepak-logo-mark{
+  width:42px!important;height:42px!important;
+  border-radius:13px!important;
+  padding:0!important;
+  margin-right:2px!important;
+  font-size:25px!important;
+}
+.glass-nav .deepak-logo-mark .dd-letter{font-size:25px!important}
+.modern-footer .deepak-logo-mark,
+.footer-clean .deepak-logo-mark{
+  width:48px!important;height:48px!important;
+  border-radius:15px!important;
+  flex:0 0 auto!important;
+}
+.modern-footer .deepak-logo-mark .dd-letter,
+.footer-clean .deepak-logo-mark .dd-letter{font-size:29px!important}
+
+/* Compact brand treatment */
+.wa-brand-copy strong{
+  letter-spacing:.055em!important;
+  font-weight:900!important;
+}
+.nav-official-label{
+  letter-spacing:.14em!important;
+  font-weight:800!important;
+}
+
+/* Subtle premium lift for the navbar */
+.glass-nav{
+  box-shadow:0 12px 36px rgba(7,59,53,.12)!important;
+}
+.glass-nav .navbar-brand:hover .wa-brand-copy strong{
+  color:#b8860b!important;
+}
+
+/* Better touch target + visual feedback on mobile */
+@media(max-width:991px){
+  .glass-nav .deepak-logo-mark{
+    width:38px!important;height:38px!important;
+    border-radius:12px!important;
+  }
+  .glass-nav .deepak-logo-mark .dd-letter{font-size:22px!important}
+}
+@media(max-width:430px){
+  .glass-nav .deepak-logo-mark{
+    width:34px!important;height:34px!important;
+    border-radius:11px!important;
+  }
+  .glass-nav .deepak-logo-mark .dd-letter{font-size:20px!important}
+}
+
+/* Respect reduced-motion accessibility */
+@media(prefers-reduced-motion:reduce){
+  .deepak-logo-mark::after{display:none!important}
+}
+</style>
+
 </head>
 <body class="bg-dark text-white">
 <!-- ================= 1. NAVBAR ================= -->
@@ -8004,7 +8128,9 @@ footer strong{color:#111!important}
 <span class="wa-brand-avatar-wrap">
 <img alt="Deepak Dhatterwal profile photo" class="nav-mini-avatar" decoding="async" fetchpriority="high" loading="eager" src="https://i.postimg.cc/zX7R8VMJ/file-000000007d5882089236d6ae402ba6c0.png"/>
 </span>
-<span class="brand-logo deepak-logo-mark" aria-hidden="true">DD</span>
+<span class="brand-logo deepak-logo-mark" aria-hidden="true">
+  <span class="dd-letter dd-d">D</span><span class="dd-letter dd-d2">D</span>
+</span>
 <span class="wa-brand-copy">
 <strong>DEEPAK DHATTERWAL</strong>
 <span class="nav-official-label">Official Profile</span>
@@ -8724,7 +8850,9 @@ Rooted in Haryana. Shaped by the journey. Driven by the craft. And always ready 
 </section><footer aria-label="Site footer" class="modern-footer" id="site-footer">
 <div class="footer-clean">
 <div class="footer-clean-brand">
-<span class="footer-om deepak-logo-mark" aria-hidden="true">DD</span>
+<span class="footer-om deepak-logo-mark" aria-hidden="true">
+  <span class="dd-letter dd-d">D</span><span class="dd-letter dd-d2">D</span>
+</span>
 <div>
 <strong>DEEPAK DHATTERWAL</strong>
 <p>Official Profile · Actor · Artist</p>
